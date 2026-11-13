@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="pt-BR" id="htmlRoot">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="pageTitle">Previsão do Tempo e Mercados Globais</title>
+    <meta name="description" content="Global Weather & Market Intelligence Platform in Real Time.">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#0b192c">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+        body { background: linear-gradient(135deg, #0b192c, #1e3e62); color: #fff; min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 15px 15px 90px 15px; transition: background 0.8s ease; }
+        body.day-theme { background: linear-gradient(135deg, #1c7ed6, #4dabf7); }
+        body.rain-theme { background: linear-gradient(135deg, #2b303a, #495057); }
+        
+        /* Ticker Financeiro Dinâmico Global */
+        .market-ticker { width: 100%; max-width: 1100px; background: rgba(0, 0, 0, 0.3); backdrop-filter: blur(10px); border-radius: 14px; padding: 10px 15px; margin-bottom: 15px; display: flex; gap: 20px; overflow-x: auto; white-space: nowrap; scrollbar-width: none; font-size: 13px; border: 1px solid rgba(255,255,255,0.1); }
+        .market-ticker::-webkit-scrollbar { display: none; }
+        .market-item { display: inline-flex; align-items: center; gap: 6px; color: rgba(255,255,255,0.9); }
+        .market-item span.up { color: #51cf66; font-weight: bold; }
+        .market-item span.down { color: #ff6b6b; font-weight: bold; }
+
+        /* Container Principal */
+        .app-container { width: 100%; max-width: 480px; background: rgba(11, 25, 44, 0.45); backdrop-filter: blur(20px); border-radius: 30px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.4); display: flex; flex-direction: column; position: relative; padding-bottom: 20px; }
+        
+        .search-box { padding: 20px 20px 10px 20px; display: flex; gap: 10px; z-index: 10; }
+        .search-box input { flex: 1; padding: 12px 18px; border-radius: 20px; border: none; background: rgba(255, 255, 255, 0.2); color: #fff; font-size: 16px; outline: none; }
+        .search-box input::placeholder { color: rgba(255, 255, 255, 0.7); }
+        .search-box button { padding: 0 16px; border-radius: 20px; border: none; background: #fff; color: #0b192c; font-weight: bold; cursor: pointer; }
+        
+        .hero-section { padding: 10px 20px 20px 20px; position: relative; text-align: left; }
+        .location-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px; }
+        .location-name { font-size: 20px; font-weight: 600; display: flex; align-items: center; gap: 6px; }
+        .live-clock { font-size: 14px; background: rgba(255,255,255,0.15); padding: 4px 10px; border-radius: 12px; font-weight: 500; }
+        
+        .temp-main { font-size: 72px; font-weight: 300; line-height: 1; margin-bottom: 5px; }
+        .condition-text { font-size: 22px; font-weight: 500; margin-bottom: 12px; }
+        .temp-min-max, .feels-like, .summary-box { font-size: 14px; color: rgba(255, 255, 255, 0.85); margin-bottom: 6px; }
+        
+        .mascot-stage { width: 100%; height: 140px; display: flex; justify-content: center; align-items: center; position: relative; margin: 10px 0; }
+        .mascot-svg { width: 130px; height: 130px; animation: breathe 3s ease-in-out infinite; }
+        @keyframes breathe { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+        
+        .card-section { background: rgba(255, 255, 255, 0.12); margin: 10px 20px; border-radius: 20px; padding: 15px; }
+        .section-title { font-size: 14px; color: rgba(255, 255, 255, 0.8); margin-bottom: 10px; font-weight: 600; }
+        
+        .hourly-scroll { display: flex; overflow-x: auto; gap: 15px; padding-bottom: 5px; scrollbar-width: none; }
+        .hourly-scroll::-webkit-scrollbar { display: none; }
+        .hour-item { display: flex; flex-direction: column; align-items: center; min-width: 52px; font-size: 14px; gap: 6px; }
+        
+        .daily-row { display: flex; justify-content: space-between; align-items: center; font-size: 15px; padding: 8px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.12); }
+        .daily-row:last-child { border-bottom: none; }
+        
+        .adsense-box { margin: 10px 20px; background: rgba(255, 255, 255, 0.05); border-radius: 12px; min-height: 60px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+
+        /* Rodapé Profissional com Aviso Permanente de Cookies */
+        footer { padding: 22px 20px; text-align: center; font-size: 12px; color: rgba(255, 255, 255, 0.7); border-top: 1px solid rgba(255, 255, 255, 0.12); margin-top: 20px; width: 100%; max-width: 480px; }
+        footer .footer-links { display: flex; justify-content: center; gap: 15px; margin-bottom: 12px; flex-wrap: wrap; }
+        footer .footer-links a { color: rgba(255, 255, 255, 0.9); text-decoration: none; cursor: pointer; font-weight: 500; }
+        footer .footer-links a:hover { text-decoration: underline; color: #74c0fc; }
+        .footer-cookie-notice { background: rgba(0, 0, 0, 0.22); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; padding: 10px 14px; margin-bottom: 12px; font-size: 11.5px; color: rgba(255, 255, 255, 0.78); line-height: 1.5; }
+        .footer-cookie-notice a { color: #74c0fc; text-decoration: underline; cursor: pointer; font-weight: 600; }
+        .footer-credits { font-size: 11px; color: rgba(255, 255, 255, 0.45); margin-top: 6px; }
+
+        /* Janela Modal Profissional Expandida */
+        #infoModal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.82); backdrop-filter: blur(8px); z-index: 10000; justify-content: center; align-items: center; padding: 15px; }
+        .modal-content { background: #0f172a; border: 1px solid rgba(255,255,255,0.18); width: 100%; max-width: 720px; border-radius: 22px; padding: 28px; box-shadow: 0 25px 50px rgba(0,0,0,0.7); max-height: 88vh; overflow-y: auto; text-align: left; }
+        .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; border-bottom: 1px solid rgba(255,255,255,0.12); padding-bottom: 12px; position: sticky; top: -28px; background: #0f172a; z-index: 2; padding-top: 5px; }
+        .modal-header h3 { font-size: 20px; color: #4dabf7; }
+        .modal-close { background: rgba(255,255,255,0.1); border: none; color: #fff; font-size: 22px; width: 34px; height: 34px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+        .modal-close:hover { background: rgba(255,255,255,0.2); }
+        .modal-body h4 { font-size: 15px; color: #74c0fc; margin-top: 18px; margin-bottom: 8px; }
+        .modal-body p { font-size: 13.5px; color: rgba(255,255,255,0.85); line-height: 1.65; margin-bottom: 12px; }
+        .modal-body ul { margin-left: 20px; margin-bottom: 14px; font-size: 13.5px; color: rgba(255,255,255,0.85); line-height: 1.6; }
+        .modal-body li { margin-bottom: 6px; }
+        .modal-body a { color: #4dabf7; text-decoration: underline; }
+        .btn-reopen-cookie { margin-top: 12px; padding: 10px 18px; border-radius: 12px; border: none; background: #4dabf7; color: #0b192c; font-weight: bold; font-size: 13px; cursor: pointer; }
+
+        /* Banner de Cookies Profissional Imediato */
+        #cookieBanner { position: fixed; bottom: 15px; left: 50%; transform: translateX(-50%); width: calc(100% - 30px); max-width: 1080px; background: rgba(15, 23, 42, 0.97); backdrop-filter: blur(14px); color: #fff; padding: 18px 22px; display: flex; flex-direction: column; gap: 12px; z-index: 9999; border-radius: 20px; border: 1px solid rgba(116, 192, 252, 0.35); box-shadow: 0 15px 40px rgba(0,0,0,0.75); animation: slideUp 0.4s ease-out; }
+        @keyframes slideUp { from { transform: translate(-50%, 100%); opacity: 0; } to { transform: translate(-50%, 0); opacity: 1; } }
+        .cookie-header-title { font-size: 15px; font-weight: 700; color: #74c0fc; display: flex; align-items: center; gap: 8px; }
+        #cookieBanner p { font-size: 13px; color: rgba(255,255,255,0.88); line-height: 1.5; }
+        #cookieBanner p a { color: #74c0fc; text-decoration: underline; cursor: pointer; }
+        #cookieBanner .cookie-actions { display: flex; gap: 10px; justify-content: flex-end; flex-wrap: wrap; }
+        #cookieBanner button { padding: 10px 18px; border-radius: 12px; font-size: 13px; font-weight: bold; cursor: pointer; border: none; transition: transform 0.15s ease, opacity 0.15s ease; }
+        #cookieBanner button:hover { opacity: 0.92; transform: translateY(-1px); }
+        .btn-accept { background: #4dabf7; color: #0b192c; }
+        .btn-reject { background: rgba(255,255,255,0.14); color: #fff; }
+
+        /* COMPUTADOR TELA INTEIRA */
+        @media (min-width: 900px) {
+            body { padding: 30px 30px 100px 30px; justify-content: center; }
+            .market-ticker { max-width: 1100px; }
+            .app-container { max-width: 1100px; display: grid; grid-template-columns: 1.2fr 1fr; gap: 20px; padding: 30px; border-radius: 35px; }
+            .search-box { grid-column: span 2; padding: 10px 0; }
+            .hero-section { grid-column: 1; padding: 10px; }
+            .mascot-stage { height: 160px; }
+            .mascot-svg { width: 150px; height: 150px; }
+            .adsense-box { grid-column: span 2; margin: 10px 0; }
+            .card-section { grid-column: 2; margin: 0; }
+            footer { max-width: 1100px; grid-column: span 2; }
+            #cookieBanner { flex-direction: row; align-items: center; justify-content: space-between; }
+            .cookie-text-group { max-width: 72%; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Ticker Financeiro Dinâmico Global -->
+    <div class="market-ticker" id="marketTicker">
+        <div class="market-item" id="txtLoadingMarkets">📈 Carregando mercados globais...</div>
+    </div>
+
+    <div class="app-container">
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="Digite cidade, país ou região..." onkeypress="if(event.key==='Enter') buscarCidade()">
+            <button onclick="buscarCidade()">🔍</button>
+        </div>
+        <div class="hero-section">
+            <div class="location-header">
+                <div class="location-name" id="locationName">📍 Localizando...</div>
+                <div class="live-clock" id="liveClock">--:--</div>
+            </div>
+            <div class="temp-main" id="tempMain">--°</div>
+            <div class="condition-text" id="conditionText">Sincronizando...</div>
+            <div class="temp-min-max" id="tempMinMax">↑ --° / ↓ --°</div>
+            <div class="feels-like" id="feelsLike">Sensação térmica de --°</div>
+            <div class="summary-box" id="summaryBox">Carregando dados meteorológicos globais...</div>
+            <div class="mascot-stage" id="mascotStage"></div>
+        </div>
+        
+        <div class="adsense-box" id="adsenseBox"></div>
+        
+        <div class="card-section">
+            <div class="section-title" id="titleHourly">Previsão Hora a Hora</div>
+            <div class="hourly-scroll" id="hourlyScroll"></div>
+        </div>
+        <div class="card-section">
+            <div class="section-title" id="titleDaily">Próximos Dias</div>
+            <div id="dailyContainer"></div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-links">
+            <a id="linkAbout" onclick="abrirModal('about')">Sobre</a>
+            <a id="linkPrivacy" onclick="abrirModal('privacy')">Política de Privacidade</a>
+            <a id="linkCookies" onclick="abrirModal('cookies')">Política de Cookies</a>
+            <a id="linkTerms" onclick="abrirModal('terms')">Termos de Uso</a>
+        </div>
+        <div class="footer-cookie-notice" id="footerCookieNotice">
+            🍪 <b>Aviso de Cookies:</b> Este portal utiliza cookies próprios e de terceiros (incluindo Google AdSense) para personalizar previsões climáticas, ajustar fusos horários locais, analisar o tráfego e exibir anúncios relevantes. Ao continuar navegando, você concorda com nossa <a onclick="abrirModal('cookies')">Política de Cookies</a> e <a onclick="abrirModal('privacy')">Privacidade</a>. (<a onclick="reabrirBannerCookies()">Gerenciar Preferências</a>)
+        </div>
+        <p>&copy; 2026 Global Weather & Markets. All rights reserved.</p>
+        <p class="footer-credits" id="footerCredits">Dados meteorológicos fornecidos por Open-Meteo.com</p>
+    </footer>
+
+    <!-- Janela Modal Dinâmica -->
+    <div id="infoModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle">Título</h3>
+                <button class="modal-close" onclick="fecharModal()">&times;</button>
+            </div>
+            <div class="modal-body" id="modalBody"></div>
+        </div>
+    </div>
+
+    <!-- Banner de Cookies Profissional ao Entrar na Página -->
+    <div id="cookieBanner">
+        <div class="cookie-text-group">
+            <div class="cookie-header-title" id="cookieTitle">🍪 Valorizamos a sua Privacidade e Transparência</div>
+            <p id="cookieText">Utilizamos cookies e dados de geolocalização para personalizar previsões do tempo, ajustar o fuso horário local e exibir anúncios relevantes em conformidade com a LGPD e GDPR. Saiba mais em nossa <a onclick="abrirModal('cookies')">Política de Cookies</a>.</p>
+        </div>
+        <div class="cookie-actions">
+            <button class="btn-reject" id="btnReject" onclick="salvarPreferenciaCookies('essential')">Apenas Essenciais</button>
+            <button class="btn-accept" id="btnAccept" onclick="salvarPreferenciaCookies('all')">Aceitar Todos</button>
+        </div>
+    </div>
+
+    <script>
+        const userLang = navigator.language || navigator.userLanguage || 'pt-BR';
+        let idiomaUsuario = 'pt';
+        if (userLang.startsWith('en')) idiomaUsuario = 'en';
+        else if (userLang.startsWith('es')) idiomaUsuario = 'es';
+        else if (userLang.startsWith('ja')) idiomaUsuario = 'ja';
+
+        const UI_TEXTS = {
+            pt: {
+                searchPlace: "Digite cidade, país ou região...",
+                sync: "Sincronizando...",
+                detecting: "📍 Localizando...",
+                loadingWeather: "Carregando dados meteorológicos globais...",
+                hourlyTitle: "Previsão Hora a Hora",
+                dailyTitle: "Próximos Dias",
+                about: "Sobre", privacy: "Política de Privacidade", cookies: "Política de Cookies", terms: "Termos de Uso",
+                cookieTitle: "🍪 Valorizamos a sua Privacidade e Transparência",
+                cookieMsg: "Utilizamos cookies e dados de geolocalização para personalizar previsões do tempo, ajustar o fuso horário local e exibir anúncios relevantes em conformidade com a LGPD e GDPR. Saiba mais em nossa <a onclick=\"abrirModal('cookies')\">Política de Cookies</a>.",
+                footerCookieHtml: "🍪 <b>Aviso de Cookies:</b> Este portal utiliza cookies próprios e de terceiros (incluindo Google AdSense) para personalizar previsões climáticas, ajustar fusos horários locais e exibir anúncios relevantes em conformidade com a LGPD e GDPR. Consulte nossa <a onclick=\"abrirModal('cookies')\">Política de Cookies</a> ou clique em <a onclick=\"reabrirBannerCookies()\">Gerenciar Preferências</a>.",
+                reject: "Apenas Essenciais", accept: "Aceitar Todos",
+                loadingMarkets: "📈 Carregando mercados globais...",
+                feelsLike: "Sensação térmica de",
+                credits: "Dados meteorológicos fornecidos por Open-Meteo.com",
+                modals: {
+                    about: {
+                        title: "Sobre o Portal Global Weather & Markets",
+                        content: `
+                            <p>A <b>Global Weather & Market Intelligence</b> é uma plataforma independente de monitoramento climático e financeiro em tempo real, projetada para oferecer acesso rápido, gratuito e preciso a dados essenciais do dia a dia em qualquer lugar do mundo.</p>
+                            <h4>1. Nossa Missão e Tecnologia</h4>
+                            <p>Nosso objetivo é democratizar o acesso a informações meteorológicas de alta resolução e indicadores cambiais globais através de uma interface leve, responsiva e intuitiva. Utilizamos algoritmos de detecção automática de fuso horário, idioma e moeda local para entregar uma experiência personalizada a visitantes das Américas, Europa, Ásia e Oceania.</p>
+                            <h4>2. Fontes de Dados Oficiais</h4>
+                            <ul>
+                                <li><b>Meteorologia:</b> Integração direta com modelos numéricos atmosféricos fornecidos pela <i>Open-Meteo</i>, atualizados continuamente com previsões horárias e estendidas.</li>
+                                <li><b>Geolocalização:</b> Processamento de coordenadas geográficas via protocolos abertos (<i>OpenStreetMap Nominatim</i> e serviços de roteamento regional).</li>
+                                <li><b>Mercados Financeiros:</b> Cotações de câmbio e ativos digitais sincronizadas em tempo real através de feeds públicos consolidados.</li>
+                            </ul>
+                        `
+                    },
+                    cookies: {
+                        title: "Política de Cookies e Gerenciamento de Consentimento",
+                        content: `
+                            <p><i>Última atualização: Novembro de 2026</i></p>
+                            <p>Esta <b>Política de Cookies</b> explica o que são cookies, como o portal <b>Global Weather & Markets</b> os utiliza e como você pode controlar suas preferências de privacidade a qualquer momento.</p>
+                            <h4>1. O que são Cookies?</h4>
+                            <p>Cookies e tecnologias similares (como o <i>LocalStorage</i> do navegador) são pequenos arquivos de texto armazenados no seu dispositivo quando você visita um site. Eles servem para lembrar suas preferências, garantir o funcionamento técnico da página e tornar a navegação mais rápida e relevante.</p>
+                            <h4>2. Categorias de Cookies que Utilizamos</h4>
+                            <ul>
+                                <li><b>Cookies Estritamente Necessários (Essenciais):</b> Indispensáveis para o funcionamento básico do site, incluindo o salvamento da sua escolha de consentimento de privacidade, idioma detectado e segurança da conexão.</li>
+                                <li><b>Cookies Funcionais e de Geolocalização:</b> Permitem identificar sua região aproximada para exibir automaticamente o clima da sua cidade, o relógio no fuso horário correto e as cotações na moeda local.</li>
+                                <li><b>Cookies de Publicidade (Google AdSense / Cookie DART):</b> Parceiros de publicidade como o Google utilizam cookies para veicular anúncios relevantes com base em suas visitas anteriores a este ou a outros sites. Isso permite que nosso portal permaneça 100% gratuito para todos os usuários.</li>
+                            </ul>
+                            <h4>3. Como Gerenciar ou Desativar Cookies</h4>
+                            <p>Você pode alterar ou revogar sua escolha de cookies neste portal a qualquer momento clicando no botão abaixo, ou configurar seu navegador (Chrome, Safari, Firefox, Edge) para bloquear ou alertar sobre cookies.</p>
+                            <button class="btn-reopen-cookie" onclick="fecharModal(); reabrirBannerCookies();">⚙️ Alterar Minhas Preferências de Cookies</button>
+                        `
+                    },
+                    privacy: {
+                        title: "Política de Privacidade (LGPD, GDPR & Google AdSense)",
+                        content: `
+                            <p><i>Última atualização: Novembro de 2026</i></p>
+                            <p>A sua privacidade e a segurança dos seus dados são prioridades absolutas para o portal <b>Global Weather & Markets</b>. Esta Política de Privacidade detalha de forma transparente como coletamos, utilizamos, armazenamos e protegemos informações durante a sua navegação, em estrita conformidade com a <b>Lei Geral de Proteção de Dados do Brasil (LGPD - Lei nº 13.709/2018)</b>, o <b>Regulamento Geral sobre a Proteção de Dados da União Europeia (GDPR)</b> e as políticas do <b>Google AdSense</b>.</p>
+                            <h4>1. Quais Dados Coletamos e Para Qual Finalidade</h4>
+                            <ul>
+                                <li><b>Dados de Geolocalização (IP e GPS):</b> Quando você acessa o portal, utilizamos o endereço IP aproximado ou, caso você autorize expressamente no navegador, a geolocalização do dispositivo (GPS) exclusivamente para identificar sua cidade, ajustar o fuso horário local e exibir a previsão do tempo e a moeda da sua região.</li>
+                                <li><b>Preferências de Navegação e Idioma:</b> Lemos o idioma padrão configurado no seu navegador para traduzir automaticamente a interface e guardar sua escolha sobre o consentimento de cookies no armazenamento local (<i>LocalStorage</i>).</li>
+                            </ul>
+                            <h4>2. Uso de Cookies e Publicidade (Google AdSense / Cookie DART)</h4>
+                            <ul>
+                                <li>O <b>Google</b>, como fornecedor de terceiros, utiliza cookies para exibir anúncios neste site.</li>
+                                <li>Com o <b>cookie DART</b>, o Google e seus parceiros podem exibir anúncios personalizados com base nas visitas feitas por você a este e a outros sites na Internet.</li>
+                                <li>Você pode desativar a publicidade personalizada acessando as <a href="https://adssettings.google.com" target="_blank" rel="noopener">Configurações de Anúncios do Google</a> ou <a href="https://www.aboutads.info" target="_blank" rel="noopener">www.aboutads.info</a>.</li>
+                            </ul>
+                            <h4>3. Seus Direitos e Contato do Encarregado (DPO)</h4>
+                            <p>Você tem o direito de revogar seu consentimento a qualquer momento. Para solicitações relacionadas à privacidade, entre em contato pelo e-mail oficial: <b>Receitasnaturais1994@gmail.com</b>.</p>
+                        `
+                    },
+                    terms: {
+                        title: "Termos e Condições de Uso",
+                        content: `
+                            <p><i>Última atualização: Novembro de 2026</i></p>
+                            <p>Bem-vindo ao portal <b>Global Weather & Markets</b>. Ao acessar ou utilizar esta plataforma, você concorda integralmente com estes Termos e Condições de Uso.</p>
+                            <h4>1. Natureza Informativa do Serviço</h4>
+                            <p>O portal disponibiliza ferramentas interativas gratuitas para consulta de condições meteorológicas, fusos horários mundiais e cotações de câmbio/ativos digitais para fins estritamente <b>informativos e educacionais</b>.</p>
+                            <h4>2. Isenção de Responsabilidade Meteorológica e Financeira</h4>
+                            <ul>
+                                <li><b>Previsões Climáticas:</b> Os dados são gerados por modelos matemáticos automatizados de terceiros e estão sujeitos a variações atmosféricas repentinas.</li>
+                                <li><b>Cotações de Mercado:</b> As taxas de câmbio e valores de criptoativos são meramente referenciais. <b>Nenhuma informação deste site constitui recomendação de investimento ou consultoria financeira.</b></li>
+                            </ul>
+                        `
+                    }
+                }
+            },
+            en: {
+                searchPlace: "Enter city, country or region...",
+                sync: "Syncing...",
+                detecting: "📍 Locating...",
+                loadingWeather: "Loading global weather data...",
+                hourlyTitle: "Hourly Forecast",
+                dailyTitle: "Next Days",
+                about: "About", privacy: "Privacy Policy", cookies: "Cookie Policy", terms: "Terms of Use",
+                cookieTitle: "🍪 We Value Your Privacy & Transparency",
+                cookieMsg: "We use cookies and geolocation data to personalize weather forecasts, adjust local timezones, and serve relevant ads in compliance with GDPR & CCPA. Read our <a onclick=\"abrirModal('cookies')\">Cookie Policy</a>.",
+                footerCookieHtml: "🍪 <b>Cookie Notice:</b> This portal uses first-party and third-party cookies (including Google AdSense) to personalize forecasts, local timezones, and ads in compliance with GDPR & CCPA. View our <a onclick=\"abrirModal('cookies')\">Cookie Policy</a> or <a onclick=\"reabrirBannerCookies()\">Manage Preferences</a>.",
+                reject: "Essential Only", accept: "Accept All",
+                loadingMarkets: "📈 Loading global markets...",
+                feelsLike: "Feels like",
+                credits: "Weather data provided by Open-Meteo.com",
+                modals: {
+                    about: {
+                        title: "About Global Weather & Markets",
+                        content: "<p><b>Global Weather & Market Intelligence</b> is an independent real-time weather and financial monitoring platform designed to provide fast, free, and accurate access to essential daily data anywhere in the world.</p>"
+                    },
+                    cookies: {
+                        title: "Cookie Policy & Consent Management",
+                        content: `
+                            <p><i>Last Updated: November 2026</i></p>
+                            <p>We use cookies and browser LocalStorage to remember your language and consent settings, detect local weather/timezone, and serve Google AdSense advertisements that keep this service free.</p>
+                            <button class="btn-reopen-cookie" onclick="fecharModal(); reabrirBannerCookies();">⚙️ Manage Cookie Preferences</button>
+                        `
+                    },
+                    privacy: {
+                        title: "Privacy Policy (GDPR, CCPA & Google AdSense)",
+                        content: `
+                            <p>Your privacy is our priority. Third-party vendors, including Google, use cookies to serve ads based on prior visits. Opt out at <a href="https://adssettings.google.com" target="_blank" rel="noopener">Google Ads Settings</a>. Contact: <b>Receitasnaturais1994@gmail.com</b>.</p>
+                        `
+                    },
+                    terms: {
+                        title: "Terms & Conditions of Use",
+                        content: "<p>All weather forecasts and currency/crypto exchange rates are provided strictly for informational purposes and do not constitute financial advice.</p>"
+                    }
+                }
+            },
+            es: {
+                searchPlace: "Ingrese ciudad, país o región...",
+                sync: "Sincronizando...",
+                detecting: "📍 Localizando...",
+                loadingWeather: "Cargando datos meteorológicos globales...",
+                hourlyTitle: "Pronóstico Hora a Hora",
+                dailyTitle: "Próximos Días",
+                about: "Acerca de", privacy: "Política de Privacidad", cookies: "Política de Cookies", terms: "Términos de Uso",
+                cookieTitle: "🍪 Valoramos su Privacidad y Transparencia",
+                cookieMsg: "Utilizamos cookies y geolocalización para personalizar pronósticos, relojes locales y anuncios conforme a GDPR. Lea nuestra <a onclick=\"abrirModal('cookies')\">Política de Cookies</a>.",
+                footerCookieHtml: "🍪 <b>Aviso de Cookies:</b> Este portal utiliza cookies propias y de terceros (incluido Google AdSense) para personalizar pronósticos y anuncios. Consulte nuestra <a onclick=\"abrirModal('cookies')\">Política de Cookies</a> o <a onclick=\"reabrirBannerCookies()\">Gestionar Preferencias</a>.",
+                reject: "Solo Esenciales", accept: "Aceptar Todos",
+                loadingMarkets: "📈 Cargando mercados globales...",
+                feelsLike: "Sensación térmica de",
+                credits: "Datos meteorológicos proporcionados por Open-Meteo.com",
+                modals: {
+                    about: { title: "Acerca de Global Weather & Markets", content: "<p>Plataforma global de monitoreo meteorológico y financiero en tiempo real.</p>" },
+                    cookies: { title: "Política de Cookies", content: "<p>Utilizamos cookies para mejorar su experiencia y mostrar anuncios relevantes de Google AdSense.</p><button class=\"btn-reopen-cookie\" onclick=\"fecharModal(); reabrirBannerCookies();\">⚙️ Gestionar Preferencias</button>" },
+                    privacy: { title: "Política de Privacidad", content: "<p>Cumplimos con normativas globales y políticas de Google AdSense. Contacto: <b>Receitasnaturais1994@gmail.com</b>.</p>" },
+                    terms: { title: "Términos de Uso", content: "<p>Los datos mostrados tienen fines estrictamente informativos.</p>" }
+                }
+            },
+            ja: {
+                searchPlace: "都市名、国名を入力...",
+                sync: "同期中...",
+                detecting: "📍 位置情報を取得中...",
+                loadingWeather: "世界中の気象データを読み込み中...",
+                hourlyTitle: "時間別予報",
+                dailyTitle: "週間予報",
+                about: "概要", privacy: "プライバシーポリシー", cookies: "Cookieポリシー", terms: "利用規約",
+                cookieTitle: "🍪 プライバシーとCookieの使用について",
+                cookieMsg: "当サイトでは、地域の天気予報や現地時刻の調整、Google AdSenseによる広告配信のためにCookieを使用します。詳細は<a onclick=\"abrirModal('cookies')\">Cookieポリシー</a>をご覧ください。",
+                footerCookieHtml: "🍪 <b>Cookieに関する通知：</b> 当サイトでは、気象予報や現地時刻の最適化および広告配信（Google AdSense）のためにCookieを使用しています。詳細は<a onclick=\"abrirModal('cookies')\">Cookieポリシー</a>または<a onclick=\"reabrirBannerCookies()\">設定の管理</a>をご確認ください。",
+                reject: "必須のみ", accept: "すべて同意",
+                loadingMarkets: "📈 グローバル市場を読み込み中...",
+                feelsLike: "体感温度",
+                credits: "気象データ提供：Open-Meteo.com",
+                modals: {
+                    about: { title: "プラットフォームについて", content: "<p>世界中のリアルタイムの気象情報と金融市場データを提供するグローバルプラットフォームです。</p>" },
+                    cookies: { title: "Cookieポリシー", content: "<p>当サイトでは利便性向上と広告配信のためにCookieを使用しています。</p><button class=\"btn-reopen-cookie\" onclick=\"fecharModal(); reabrirBannerCookies();\">⚙️ Cookie設定を変更する</button>" },
+                    privacy: { title: "プライバシーポリシー", content: "<p>Google AdSenseの広告配信ポリシーおよび個人情報保護法に準拠しています。連絡先：<b>Receitasnaturais1994@gmail.com</b></p>" },
+                    terms: { title: "利用規約", content: "<p>当サイトのデータは情報提供のみを目的としています。</p>" }
+                }
+            }
+        };
+
+        const t = UI_TEXTS[idiomaUsuario];
+        document.getElementById('searchInput').placeholder = t.searchPlace;
+        document.getElementById('conditionText').innerText = t.sync;
+        document.getElementById('locationName').innerText = t.detecting;
+        document.getElementById('summaryBox').innerText = t.loadingWeather;
+        document.getElementById('titleHourly').innerText = t.hourlyTitle;
+        document.getElementById('titleDaily').innerText = t.dailyTitle;
+        document.getElementById('linkAbout').innerText = t.about;
+        document.getElementById('linkPrivacy').innerText = t.privacy;
+        document.getElementById('linkCookies').innerText = t.cookies;
+        document.getElementById('linkTerms').innerText = t.terms;
+        document.getElementById('cookieTitle').innerText = t.cookieTitle;
+        document.getElementById('cookieText').innerHTML = t.cookieMsg;
+        document.getElementById('footerCookieNotice').innerHTML = t.footerCookieHtml;
+        document.getElementById('btnReject').innerText = t.reject;
+        document.getElementById('btnAccept').innerText = t.accept;
+        document.getElementById('txtLoadingMarkets').innerText = t.loadingMarkets;
+        document.getElementById('footerCredits').innerText = t.credits;
+        document.getElementById('htmlRoot').setAttribute('lang', idiomaUsuario);
+
+        function abrirModal(tipo) {
+            const modalData = t.modals[tipo];
+            if (!modalData) return;
+            document.getElementById('modalTitle').innerText = modalData.title;
+            document.getElementById('modalBody').innerHTML = modalData.content;
+            document.getElementById('infoModal').style.display = 'flex';
+        }
+
+        function fecharModal() {
+            document.getElementById('infoModal').style.display = 'none';
+        }
+
+        window.onclick = function(event) {
+            const modal = document.getElementById('infoModal');
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        }
+
+        if ('serviceWorker' in navigator) { navigator.serviceWorker.register('sw.js'); }
+
+        // Controle Profissional do Banner de Cookies
+        function salvarPreferenciaCookies(nivel) {
+            document.getElementById('cookieBanner').style.display = 'none';
+            localStorage.setItem('cookieConsent', nivel);
+        }
+
+        function reabrirBannerCookies() {
+            document.getElementById('cookieBanner').style.display = 'flex';
+        }
+
+        if (localStorage.getItem('cookieConsent')) {
+            document.getElementById('cookieBanner').style.display = 'none';
+        }
+
+        let fusoHorarioAtual = 'UTC';
+        setInterval(() => {
+            try {
+                const agora = new Date().toLocaleTimeString(userLang, { timeZone: fusoHorarioAtual, hour: '2-digit', minute: '2-digit', second: '2-digit' });
+                document.getElementById('liveClock').innerText = `🕒 ${agora}`;
+            } catch (e) {
+                document.getElementById('liveClock').innerText = `🕒 ${new Date().toLocaleTimeString()}`;
+            }
+        }, 1000);
+
+        async function carregarMercados() {
+            try {
+                const res = await fetch('https://economia.awesomeapi.com.br/json/last/USD-BRL,EUR-BRL,BTC-BRL,USD-JPY,EUR-USD');
+                const data = await res.json();
+                const ticker = document.getElementById('marketTicker');
+                
+                if (idiomaUsuario === 'ja') {
+                    ticker.innerHTML = `
+                        <div class="market-item">💵 USD/JPY: <b>¥${parseFloat(data.USDJPY.bid).toFixed(2)}</b> <span class="${data.USDJPY.varBid >= 0 ? 'up':'down'}">${data.USDJPY.varBid >= 0 ? '▲':'▼'} ${data.USDJPY.pctChange}%</span></div>
+                        <div class="market-item">💶 EUR/USD: <b>$${parseFloat(data.EURUSD.bid).toFixed(4)}</b></div>
+                        <div class="market-item">₿ Bitcoin: <b>$${parseFloat(data.BTCBRL.bid / data.USDBRL.bid).toLocaleString('en-US', {maximumFractionDigits:0})}</b></div>
+                    `;
+                } else {
+                    ticker.innerHTML = `
+                        <div class="market-item">💵 USD/BRL: <b>R$ ${parseFloat(data.USDBRL.bid).toFixed(2)}</b> <span class="${data.USDBRL.varBid >= 0 ? 'up':'down'}">${data.USDBRL.varBid >= 0 ? '▲':'▼'} ${data.USDBRL.pctChange}%</span></div>
+                        <div class="market-item">💶 EUR/BRL: <b>R$ ${parseFloat(data.EURBRL.bid).toFixed(2)}</b> <span class="${data.EURBRL.varBid >= 0 ? 'up':'down'}">${data.EURBRL.varBid >= 0 ? '▲':'▼'} ${data.EURBRL.pctChange}%</span></div>
+                        <div class="market-item">₿ Bitcoin: <b>R$ ${parseFloat(data.BTCBRL.bid).toLocaleString('pt-BR', {maximumFractionDigits:0})}</b> <span class="${data.BTCBRL.varBid >= 0 ? 'up':'down'}">${data.BTCBRL.varBid >= 0 ? '▲':'▼'} ${data.BTCBRL.pctChange}%</span></div>
+                    `;
+                }
+            } catch (e) {
+                document.getElementById('marketTicker').innerHTML = `<div class="market-item">📈 Global Financial Markets Live</div>`;
+            }
+        }
+        carregarMercados();
+        setInterval(carregarMercados, 60000);
+
+        function renderMascot(code, isDay) {
+            const stage = document.getElementById('mascotStage');
+            const isRain = [51, 53, 55, 61, 63, 65, 80, 81, 82, 95].includes(code);
+            document.body.className = isRain ? 'rain-theme' : (isDay ? 'day-theme' : '');
+            if (isRain) {
+                stage.innerHTML = `<svg class="mascot-svg" viewBox="0 0 120 120"><path d="M20,55 Q60,15 100,55 Z" fill="#ff6b6b"/><line x1="60" y1="55" x2="60" y2="95" stroke="#fff" stroke-width="3"/><circle cx="52" cy="75" r="14" fill="#ffd43b"/><circle cx="48" cy="72" r="2" fill="#000"/><circle cx="56" cy="72" r="2" fill="#000"/><path d="M40,90 Q52,85 64,90 L64,110 L40,110 Z" fill="#339af0"/><line x1="25" y1="20" x2="20" y2="35" stroke="#74c0fc" stroke-width="2"/><line x1="95" y1="25" x2="90" y2="40" stroke="#74c0fc" stroke-width="2"/></svg>`;
+            } else if (isDay) {
+                stage.innerHTML = `<svg class="mascot-svg" viewBox="0 0 120 120"><circle cx="95" cy="25" r="14" fill="#fcc419"/><circle cx="60" cy="65" r="16" fill="#ffd43b"/><rect x="48" y="60" width="10" height="6" rx="2" fill="#212529"/><rect x="62" y="60" width="10" height="6" rx="2" fill="#212529"/><line x1="58" y1="62" x2="62" y2="62" stroke="#212529" stroke-width="2"/><path d="M55,72 Q60,77 65,72" stroke="#000" stroke-width="2" fill="none"/><path d="M45,83 Q60,78 75,83 L75,108 L45,108 Z" fill="#ff922b"/></svg>`;
+            } else {
+                stage.innerHTML = `<svg class="mascot-svg" viewBox="0 0 120 120"><path d="M90,20 A12,12 0 1,0 102,32 A10,10 0 1,1 90,20 Z" fill="#fff3bf"/><circle cx="30" cy="25" r="2" fill="#fff"/><circle cx="75" cy="18" r="1.5" fill="#fff"/><circle cx="60" cy="65" r="16" fill="#ffe066"/><circle cx="55" cy="63" r="2" fill="#000"/><circle cx="65" cy="63" r="2" fill="#000"/><path d="M57,71 Q60,74 63,71" stroke="#000" stroke-width="2" fill="none"/><path d="M45,83 Q60,78 75,83 L75,108 L45,108 Z" fill="#5c7cfa"/></svg>`;
+            }
+        }
+
+        function interpretarClima(code) {
+            const climas = {
+                0: { texto: "Céu Limpo", icone: "☀️" }, 1: { texto: "Principalmente Limpo", icone: "🌤️" },
+                2: { texto: "Parcialmente Nublado", icone: "⛅" }, 3: { texto: "Nublado", icone: "☁️" },
+                45: { texto: "Nevoeiro", icone: "🌫️" }, 51: { texto: "Garoa Leve", icone: "🌧️" },
+                61: { texto: "Chuva Leve", icone: "🌧️" }, 63: { texto: "Chuva Moderada", icone: "🌧️" },
+                80: { texto: "Pancadas de Chuva", icone: "🌦️" }, 95: { texto: "Tempestade", icone: "⛈️" }
+            };
+            return climas[code] || { texto: "Variável", icone: "☁️" };
+        }
+
+        async function carregarClima(lat, lon, nomeLocal, timezoneStr) {
+            try {
+                if (timezoneStr) fusoHorarioAtual = timezoneStr;
+                const res = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,apparent_temperature,is_day,weather_code&hourly=temperature_2m,weather_code,precipitation_probability&daily=weather_code,temperature_2m_max,temperature_2m_min&timezone=auto`);
+                const dados = await res.json();
+                if (dados.timezone) fusoHorarioAtual = dados.timezone;
+
+                document.getElementById('locationName').innerText = `📍 ${nomeLocal}`;
+                document.getElementById('tempMain').innerText = `${Math.round(dados.current.temperature_2m)}°`;
+                const info = interpretarClima(dados.current.weather_code);
+                document.getElementById('conditionText').innerText = info.texto;
+                document.getElementById('feelsLike').innerText = `${t.feelsLike} ${Math.round(dados.current.apparent_temperature)}°`;
+                const maxT = Math.round(dados.daily.temperature_2m_max[0]);
+                const minT = Math.round(dados.daily.temperature_2m_min[0]);
+                document.getElementById('tempMinMax').innerText = `↑ ${maxT}° / ↓ ${minT}°`;
+                document.getElementById('summaryBox').innerText = `${info.texto} em ${nomeLocal}. Min ${minT}°C / Max ${maxT}°C.`;
+                renderMascot(dados.current.weather_code, dados.current.is_day === 1);
+                
+                const horaScroll = document.getElementById('hourlyScroll');
+                horaScroll.innerHTML = '';
+                const horaAtual = new Date().getHours();
+                for (let i = horaAtual; i < horaAtual + 12; i++) {
+                    horaScroll.innerHTML += `<div class="hour-item"><span>${String(i % 24).padStart(2, '0')}:00</span><span style="font-size:20px;">${interpretarClima(dados.hourly.weather_code[i]).icone}</span><span>${Math.round(dados.hourly.temperature_2m[i])}°</span><span style="font-size:11px; color:#a5d8ff;">💧${dados.hourly.precipitation_probability[i]}%</span></div>`;
+                }
+                
+                const dailyContainer = document.getElementById('dailyContainer');
+                dailyContainer.innerHTML = '';
+                for (let d = 1; d <= 5; d++) {
+                    const dataObj = new Date(); dataObj.setDate(dataObj.getDate() + d);
+                    const dia = dataObj.toLocaleDateString(userLang, { weekday: 'short' });
+                    dailyContainer.innerHTML += `<div class="daily-row"><span style="text-transform:capitalize;">${dia}</span><span>${interpretarClima(dados.daily.weather_code[d]).icone}</span><span>↑ ${Math.round(dados.daily.temperature_2m_max[d])}° / ↓ ${Math.round(dados.daily.temperature_2m_min[d])}°</span></div>`;
+                }
+            } catch (e) { console.error(e); }
+        }
+
+        async function buscarCidade() {
+            const q = document.getElementById('searchInput').value;
+            if (!q) return;
+            const res = await fetch(`https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(q)}&count=5&language=pt&format=json`);
+            const data = await res.json();
+            if (data.results && data.results.length > 0) {
+                const c = data.results[0];
+                carregarClima(c.latitude, c.longitude, `${c.name}, ${c.admin1 || c.country}`, c.timezone);
+            } else { alert("Local não encontrado."); }
+        }
+
+        async function obterNomePorCoordenadas(lat, lon) {
+            try {
+                const res = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}&zoom=10`);
+                const data = await res.json();
+                const addr = data.address;
+                const cidade = addr.city || addr.town || addr.village || addr.municipality || "Local Atual";
+                const estado = addr.state || addr.country || "";
+                carregarClima(lat, lon, estado ? `${cidade}, ${estado}` : cidade);
+            } catch (e) {
+                carregarClima(lat, lon, "Sua Localização");
+            }
+        }
+
+        function solicitarGpsAparelho() {
+            if ("geolocation" in navigator) {
+                navigator.geolocation.getCurrentPosition(
+                    (pos) => obterNomePorCoordenadas(pos.coords.latitude, pos.coords.longitude),
+                    () => { carregarClima(-29.68, -51.34, "Montenegro, RS"); },
+                    { timeout: 6000 }
+                );
+            } else { carregarClima(-29.68, -51.34, "Montenegro, RS"); }
+        }
+
+        async function iniciarLocalizacaoGlobal() {
+            try {
+                const res = await fetch('https://ipapi.co/json/');
+                const data = await res.json();
+                if (data.latitude && data.longitude && data.city) {
+                    carregarClima(data.latitude, data.longitude, `${data.city}, ${data.region || data.country_name}`, data.timezone);
+                    return;
+                }
+            } catch (e) {}
+
+            try {
+                const res2 = await fetch('https://ipwho.is/');
+                const data2 = await res2.json();
+                if (data2.success && data2.latitude && data2.longitude && data2.city) {
+                    carregarClima(data2.latitude, data2.longitude, `${data2.city}, ${data2.region || data2.country}`, data2.timezone);
+                    return;
+                }
+            } catch (e) {}
+
+            solicitarGpsAparelho();
+        }
+
+        iniciarLocalizacaoGlobal();
+    </script>
+</body>
+</html>
