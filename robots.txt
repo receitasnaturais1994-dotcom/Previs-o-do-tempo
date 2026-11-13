@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://receitasnaturais1994-dotcom.github.io/Previs-o-do-tempo/sitemap.xml
