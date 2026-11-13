@@ -3,6 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bloco de Data e Hora Global Dinâmica -->
+<div id="global-datetime" style="font-size: 0.9rem; color: #94a3b8; margin: 10px 0; font-family: inherit;">
+  A carregar data e hora...
+</div>
+
+<script>
+  function updateGlobalTime() {
+    const now = new Date();
+    
+    // Opções de formatação completa (Dia da semana, dia, mês, ano, hora, minuto e fuso)
+    const options = { 
+      weekday: 'long', 
+      year: 'numeric', 
+      month: 'long', 
+      day: 'numeric', 
+      hour: '2-digit', 
+      minute: '2-digit',
+      second: '2-digit',
+      timeZoneName: 'short' 
+    };
+    
+    // Detecta automaticamente o idioma e a região do navegador do utilizador (Global)
+    const userLang = navigator.language || 'en-US';
+    
+    try {
+      const formatted = new Intl.DateTimeFormat(userLang, options).format(now);
+      const element = document.getElementById('global-datetime');
+      if (element) {
+        element.textContent = formatted;
+      }
+    } catch (e) {
+      // Fallback caso o navegador tenha alguma restrição
+      document.getElementById('global-datetime').textContent = now.toUTCString();
+    }
+  }
+
+  // Atualiza a cada segundo para o relógio funcionar em tempo real
+  setInterval(updateGlobalTime, 1000);
+  updateGlobalTime();
+</script>
+
     <title id="pageTitle">Previsão do Tempo e Mercados Globais</title>
     <meta name="description" content="Global Weather & Market Intelligence Platform in Real Time.">
     <link rel="manifest" href="manifest.json">
