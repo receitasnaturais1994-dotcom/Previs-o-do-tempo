@@ -78,13 +78,17 @@
 
         /* Banner de Cookies Profissional Imediato */
         #cookieBanner { position: fixed; bottom: 15px; left: 50%; transform: translateX(-50%); width: calc(100% - 30px); max-width: 1080px; background: rgba(15, 23, 42, 0.97); backdrop-filter: blur(14px); color: #fff; padding: 18px 22px; display: flex; flex-direction: column; gap: 12px; z-index: 9999; border-radius: 20px; border: 1px solid rgba(116, 192, 252, 0.35); box-shadow: 0 15px 40px rgba(0,0,0,0.75); animation: slideUp 0.4s ease-out; }
+        
+        /* Banner de Instalação do App (PWA) */
+        #installBanner { display: none; position: fixed; bottom: 85px; left: 50%; transform: translateX(-50%); width: calc(100% - 30px); max-width: 1080px; background: rgba(15, 23, 42, 0.97); backdrop-filter: blur(14px); color: #fff; padding: 18px 22px; flex-direction: column; gap: 12px; z-index: 9998; border-radius: 20px; border: 1px solid rgba(77, 171, 247, 0.35); box-shadow: 0 15px 40px rgba(0,0,0,0.75); }
+
         @keyframes slideUp { from { transform: translate(-50%, 100%); opacity: 0; } to { transform: translate(-50%, 0); opacity: 1; } }
         .cookie-header-title { font-size: 15px; font-weight: 700; color: #74c0fc; display: flex; align-items: center; gap: 8px; }
-        #cookieBanner p { font-size: 13px; color: rgba(255,255,255,0.88); line-height: 1.5; }
+        #cookieBanner p, #installBanner p { font-size: 13px; color: rgba(255,255,255,0.88); line-height: 1.5; }
         #cookieBanner p a { color: #74c0fc; text-decoration: underline; cursor: pointer; }
-        #cookieBanner .cookie-actions { display: flex; gap: 10px; justify-content: flex-end; flex-wrap: wrap; }
-        #cookieBanner button { padding: 10px 18px; border-radius: 12px; font-size: 13px; font-weight: bold; cursor: pointer; border: none; transition: transform 0.15s ease, opacity 0.15s ease; }
-        #cookieBanner button:hover { opacity: 0.92; transform: translateY(-1px); }
+        .cookie-actions { display: flex; gap: 10px; justify-content: flex-end; flex-wrap: wrap; }
+        #cookieBanner button, #installBanner button { padding: 10px 18px; border-radius: 12px; font-size: 13px; font-weight: bold; cursor: pointer; border: none; transition: transform 0.15s ease, opacity 0.15s ease; }
+        #cookieBanner button:hover, #installBanner button:hover { opacity: 0.92; transform: translateY(-1px); }
         .btn-accept { background: #4dabf7; color: #0b192c; }
         .btn-reject { background: rgba(255,255,255,0.14); color: #fff; }
 
@@ -100,7 +104,7 @@
             .adsense-box { grid-column: span 2; margin: 10px 0; }
             .card-section { grid-column: 2; margin: 0; }
             footer { max-width: 1100px; grid-column: span 2; }
-            #cookieBanner { flex-direction: row; align-items: center; justify-content: space-between; }
+            #cookieBanner, #installBanner { flex-direction: row; align-items: center; justify-content: space-between; }
             .cookie-text-group { max-width: 72%; }
         }
     </style>
@@ -175,6 +179,18 @@
         <div class="cookie-actions">
             <button class="btn-reject" id="btnReject" onclick="salvarPreferenciaCookies('essential')">Apenas Essenciais</button>
             <button class="btn-accept" id="btnAccept" onclick="salvarPreferenciaCookies('all')">Aceitar Todos</button>
+        </div>
+    </div>
+
+    <!-- Banner de Instalação do App (PWA) -->
+    <div id="installBanner">
+        <div class="cookie-text-group">
+            <div class="cookie-header-title">📱 Instalar Portal na Tela Inicial</div>
+            <p>Adicione nosso aplicativo meteorológico e financeiro ao seu celular para acesso instantâneo em tela cheia, sem precisar da Google Play Store!</p>
+        </div>
+        <div class="cookie-actions">
+            <button class="btn-reject" onclick="fecharBannerInstall()">Agora Não</button>
+            <button class="btn-accept" onclick="instalarAppPWA()">Instalar Agora</button>
         </div>
     </div>
 
@@ -286,28 +302,10 @@
                 feelsLike: "Feels like",
                 credits: "Weather data provided by Open-Meteo.com",
                 modals: {
-                    about: {
-                        title: "About Global Weather & Markets",
-                        content: "<p><b>Global Weather & Market Intelligence</b> is an independent real-time weather and financial monitoring platform designed to provide fast, free, and accurate access to essential daily data anywhere in the world.</p>"
-                    },
-                    cookies: {
-                        title: "Cookie Policy & Consent Management",
-                        content: `
-                            <p><i>Last Updated: November 2026</i></p>
-                            <p>We use cookies and browser LocalStorage to remember your language and consent settings, detect local weather/timezone, and serve Google AdSense advertisements that keep this service free.</p>
-                            <button class="btn-reopen-cookie" onclick="fecharModal(); reabrirBannerCookies();">⚙️ Manage Cookie Preferences</button>
-                        `
-                    },
-                    privacy: {
-                        title: "Privacy Policy (GDPR, CCPA & Google AdSense)",
-                        content: `
-                            <p>Your privacy is our priority. Third-party vendors, including Google, use cookies to serve ads based on prior visits. Opt out at <a href="https://adssettings.google.com" target="_blank" rel="noopener">Google Ads Settings</a>. Contact: <b>Receitasnaturais1994@gmail.com</b>.</p>
-                        `
-                    },
-                    terms: {
-                        title: "Terms & Conditions of Use",
-                        content: "<p>All weather forecasts and currency/crypto exchange rates are provided strictly for informational purposes and do not constitute financial advice.</p>"
-                    }
+                    about: { title: "About Global Weather & Markets", content: "<p><b>Global Weather & Market Intelligence</b> is an independent real-time weather and financial monitoring platform.</p>" },
+                    cookies: { title: "Cookie Policy", content: "<p>We use cookies and browser LocalStorage.</p><button class=\"btn-reopen-cookie\" onclick=\"fecharModal(); reabrirBannerCookies();\">⚙️ Manage Cookie Preferences</button>" },
+                    privacy: { title: "Privacy Policy", content: "<p>Contact: <b>Receitasnaturais1994@gmail.com</b>.</p>" },
+                    terms: { title: "Terms & Conditions", content: "<p>Provided for informational purposes only.</p>" }
                 }
             },
             es: {
@@ -319,17 +317,17 @@
                 dailyTitle: "Próximos Días",
                 about: "Acerca de", privacy: "Política de Privacidad", cookies: "Política de Cookies", terms: "Términos de Uso",
                 cookieTitle: "🍪 Valoramos su Privacidad y Transparencia",
-                cookieMsg: "Utilizamos cookies y geolocalización para personalizar pronósticos, relojes locales y anuncios conforme a GDPR. Lea nuestra <a onclick=\"abrirModal('cookies')\">Política de Cookies</a>.",
-                footerCookieHtml: "🍪 <b>Aviso de Cookies:</b> Este portal utiliza cookies propias y de terceros (incluido Google AdSense) para personalizar pronósticos y anuncios. Consulte nuestra <a onclick=\"abrirModal('cookies')\">Política de Cookies</a> o <a onclick=\"reabrirBannerCookies()\">Gestionar Preferencias</a>.",
+                cookieMsg: "Utilizamos cookies y geolocalización. Lea nuestra <a onclick=\"abrirModal('cookies')\">Política de Cookies</a>.",
+                footerCookieHtml: "🍪 <b>Aviso de Cookies:</b> Consulte nuestra <a onclick=\"abrirModal('cookies')\">Política de Cookies</a> ou <a onclick=\"reabrirBannerCookies()\">Gestionar Preferencias</a>.",
                 reject: "Solo Esenciales", accept: "Aceptar Todos",
                 loadingMarkets: "📈 Cargando mercados globales...",
                 feelsLike: "Sensación térmica de",
                 credits: "Datos meteorológicos proporcionados por Open-Meteo.com",
                 modals: {
-                    about: { title: "Acerca de Global Weather & Markets", content: "<p>Plataforma global de monitoreo meteorológico y financiero en tiempo real.</p>" },
-                    cookies: { title: "Política de Cookies", content: "<p>Utilizamos cookies para mejorar su experiencia y mostrar anuncios relevantes de Google AdSense.</p><button class=\"btn-reopen-cookie\" onclick=\"fecharModal(); reabrirBannerCookies();\">⚙️ Gestionar Preferencias</button>" },
-                    privacy: { title: "Política de Privacidad", content: "<p>Cumplimos con normativas globales y políticas de Google AdSense. Contacto: <b>Receitasnaturais1994@gmail.com</b>.</p>" },
-                    terms: { title: "Términos de Uso", content: "<p>Los datos mostrados tienen fines estrictamente informativos.</p>" }
+                    about: { title: "Acerca de", content: "<p>Plataforma global de monitoreo.</p>" },
+                    cookies: { title: "Política de Cookies", content: "<p>Utilizamos cookies.</p><button class=\"btn-reopen-cookie\" onclick=\"fecharModal(); reabrirBannerCookies();\">⚙️ Gestionar Preferencias</button>" },
+                    privacy: { title: "Privacidad", content: "<p>Contacto: <b>Receitasnaturais1994@gmail.com</b>.</p>" },
+                    terms: { title: "Términos", content: "<p>Fines informativos.</p>" }
                 }
             },
             ja: {
@@ -341,17 +339,17 @@
                 dailyTitle: "週間予報",
                 about: "概要", privacy: "プライバシーポリシー", cookies: "Cookieポリシー", terms: "利用規約",
                 cookieTitle: "🍪 プライバシーとCookieの使用について",
-                cookieMsg: "当サイトでは、地域の天気予報や現地時刻の調整、Google AdSenseによる広告配信のためにCookieを使用します。詳細は<a onclick=\"abrirModal('cookies')\">Cookieポリシー</a>をご覧ください。",
-                footerCookieHtml: "🍪 <b>Cookieに関する通知：</b> 当サイトでは、気象予報や現地時刻の最適化および広告配信（Google AdSense）のためにCookieを使用しています。詳細は<a onclick=\"abrirModal('cookies')\">Cookieポリシー</a>または<a onclick=\"reabrirBannerCookies()\">設定の管理</a>をご確認ください。",
+                cookieMsg: "Cookieを使用します。<a onclick=\"abrirModal('cookies')\">Cookieポリシー</a>",
+                footerCookieHtml: "🍪 <b>Cookie通知：</b> <a onclick=\"abrirModal('cookies')\">Cookieポリシー</a>",
                 reject: "必須のみ", accept: "すべて同意",
                 loadingMarkets: "📈 グローバル市場を読み込み中...",
                 feelsLike: "体感温度",
                 credits: "気象データ提供：Open-Meteo.com",
                 modals: {
-                    about: { title: "プラットフォームについて", content: "<p>世界中のリアルタイムの気象情報と金融市場データを提供するグローバルプラットフォームです。</p>" },
-                    cookies: { title: "Cookieポリシー", content: "<p>当サイトでは利便性向上と広告配信のためにCookieを使用しています。</p><button class=\"btn-reopen-cookie\" onclick=\"fecharModal(); reabrirBannerCookies();\">⚙️ Cookie設定を変更する</button>" },
-                    privacy: { title: "プライバシーポリシー", content: "<p>Google AdSenseの広告配信ポリシーおよび個人情報保護法に準拠しています。連絡先：<b>Receitasnaturais1994@gmail.com</b></p>" },
-                    terms: { title: "利用規約", content: "<p>当サイトのデータは情報提供のみを目的としています。</p>" }
+                    about: { title: "概要", content: "<p>グローバルプラットフォーム</p>" },
+                    cookies: { title: "Cookieポリシー", content: "<p>Cookieを使用</p><button class=\"btn-reopen-cookie\" onclick=\"fecharModal(); reabrirBannerCookies();\">⚙️ 設定変更</button>" },
+                    privacy: { title: "プライバシーポリシー", content: "<p><b>Receitasnaturais1994@gmail.com</b></p>" },
+                    terms: { title: "利用規約", content: "<p>情報提供目的</p>" }
                 }
             }
         };
@@ -397,7 +395,7 @@
 
         if ('serviceWorker' in navigator) { navigator.serviceWorker.register('sw.js'); }
 
-        // Controle Profissional do Banner de Cookies
+        // Controle do Banner de Cookies
         function salvarPreferenciaCookies(nivel) {
             document.getElementById('cookieBanner').style.display = 'none';
             localStorage.setItem('cookieConsent', nivel);
@@ -409,6 +407,35 @@
 
         if (localStorage.getItem('cookieConsent')) {
             document.getElementById('cookieBanner').style.display = 'none';
+        }
+
+        // Controle do Banner de Instalação do App (PWA)
+        let deferredPrompt;
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            setTimeout(() => {
+                if (!localStorage.getItem('appInstalled')) {
+                    document.getElementById('installBanner').style.display = 'flex';
+                }
+            }, 3500);
+        });
+
+        function instalarAppPWA() {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                deferredPrompt.userChoice.then((choiceResult) => {
+                    if (choiceResult.outcome === 'accepted') {
+                        localStorage.setItem('appInstalled', 'true');
+                    }
+                    deferredPrompt = null;
+                    document.getElementById('installBanner').style.display = 'none';
+                });
+            }
+        }
+
+        function fecharBannerInstall() {
+            document.getElementById('installBanner').style.display = 'none';
         }
 
         let fusoHorarioAtual = 'UTC';
@@ -526,7 +553,7 @@
                 const estado = addr.state || addr.country || "";
                 carregarClima(lat, lon, estado ? `${cidade}, ${estado}` : cidade);
             } catch (e) {
-                carregarClima(lat, lon, "Sua Localização");
+                carregarClimate(lat, lon, "Sua Localização");
             }
         }
 
