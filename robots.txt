@@ -1,6 +1,6 @@
-
 User-agent: *
 Allow: /
 
 Sitemap: https://globalmetis.com/sitemap.xml
+
 
