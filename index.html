@@ -25,10 +25,11 @@
         /* Container Principal */
         .app-container { width: 100%; max-width: 480px; background: rgba(11, 25, 44, 0.45); backdrop-filter: blur(20px); border-radius: 30px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.4); display: flex; flex-direction: column; position: relative; padding-bottom: 20px; }
         
-        .search-box { padding: 20px 20px 10px 20px; display: flex; gap: 10px; z-index: 10; }
+        .search-box { padding: 20px 20px 10px 20px; display: flex; gap: 10px; z-index: 10; align-items: center; }
         .search-box input { flex: 1; padding: 12px 18px; border-radius: 20px; border: none; background: rgba(255, 255, 255, 0.2); color: #fff; font-size: 16px; outline: none; }
         .search-box input::placeholder { color: rgba(255, 255, 255, 0.7); }
-        .search-box button { padding: 0 16px; border-radius: 20px; border: none; background: #fff; color: #0b192c; font-weight: bold; cursor: pointer; }
+        .search-box button { padding: 0 16px; height: 44px; border-radius: 20px; border: none; background: #fff; color: #0b192c; font-weight: bold; cursor: pointer; }
+        .btn-fav { background: rgba(255,255,255,0.2) !important; color: #ffd43b !important; font-size: 18px; padding: 0 12px !important; }
         
         .hero-section { padding: 10px 20px 20px 20px; position: relative; text-align: left; }
         .location-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px; }
@@ -44,8 +45,26 @@
         @keyframes breathe { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
         
         .card-section { background: rgba(255, 255, 255, 0.12); margin: 10px 20px; border-radius: 20px; padding: 15px; }
-        .section-title { font-size: 14px; color: rgba(255, 255, 255, 0.8); margin-bottom: 10px; font-weight: 600; }
+        .section-title { font-size: 14px; color: rgba(255, 255, 255, 0.8); margin-bottom: 10px; font-weight: 600; display: flex; justify-content: space-between; align-items: center; }
         
+        /* Favoritos Chips */
+        .favorites-bar { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 5px; margin: 0 20px 10px 20px; scrollbar-width: none; }
+        .favorites-bar::-webkit-scrollbar { display: none; }
+        .fav-chip { background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.2); padding: 6px 12px; border-radius: 15px; font-size: 12px; color: #fff; cursor: pointer; white-space: nowrap; transition: background 0.2s; }
+        .fav-chip:hover { background: rgba(255,255,255,0.3); }
+
+        /* Conversor de Moedas */
+        .converter-box { display: flex; gap: 8px; align-items: center; margin-top: 8px; }
+        .converter-box input, .converter-box select { padding: 8px 12px; border-radius: 12px; border: none; background: rgba(255,255,255,0.2); color: #fff; font-size: 14px; outline: none; }
+        .converter-box input { width: 90px; }
+        .converter-result { font-size: 14px; font-weight: bold; color: #74c0fc; margin-top: 8px; }
+
+        /* Radar de Bolsas */
+        .markets-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 8px; }
+        .market-status-card { background: rgba(0,0,0,0.2); padding: 8px 10px; border-radius: 10px; font-size: 12px; display: flex; justify-content: space-between; align-items: center; }
+        .badge-open { color: #51cf66; font-weight: bold; }
+        .badge-closed { color: #ff6b6b; font-weight: bold; }
+
         .hourly-scroll { display: flex; overflow-x: auto; gap: 15px; padding-bottom: 5px; scrollbar-width: none; }
         .hourly-scroll::-webkit-scrollbar { display: none; }
         .hour-item { display: flex; flex-direction: column; align-items: center; min-width: 52px; font-size: 14px; gap: 6px; }
@@ -53,7 +72,6 @@
         .daily-row { display: flex; justify-content: space-between; align-items: center; font-size: 15px; padding: 8px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.12); }
         .daily-row:last-child { border-bottom: none; }
         
-        /* Seção Editorial para AdSense */
         .editorial-section { background: rgba(255, 255, 255, 0.08); margin: 15px 20px; border-radius: 20px; padding: 20px; font-size: 13.5px; line-height: 1.6; color: rgba(255, 255, 255, 0.9); }
         .editorial-section h3 { font-size: 15px; color: #74c0fc; margin-bottom: 8px; }
 
@@ -100,6 +118,7 @@
             .market-ticker { max-width: 1100px; }
             .app-container { max-width: 1100px; display: grid; grid-template-columns: 1.2fr 1fr; gap: 20px; padding: 30px; border-radius: 35px; }
             .search-box { grid-column: span 2; padding: 10px 0; }
+            .favorites-bar { grid-column: span 2; margin: 0 0 10px 0; }
             .hero-section { grid-column: 1; padding: 10px; }
             .mascot-stage { height: 160px; }
             .mascot-svg { width: 150px; height: 150px; }
@@ -118,10 +137,14 @@
         <div class="market-item" id="txtLoadingMarkets">📈 Loading global markets...</div>
     </div>
 
+    <!-- Barra de Cidades Favoritas -->
+    <div class="favorites-bar" id="favoritesBar" style="display:none;"></div>
+
     <div class="app-container">
         <div class="search-box">
             <input type="text" id="searchInput" placeholder="Enter city, country or region..." onkeypress="if(event.key==='Enter') buscarCidade()">
             <button onclick="buscarCidade()">🔍</button>
+            <button class="btn-fav" onclick="salvarCidadeAtual()" title="Save City ⭐">⭐</button>
         </div>
         <div class="hero-section">
             <div class="location-header">
@@ -149,7 +172,32 @@
             <div id="dailyContainer"></div>
         </div>
 
-        <!-- Seção Editorial para AdSense (Conteúdo de Valor Original) -->
+        <!-- 1. FERRAMENTA: Conversor de Moedas Instantâneo -->
+        <div class="card-section">
+            <div class="section-title" id="titleConv">💱 Instant Currency Converter</div>
+            <div class="converter-box">
+                <input type="number" id="convInput" value="100" oninput="converterMoedas()">
+                <select id="convSelect" onchange="converterMoedas()">
+                    <option value="USD">USD</option>
+                    <option value="EUR">EUR</option>
+                    <option value="BRL">BRL</option>
+                </select>
+            </div>
+            <div class="converter-result" id="convResult">Calculating...</div>
+        </div>
+
+        <!-- 2. FERRAMENTA: Radar de Sessões das Bolsas Mundiais -->
+        <div class="card-section">
+            <div class="section-title" id="titleMarketsRadar">🌐 Global Markets Session Radar</div>
+            <div class="markets-grid" id="marketsGrid">
+                <div class="market-status-card"><span>NYSE (New York)</span><span id="statusNYSE">--</span></div>
+                <div class="market-status-card"><span>LSE (London)</span><span id="statusLSE">--</span></div>
+                <div class="market-status-card"><span>TSE (Tokyo)</span><span id="statusTSE">--</span></div>
+                <div class="market-status-card"><span>B3 (São Paulo)</span><span id="statusB3">--</span></div>
+            </div>
+        </div>
+
+        <!-- Seção Editorial para AdSense -->
         <div class="editorial-section">
             <h3 id="edTitle">Global Weather & Financial Market Intelligence</h3>
             <p id="edText">Our platform integrates state-of-the-art atmospheric numerical models provided by the Norwegian Meteorological Institute (MET Norway) alongside real-time global currency feeds. Designed for precision and speed, Global Metis ensures high-resolution meteorological tracking and economic indicators across international sessions.</p>
@@ -215,25 +263,15 @@
                 credits: "Weather data provided by the Norwegian Meteorological Institute (MET Norway) under CC BY 4.0",
                 hourlyTitle: "Hourly Forecast",
                 dailyTitle: "Next Days",
+                titleConv: "💱 Instant Currency Converter",
+                titleMarketsRadar: "🌐 Global Markets Session Radar",
                 edTitle: "Global Weather & Financial Market Intelligence",
                 edText: "Our platform integrates state-of-the-art atmospheric numerical models provided by the Norwegian Meteorological Institute (MET Norway) alongside real-time global currency feeds. Designed for precision and speed, Global Metis ensures high-resolution meteorological tracking and economic indicators across international sessions.",
                 modals: {
-                    about: {
-                        title: "About Global Weather & Markets",
-                        content: `<p><b>Global Weather & Market Intelligence</b> is an independent real-time meteorological and financial monitoring platform.</p><h4>Official Data Sources</h4><ul><li><b>Weather:</b> Official integration with atmospheric models from the <i>Norwegian Meteorological Institute (MET Norway)</i>, under Creative Commons CC BY 4.0.</li><li><b>Markets:</b> Real-time currency and financial feeds.</li></ul>`
-                    },
-                    cookies: {
-                        title: "Cookie Policy",
-                        content: `<p>We use essential cookies, functionality cookies, and third-party advertising cookies (Google AdSense / DART cookie) to support free access.</p><button class="btn-reopen-cookie" onclick="fecharModal(); reabrirBannerCookies();">⚙️ Manage Cookie Preferences</button>`
-                    },
-                    privacy: {
-                        title: "Privacy Policy (LGPD, GDPR & Google AdSense)",
-                        content: `<p>We collect browser geolocation in real-time strictly to display local weather without permanent database storage. Compliant with LGPD, GDPR, and Google AdSense guidelines. Contact: <b>Receitasnaturais1994@gmail.com</b>.</p>`
-                    },
-                    terms: {
-                        title: "Terms of Use",
-                        content: `<p>Provided for informational and educational purposes only. No financial or meteorological warranties are expressed or implied.</p>`
-                    }
+                    about: { title: "About Global Weather & Markets", content: `<p><b>Global Weather & Market Intelligence</b> is an independent real-time meteorological and financial monitoring platform.</p><h4>Official Data Sources</h4><ul><li><b>Weather:</b> Official integration with atmospheric models from the <i>Norwegian Meteorological Institute (MET Norway)</i>, under Creative Commons CC BY 4.0.</li><li><b>Markets:</b> Real-time currency and financial feeds.</li></ul>` },
+                    cookies: { title: "Cookie Policy", content: `<p>We use essential cookies, functionality cookies, and third-party advertising cookies (Google AdSense / DART cookie) to support free access.</p><button class="btn-reopen-cookie" onclick="fecharModal(); reabrirBannerCookies();">⚙️ Manage Cookie Preferences</button>` },
+                    privacy: { title: "Privacy Policy (LGPD, GDPR & Google AdSense)", content: `<p>We collect browser geolocation in real-time strictly to display local weather without permanent database storage. Compliant with LGPD, GDPR, and Google AdSense guidelines. Contact: <b>Receitasnaturais1994@gmail.com</b>.</p>` },
+                    terms: { title: "Terms of Use", content: `<p>Provided for informational and educational purposes only. No financial or meteorological warranties are expressed or implied.</p>` }
                 }
             },
             pt: {
@@ -249,25 +287,15 @@
                 credits: "Dados meteorológicos fornecidos pelo Instituto Meteorológico da Noruega (MET Norway) sob licença CC BY 4.0",
                 hourlyTitle: "Previsão Hora a Hora",
                 dailyTitle: "Próximos Dias",
+                titleConv: "💱 Conversor de Moedas Instantâneo",
+                titleMarketsRadar: "🌐 Radar de Sessões das Bolsas Mundiais",
                 edTitle: "Inteligência Global de Meteorologia e Mercados Financeiros",
                 edText: "Nossa plataforma integra modelos numéricos atmosféricos de alta precisão fornecidos pelo Instituto Meteorológico da Noruega (MET Norway) juntamente com feeds globais de câmbio em tempo real. Projetada para rapidez e utilidade, a Global Metis oferece monitoramento meteorológico detalhado e indicadores econômicos mundiais.",
                 modals: {
-                    about: {
-                        title: "Sobre o Portal Global Weather & Markets",
-                        content: `<p>A <b>Global Weather & Market Intelligence</b> é uma plataforma independente de monitoramento climático e financeiro em tempo real.</p><h4>Fontes de Dados Oficiais</h4><ul><li><b>Meteorologia:</b> Integração oficial com modelos atmosféricos do <i>Instituto Meteorológico da Noruega (MET Norway)</i>, sob licença Creative Commons CC BY 4.0.</li><li><b>Mercados Financeiros:</b> Cotações de câmbio e ativos sincronizadas em tempo real.</li></ul>`
-                    },
-                    cookies: {
-                        title: "Política de Cookies",
-                        content: `<p>Utilizamos cookies estritamente necessários, funcionais e de publicidade (Google AdSense / Cookie DART).</p><button class="btn-reopen-cookie" onclick="fecharModal(); reabrirBannerCookies();">⚙️ Alterar Minhas Preferências de Cookies</button>`
-                    },
-                    privacy: {
-                        title: "Política de Privacidade (LGPD, GDPR & Google AdSense)",
-                        content: `<p>Coletamos dados de geolocalização estritamente em tempo real no navegador para exibir o clima local, sem armazenamento permanente em banco de dados. Em total conformidade com a LGPD, GDPR e Google AdSense. Dúvidas: <b>Receitasnaturais1994@gmail.com</b>.</p>`
-                    },
-                    terms: {
-                        title: "Termos de Uso",
-                        content: `<p>Ferramenta interativa gratuita fornecida para fins estritamente informativos e educacionais.</p>`
-                    }
+                    about: { title: "Sobre o Portal Global Weather & Markets", content: `<p>A <b>Global Weather & Market Intelligence</b> é uma plataforma independente de monitoramento climático e financeiro em tempo real.</p><h4>Fontes de Dados Oficiais</h4><ul><li><b>Meteorologia:</b> Integração oficial com modelos atmosféricos do <i>Instituto Meteorológico da Noruega (MET Norway)</i>, sob licença Creative Commons CC BY 4.0.</li><li><b>Mercados Financeiros:</b> Cotações de câmbio e ativos sincronizadas em tempo real.</li></ul>` },
+                    cookies: { title: "Política de Cookies", content: `<p>Utilizamos cookies estritamente necessários, funcionais e de publicidade (Google AdSense / Cookie DART).</p><button class="btn-reopen-cookie" onclick="fecharModal(); reabrirBannerCookies();">⚙️ Alterar Minhas Preferências de Cookies</button>` },
+                    privacy: { title: "Política de Privacidade (LGPD, GDPR & Google AdSense)", content: `<p>Coletamos dados de geolocalização estritamente em tempo real no navegador para exibir o clima local, sem armazenamento permanente em banco de dados. Em total conformidade com a LGPD, GDPR e Google AdSense. Dúvidas: <b>Receitasnaturais1994@gmail.com</b>.</p>` },
+                    terms: { title: "Termos de Uso", content: `<p>Ferramenta interativa gratuita fornecida para fins estritamente informativos e educacionais.</p>` }
                 }
             },
             es: {
@@ -275,7 +303,7 @@
                 about: "Acerca de", privacy: "Política de Privacidad", cookies: "Política de Cookies", terms: "Términos de Uso",
                 installBtn: "📱 Instalar App",
                 cookieTitle: "🍪 Valoramos su Privacidad y Transparencia",
-                cookieMsg: "Utilizamos cookies y geolocalización. Lea nuestra <a onclick=\"abrirModal('cookies')\">Política de Cookies</a>.",
+                cookieMsg: "Utilizamos cookies e geolocalización. Lea nuestra <a onclick=\"abrirModal('cookies')\">Política de Cookies</a>.",
                 footerCookieHtml: "🍪 <b>Aviso de Cookies:</b> Consulte nuestra <a onclick=\"abrirModal('cookies')\">Política de Cookies</a> o <a onclick=\"reabrirBannerCookies()\">Gestionar Preferencias</a>.",
                 reject: "Solo Esenciales", accept: "Aceptar Todos",
                 loadingMarkets: "📈 Cargando mercados globales...",
@@ -283,11 +311,13 @@
                 credits: "Datos meteorológicos proporcionados por el Instituto Meteorológico de Noruega (MET Norway) bajo CC BY 4.0",
                 hourlyTitle: "Pronóstico Hora a Hora",
                 dailyTitle: "Próximos Días",
+                titleConv: "💱 Conversor de Monedas",
+                titleMarketsRadar: "🌐 Radar de Bolsas Globales",
                 edTitle: "Inteligencia Global de Meteorología y Mercados Financieros",
                 edText: "Nuestra plataforma integra modelos numéricos atmosféricos proporcionados por el Instituto Meteorológico de Noruega (MET Norway) junto con cotizaciones financieras en tiempo real.",
                 modals: {
                     about: { title: "Acerca de", content: "<p>Datos meteorológicos del Instituto Meteorológico de Noruega (MET Norway) bajo CC BY 4.0.</p>" },
-                    cookies: { title: "Política de Cookies", content: "<p>Utilizamos cookies y LocalStorage.</p><button class=\"btn-reopen-cookie\" onclick=\"fecharModal(); reabrirBannerCookies();\">⚙️ Gestionar Preferencias</button>" },
+                    cookies: { title: "Política de Cookies", content: "<p>Utilizamos cookies e LocalStorage.</p><button class=\"btn-reopen-cookie\" onclick=\"fecharModal(); reabrirBannerCookies();\">⚙️ Gestionar Preferencias</button>" },
                     privacy: { title: "Política de Privacidad", content: "<p>Contacto: <b>Receitasnaturais1994@gmail.com</b>.</p>" },
                     terms: { title: "Términos de Uso", content: "<p>Fines informativos.</p>" }
                 }
@@ -305,6 +335,8 @@
                 credits: "気象データ提供：ノルウェー気象研究所 (MET Norway) CC BY 4.0",
                 hourlyTitle: "時間別予報",
                 dailyTitle: "週間予報",
+                titleConv: "💱 通貨コンバーター",
+                titleMarketsRadar: "🌐 世界市場セッションレーダー",
                 edTitle: "グローバル気象・金融市場インテリジェンス",
                 edText: "ノルウェー気象研究所（MET Norway）が提供する高精度な気象モデルとリアルタイムの為替データを統合しています。",
                 modals: {
@@ -320,6 +352,8 @@
         document.getElementById('searchInput').placeholder = t.searchPlace;
         document.getElementById('titleHourly').innerText = t.hourlyTitle;
         document.getElementById('titleDaily').innerText = t.dailyTitle;
+        document.getElementById('titleConv').innerText = t.titleConv;
+        document.getElementById('titleMarketsRadar').innerText = t.titleMarketsRadar;
         document.getElementById('linkAbout').innerText = t.about;
         document.getElementById('linkPrivacy').innerText = t.privacy;
         document.getElementById('linkCookies').innerText = t.cookies;
@@ -384,10 +418,61 @@
             }
         }, 1000);
 
+        // 3. RADAR DE SESSÕES DAS BOLSAS MUNDIAIS (Cálculo via UTC)
+        function atualizarRadarBolsas() {
+            const now = new Date();
+            const utcHour = now.getUTCHours() + now.getUTCMinutes() / 60;
+            const day = now.getUTCDay(); // 0 = Domingo, 6 = Sábado
+            const isWeekday = day >= 1 && day <= 5;
+
+            // NYSE: ~14:30 - 21:00 UTC
+            const nyseOpen = isWeekday && utcHour >= 14.5 && utcHour < 21;
+            // LSE: 08:00 - 16:30 UTC
+            const lseOpen = isWeekday && utcHour >= 8 && utcHour < 16.5;
+            // TSE (Tokyo): 00:00 - 06:00 UTC
+            const tseOpen = isWeekday && utcHour >= 0 && utcHour < 6;
+            // B3 (São Paulo): 13:00 - 20:00 UTC
+            const b3Open = isWeekday && utcHour >= 13 && utcHour < 20;
+
+            const renderBadge = (isOpen) => isOpen ? `<span class="badge-open">🟢 Open</span>` : `<span class="badge-closed">🔴 Closed</span>`;
+
+            document.getElementById('statusNYSE').innerHTML = renderBadge(nyseOpen);
+            document.getElementById('statusLSE').innerHTML = renderBadge(lseOpen);
+            document.getElementById('statusTSE').innerHTML = renderBadge(tseOpen);
+            document.getElementById('statusB3').innerHTML = renderBadge(b3Open);
+        }
+        atualizarRadarBolsas();
+        setInterval(atualizarRadarBolsas, 30000);
+
+        // 1. CONVERSOR DE MOEDAS INSTANTÂNEO
+        let globalRates = null;
+        function converterMoedas() {
+            if (!globalRates) return;
+            const val = parseFloat(document.getElementById('convInput').value) || 0;
+            const base = document.getElementById('convSelect').value;
+            const usdToBrl = parseFloat(globalRates.USDBRL.bid);
+            const eurToBrl = parseFloat(globalRates.EURBRL.bid);
+            const btcToBrl = parseFloat(globalRates.BTCBRL.bid);
+
+            let valInBrl = val;
+            if (base === 'USD') valInBrl = val * usdToBrl;
+            if (base === 'EUR') valInBrl = val * eurToBrl;
+
+            const resUSD = (valInBrl / usdToBrl).toFixed(2);
+            const resEUR = (valInBrl / eurToBrl).toFixed(2);
+            const resBRL = valInBrl.toFixed(2);
+            const resBTC = (valInBrl / btcToBrl).toFixed(6);
+
+            document.getElementById('convResult').innerText = `= $${resUSD} USD | €${resEUR} EUR | R$ ${resBRL} BRL | ₿${resBTC} BTC`;
+        }
+
         async function carregarMercados() {
             try {
                 const res = await fetch('https://economia.awesomeapi.com.br/json/last/USD-BRL,EUR-BRL,BTC-BRL,USD-JPY,EUR-USD');
                 const data = await res.json();
+                globalRates = data;
+                converterMoedas();
+
                 const ticker = document.getElementById('marketTicker');
                 if (idiomaUsuario === 'ja') {
                     ticker.innerHTML = `
@@ -414,6 +499,31 @@
         }
         carregarMercados();
         setInterval(carregarMercados, 60000);
+
+        // 2. COMPARADOR DE CIDADES FAVORITAS (LocalStorage)
+        let cidadeAtualInfo = { name: "New York, NY", lat: 40.7128, lon: -74.0060 };
+
+        function salvarCidadeAtual() {
+            let favs = JSON.parse(localStorage.getItem('savedFavs') || '[]');
+            if (!favs.some(f => f.name === cidadeAtualInfo.name)) {
+                if (favs.length >= 4) favs.shift(); // máximo 4
+                favs.push(cidadeAtualInfo);
+                localStorage.setItem('savedFavs', JSON.stringify(favs));
+                renderizarFavoritos();
+            }
+        }
+
+        function renderizarFavoritos() {
+            const bar = document.getElementById('favoritesBar');
+            const favs = JSON.parse(localStorage.getItem('savedFavs') || '[]');
+            if (favs.length > 0) {
+                bar.style.display = 'flex';
+                bar.innerHTML = favs.map(f => `<button class="fav-chip" onclick="carregarClima(${f.lat}, ${f.lon}, '${f.name}')">📍 ${f.name}</button>`).join('');
+            } else {
+                bar.style.display = 'none';
+            }
+        }
+        renderizarFavoritos();
 
         function renderMascot(symbolCode, isDay) {
             const stage = document.getElementById('mascotStage');
@@ -465,6 +575,7 @@
 
         async function carregarClima(lat, lon, nomeLocal) {
             try {
+                cidadeAtualInfo = { name: nomeLocal, lat: lat, lon: lon };
                 const latFix = Number(lat).toFixed(4);
                 const lonFix = Number(lon).toFixed(4);
 
@@ -593,10 +704,9 @@
             }
         }
 
-        // Inicialização instantânea (Fallback em New York para o crawler do AdSense e visitantes globais)
+        // Inicialização instantânea
         carregarClima(40.7128, -74.0060, "New York, NY");
         solicitarGpsAparelho();
     </script>
 </body>
 </html>
-
