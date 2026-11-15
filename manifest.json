@@ -1,15 +1,17 @@
 {
-  "name": "Global Weather & Markets",
-  "short_name": "WeatherMarkets",
+  "name": "GlobalMetis — Weather & Markets",
+  "short_name": "GlobalMetis",
   "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#0b192c",
   "theme_color": "#0b192c",
   "icons": [
     {
-      "src": "https://cdn-icons-png.flaticon.com/512/1163/1163657.png",
+      "src": "./favicon.png",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     }
   ]
 }
+
