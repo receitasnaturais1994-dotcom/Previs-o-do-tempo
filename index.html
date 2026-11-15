@@ -303,7 +303,7 @@
                 about: "Acerca de", privacy: "Política de Privacidad", cookies: "Política de Cookies", terms: "Términos de Uso",
                 installBtn: "📱 Instalar App",
                 cookieTitle: "🍪 Valoramos su Privacidad y Transparencia",
-                cookieMsg: "Utilizamos cookies y geolocalización. Lea nuestra <a onclick=\"abrirModal('cookies')\">Política de Cookies</a>.",
+                cookieMsg: "Utilizamos cookies e geolocalización. Lea nuestra <a onclick=\"abrirModal('cookies')\">Política de Cookies</a>.",
                 footerCookieHtml: "🍪 <b>Aviso de Cookies:</b> Consulte nuestra <a onclick=\"abrirModal('cookies')\">Política de Cookies</a> o <a onclick=\"reabrirBannerCookies()\">Gestionar Preferencias</a>.",
                 reject: "Solo Esenciales", accept: "Aceptar Todos",
                 loadingMarkets: "📈 Mercados Financieros Globales en Vivo",
@@ -649,7 +649,7 @@
 
                     dailyContainer.innerHTML += `
                         <div class="daily-row">
-                            <span style="text-transform:capitalize;">${diaNome}</span>
+                            <span translate="no" style="text-transform:capitalize;">${diaNome}</span>
                             <span>${dInfo.icone}</span>
                             <span>↑ ${dMax}° / ↓ ${dMin}°</span>
                         </div>`;
@@ -724,3 +724,4 @@
     </script>
 </body>
 </html>
+
