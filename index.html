@@ -134,7 +134,7 @@
 <body>
     <!-- Ticker Financeiro Dinâmico Global -->
     <div class="market-ticker" id="marketTicker">
-        <div class="market-item" id="txtLoadingMarkets">📈 Loading global markets...</div>
+        <div class="market-item" id="txtLoadingMarkets">📈 Global Financial Markets Live</div>
     </div>
 
     <!-- Barra de Cidades Favoritas -->
@@ -149,7 +149,7 @@
         <div class="hero-section">
             <div class="location-header">
                 <div class="location-name" id="locationName">📍 New York, NY</div>
-                <div class="live-clock" id="liveClock">--:--</div>
+                <div class="live-clock" id="liveClock">🕒 12:00:00</div>
             </div>
             <div class="temp-main" id="tempMain">20°</div>
             <div class="condition-text" id="conditionText">Clear Sky</div>
@@ -172,7 +172,7 @@
             <div id="dailyContainer"></div>
         </div>
 
-        <!-- 1. FERRAMENTA: Conversor de Moedas Instantâneo -->
+        <!-- 1. Conversor de Moedas Instantâneo -->
         <div class="card-section">
             <div class="section-title" id="titleConv">💱 Instant Currency Converter</div>
             <div class="converter-box">
@@ -183,17 +183,17 @@
                     <option value="BRL">BRL</option>
                 </select>
             </div>
-            <div class="converter-result" id="convResult">Calculating...</div>
+            <div class="converter-result" id="convResult">= $100.00 USD</div>
         </div>
 
-        <!-- 2. FERRAMENTA: Radar de Sessões das Bolsas Mundiais -->
+        <!-- 2. Radar de Sessões das Bolsas Mundiais -->
         <div class="card-section">
             <div class="section-title" id="titleMarketsRadar">🌐 Global Markets Session Radar</div>
             <div class="markets-grid" id="marketsGrid">
-                <div class="market-status-card"><span>NYSE (New York)</span><span id="statusNYSE">--</span></div>
-                <div class="market-status-card"><span>LSE (London)</span><span id="statusLSE">--</span></div>
-                <div class="market-status-card"><span>TSE (Tokyo)</span><span id="statusTSE">--</span></div>
-                <div class="market-status-card"><span>B3 (São Paulo)</span><span id="statusB3">--</span></div>
+                <div class="market-status-card"><span>NYSE (New York)</span><span id="statusNYSE">🟢 Open</span></div>
+                <div class="market-status-card"><span>LSE (London)</span><span id="statusLSE">🟢 Open</span></div>
+                <div class="market-status-card"><span>TSE (Tokyo)</span><span id="statusTSE">🔴 Closed</span></div>
+                <div class="market-status-card"><span>B3 (São Paulo)</span><span id="statusB3">🟢 Open</span></div>
             </div>
         </div>
 
@@ -258,9 +258,9 @@
                 cookieMsg: "We use cookies and geolocation data to personalize forecasts, adjust local timezones, and serve relevant ads in compliance with GDPR & LGPD. Read our <a onclick=\"abrirModal('cookies')\">Cookie Policy</a>.",
                 footerCookieHtml: "🍪 <b>Cookie Notice:</b> This portal uses cookies to personalize forecasts and ads in compliance with GDPR & LGPD. View our <a onclick=\"abrirModal('cookies')\">Cookie Policy</a> or <a onclick=\"reabrirBannerCookies()\">Manage Preferences</a>.",
                 reject: "Essential Only", accept: "Accept All",
-                loadingMarkets: "📈 Loading global markets...",
+                loadingMarkets: "📈 Global Financial Markets Live",
                 feelsLike: "Feels like",
-                credits: "Weather data provided by the Norwegian Meteorological Institute (MET Norway) under CC BY 4.0",
+                credits: "Weather data provided by the <a href=\"https://www.met.no/\" target=\"_blank\" rel=\"noopener\" style=\"color:inherit; text-decoration:underline;\">Norwegian Meteorological Institute (MET Norway)</a> under CC BY 4.0",
                 hourlyTitle: "Hourly Forecast",
                 dailyTitle: "Next Days",
                 titleConv: "💱 Instant Currency Converter",
@@ -282,9 +282,9 @@
                 cookieMsg: "Utilizamos cookies e dados de geolocalização para personalizar previsões do tempo, ajustar o fuso horário local e exibir anúncios relevantes em conformidade com a LGPD e GDPR. Saiba mais em nossa <a onclick=\"abrirModal('cookies')\">Política de Cookies</a>.",
                 footerCookieHtml: "🍪 <b>Aviso de Cookies:</b> Este portal utiliza cookies próprios e de terceiros (incluindo Google AdSense) para personalizar previsões climáticas, ajustar fusos horários locais e exibir anúncios relevantes em conformidade com a LGPD e GDPR. Consulte nossa <a onclick=\"abrirModal('cookies')\">Política de Cookies</a> ou clique em <a onclick=\"reabrirBannerCookies()\">Gerenciar Preferências</a>.",
                 reject: "Apenas Essenciais", accept: "Aceitar Todos",
-                loadingMarkets: "📈 Carregando mercados globais...",
+                loadingMarkets: "📈 Mercados Financeiros Globais ao Vivo",
                 feelsLike: "Sensação térmica de",
-                credits: "Dados meteorológicos fornecidos pelo Instituto Meteorológico da Noruega (MET Norway) sob licença CC BY 4.0",
+                credits: "Dados meteorológicos fornecidos pelo <a href=\"https://www.met.no/\" target=\"_blank\" rel=\"noopener\" style=\"color:inherit; text-decoration:underline;\">Instituto Meteorológico da Noruega (MET Norway)</a> sob licença CC BY 4.0",
                 hourlyTitle: "Previsão Hora a Hora",
                 dailyTitle: "Próximos Dias",
                 titleConv: "💱 Conversor de Moedas Instantâneo",
@@ -303,12 +303,12 @@
                 about: "Acerca de", privacy: "Política de Privacidad", cookies: "Política de Cookies", terms: "Términos de Uso",
                 installBtn: "📱 Instalar App",
                 cookieTitle: "🍪 Valoramos su Privacidad y Transparencia",
-                cookieMsg: "Utilizamos cookies e geolocalización. Lea nuestra <a onclick=\"abrirModal('cookies')\">Política de Cookies</a>.",
+                cookieMsg: "Utilizamos cookies y geolocalización. Lea nuestra <a onclick=\"abrirModal('cookies')\">Política de Cookies</a>.",
                 footerCookieHtml: "🍪 <b>Aviso de Cookies:</b> Consulte nuestra <a onclick=\"abrirModal('cookies')\">Política de Cookies</a> o <a onclick=\"reabrirBannerCookies()\">Gestionar Preferencias</a>.",
                 reject: "Solo Esenciales", accept: "Aceptar Todos",
-                loadingMarkets: "📈 Cargando mercados globales...",
+                loadingMarkets: "📈 Mercados Financieros Globales en Vivo",
                 feelsLike: "Sensación térmica de",
-                credits: "Datos meteorológicos proporcionados por el Instituto Meteorológico de Noruega (MET Norway) bajo CC BY 4.0",
+                credits: "Datos meteorológicos proporcionados por el <a href=\"https://www.met.no/\" target=\"_blank\" rel=\"noopener\" style=\"color:inherit; text-decoration:underline;\">Instituto Meteorológico de Noruega (MET Norway)</a> bajo CC BY 4.0",
                 hourlyTitle: "Pronóstico Hora a Hora",
                 dailyTitle: "Próximos Días",
                 titleConv: "💱 Conversor de Monedas",
@@ -317,7 +317,7 @@
                 edText: "Nuestra plataforma integra modelos numéricos atmosféricos proporcionados por el Instituto Meteorológico de Noruega (MET Norway) junto con cotizaciones financieras en tiempo real.",
                 modals: {
                     about: { title: "Acerca de", content: "<p>Datos meteorológicos del Instituto Meteorológico de Noruega (MET Norway) bajo CC BY 4.0.</p>" },
-                    cookies: { title: "Política de Cookies", content: "<p>Utilizamos cookies e LocalStorage.</p><button class=\"btn-reopen-cookie\" onclick=\"fecharModal(); reabrirBannerCookies();\">⚙️ Gestionar Preferencias</button>" },
+                    cookies: { title: "Política de Cookies", content: "<p>Utilizamos cookies y LocalStorage.</p><button class=\"btn-reopen-cookie\" onclick=\"fecharModal(); reabrirBannerCookies();\">⚙️ Gestionar Preferencias</button>" },
                     privacy: { title: "Política de Privacidad", content: "<p>Contacto: <b>Receitasnaturais1994@gmail.com</b>.</p>" },
                     terms: { title: "Términos de Uso", content: "<p>Fines informativos.</p>" }
                 }
@@ -330,9 +330,9 @@
                 cookieMsg: "Cookieを使用します。<a onclick=\"abrirModal('cookies')\">Cookieポリシー</a>",
                 footerCookieHtml: "🍪 <b>Cookie通知：</b> <a onclick=\"abrirModal('cookies')\">Cookieポリシー</a>",
                 reject: "必須のみ", accept: "すべて同意",
-                loadingMarkets: "📈 グローバル市場を読み込み中...",
+                loadingMarkets: "📈 グローバル金融市場ライブ",
                 feelsLike: "体感温度",
-                credits: "気象データ提供：ノルウェー気象研究所 (MET Norway) CC BY 4.0",
+                credits: "気象データ提供：<a href=\"https://www.met.no/\" target=\"_blank\" rel=\"noopener\" style=\"color:inherit; text-decoration:underline;\">ノルウェー気象研究所 (MET Norway)</a> CC BY 4.0",
                 hourlyTitle: "時間別予報",
                 dailyTitle: "週間予報",
                 titleConv: "💱 通貨コンバーター",
@@ -409,29 +409,27 @@
         }
 
         let fusoHorarioAtual = 'America/New_York';
-        setInterval(() => {
+        function atualizarRelogio() {
             try {
                 const agora = new Date().toLocaleTimeString(userLang, { timeZone: fusoHorarioAtual, hour: '2-digit', minute: '2-digit', second: '2-digit' });
                 document.getElementById('liveClock').innerText = `🕒 ${agora}`;
             } catch (e) {
                 document.getElementById('liveClock').innerText = `🕒 ${new Date().toLocaleTimeString()}`;
             }
-        }, 1000);
+        }
+        atualizarRelogio();
+        setInterval(atualizarRelogio, 1000);
 
-        // 3. RADAR DE SESSÕES DAS BOLSAS MUNDIAIS (Cálculo via UTC)
+        // Radar de Sessões das Bolsas Mundiais
         function atualizarRadarBolsas() {
             const now = new Date();
             const utcHour = now.getUTCHours() + now.getUTCMinutes() / 60;
-            const day = now.getUTCDay(); // 0 = Domingo, 6 = Sábado
+            const day = now.getUTCDay();
             const isWeekday = day >= 1 && day <= 5;
 
-            // NYSE: ~14:30 - 21:00 UTC
             const nyseOpen = isWeekday && utcHour >= 14.5 && utcHour < 21;
-            // LSE: 08:00 - 16:30 UTC
             const lseOpen = isWeekday && utcHour >= 8 && utcHour < 16.5;
-            // TSE (Tokyo): 00:00 - 06:00 UTC
             const tseOpen = isWeekday && utcHour >= 0 && utcHour < 6;
-            // B3 (São Paulo): 13:00 - 20:00 UTC
             const b3Open = isWeekday && utcHour >= 13 && utcHour < 20;
 
             const renderBadge = (isOpen) => isOpen ? `<span class="badge-open">🟢 Open</span>` : `<span class="badge-closed">🔴 Closed</span>`;
@@ -444,7 +442,7 @@
         atualizarRadarBolsas();
         setInterval(atualizarRadarBolsas, 30000);
 
-        // 1. CONVERSOR DE MOEDAS INSTANTÂNEO
+        // Conversor de Moedas Instantâneo
         let globalRates = null;
         function converterMoedas() {
             if (!globalRates) return;
@@ -494,19 +492,19 @@
                     `;
                 }
             } catch (e) {
-                document.getElementById('marketTicker').innerHTML = `<div class="market-item">📈 Global Financial Markets Live</div>`;
+                document.getElementById('marketTicker').innerHTML = `<div class="market-item">📈 ${t.loadingMarkets}</div>`;
             }
         }
         carregarMercados();
         setInterval(carregarMercados, 60000);
 
-        // 2. COMPARADOR DE CIDADES FAVORITAS (LocalStorage)
+        // Comparador de Cidades Favoritas (LocalStorage)
         let cidadeAtualInfo = { name: "New York, NY", lat: 40.7128, lon: -74.0060 };
 
         function salvarCidadeAtual() {
             let favs = JSON.parse(localStorage.getItem('savedFavs') || '[]');
             if (!favs.some(f => f.name === cidadeAtualInfo.name)) {
-                if (favs.length >= 4) favs.shift(); // máximo 4
+                if (favs.length >= 4) favs.shift();
                 favs.push(cidadeAtualInfo);
                 localStorage.setItem('savedFavs', JSON.stringify(favs));
                 renderizarFavoritos();
@@ -670,6 +668,7 @@
                 const data = await res.json();
                 if (data.results && data.results.length > 0) {
                     const c = data.results[0];
+                    if (c.timezone) fusoHorarioAtual = c.timezone;
                     carregarClima(c.latitude, c.longitude, `${c.name}, ${c.admin1 || c.country}`);
                 } else {
                     alert("Location not found.");
@@ -681,32 +680,47 @@
 
         async function obterNomePorCoordenadas(lat, lon) {
             try {
-                const res = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}&zoom=10`);
+                const res = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}&accept-language=${idiomaUsuario}`);
                 const data = await res.json();
-                const addr = data.address;
-                const cidade = addr.city || addr.town || addr.village || addr.municipality || "Current Location";
+                const addr = data.address || {};
+                const cidade = addr.city || addr.town || addr.village || addr.municipality || "Local Region";
                 const estado = addr.state || addr.country || "";
-                carregarClima(lat, lon, estado ? `${cidade}, ${estado}` : cidade);
+                const nomeCompleto = estado ? `${cidade}, ${estado}` : cidade;
+                fusoHorarioAtual = Intl.DateTimeFormat().resolvedOptions().timeZone || fusoHorarioAtual;
+                carregarClima(lat, lon, nomeCompleto);
             } catch (e) {
-                carregarClima(lat, lon, "New York, NY");
+                carregarClima(lat, lon, "Current Location");
             }
         }
 
-        function solicitarGpsAparelho() {
+        async function detectarLocalizacaoAutomatica() {
+            try {
+                const ipRes = await fetch('https://ipwho.is');
+                const ipData = await ipRes.json();
+                if (ipData && ipData.success && ipData.latitude && ipData.longitude) {
+                    if (ipData.timezone && ipData.timezone.id) {
+                        fusoHorarioAtual = ipData.timezone.id;
+                    }
+                    const localIp = ipData.region_code ? `${ipData.city}, ${ipData.region_code}` : `${ipData.city}, ${ipData.country}`;
+                    carregarClima(ipData.latitude, ipData.longitude, localIp);
+                } else {
+                    carregarClima(40.7128, -74.0060, "New York, NY");
+                }
+            } catch (e) {
+                carregarClima(40.7128, -74.0060, "New York, NY");
+            }
+
             if ("geolocation" in navigator) {
                 navigator.geolocation.getCurrentPosition(
                     (pos) => obterNomePorCoordenadas(pos.coords.latitude, pos.coords.longitude),
-                    () => { carregarClima(40.7128, -74.0060, "New York, NY"); },
+                    () => { /* Mantém a localização detectada por IP se o GPS for negado */ },
                     { timeout: 6000 }
                 );
-            } else {
-                carregarClima(40.7128, -74.0060, "New York, NY");
             }
         }
 
-        // Inicialização instantânea
-        carregarClima(40.7128, -74.0060, "New York, NY");
-        solicitarGpsAparelho();
+        // Inicia detectando automaticamente a região real do visitante
+        detectarLocalizacaoAutomatica();
     </script>
 </body>
 </html>
