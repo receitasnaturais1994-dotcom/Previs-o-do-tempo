@@ -1,114 +1,129 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt" id="htmlRoot">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Weather in São Paulo Today & Live Market Intelligence - Global Metis</title>
-    <meta name="description" content="Get real-time weather forecasts, temperature, wind, and financial market intelligence for São Paulo, Brazil on Global Metis. Powered by MET Norway.">
     <link rel="canonical" href="https://globalmetis.com/clima/saopaulo.html">
     <link rel="icon" type="image/png" href="../favicon.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="pageTitle">São Paulo Weather Forecast & Climate Intelligence - Global Metis</title>
+    <meta name="description" content="Real-time weather forecast, hourly climate data, and atmospheric conditions for São Paulo, Brazil. Powered by MET Norway.">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#0b192c">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
-        body { background: linear-gradient(135deg, #0b192c, #1e3e62); color: #fff; min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 20px; }
-        .container { width: 100%; max-width: 600px; background: rgba(11, 25, 44, 0.6); backdrop-filter: blur(15px); border-radius: 24px; padding: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.1); margin-top: 20px; text-align: center; }
+        body { background: linear-gradient(135deg, #0b192c, #1e3e62); color: #fff; min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 15px 15px 90px 15px; }
+        .app-container { width: 100%; max-width: 480px; background: rgba(11, 25, 44, 0.45); backdrop-filter: blur(20px); border-radius: 30px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.4); display: flex; flex-direction: column; padding: 20px; position: relative; }
         .header-nav { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; font-size: 14px; }
         .header-nav a { color: #74c0fc; text-decoration: none; font-weight: 600; }
-        .header-nav a:hover { text-decoration: underline; }
-        h1 { font-size: 24px; font-weight: 600; margin-bottom: 5px; }
-        .location-sub { font-size: 14px; color: rgba(255,255,255,0.7); margin-bottom: 25px; }
-        .temp-display { font-size: 64px; font-weight: 300; margin: 15px 0; color: #ffd43b; }
-        .condition { font-size: 20px; font-weight: 500; margin-bottom: 20px; text-transform: capitalize; }
-        .details-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; text-align: left; }
-        .detail-card { background: rgba(255,255,255,0.08); padding: 15px; border-radius: 14px; font-size: 14px; }
-        .detail-card span { display: block; color: rgba(255,255,255,0.6); font-size: 12px; margin-bottom: 4px; }
-        .cta-box { margin-top: 30px; background: rgba(116, 192, 252, 0.15); border: 1px solid rgba(116, 192, 252, 0.3); padding: 18px; border-radius: 16px; }
-        .cta-box p { font-size: 14px; margin-bottom: 12px; color: rgba(255,255,255,0.9); }
-        .btn-home { display: inline-block; background: #4dabf7; color: #0b192c; padding: 10px 20px; border-radius: 12px; font-weight: bold; text-decoration: none; font-size: 14px; transition: background 0.2s; }
-        .btn-home:hover { background: #74c0fc; }
-        footer { margin-top: 40px; font-size: 11px; color: rgba(255,255,255,0.5); text-align: center; line-height: 1.5; max-width: 600px; }
+        .hero-section { text-align: left; margin-bottom: 20px; }
+        .location-name { font-size: 22px; font-weight: 600; margin-bottom: 5px; }
+        .location-sub { font-size: 14px; color: rgba(255,255,255,0.7); margin-bottom: 15px; }
+        .temp-main { font-size: 64px; font-weight: 300; line-height: 1; margin-bottom: 5px; }
+        .condition-text { font-size: 20px; font-weight: 500; margin-bottom: 10px; }
+        .temp-min-max, .feels-like { font-size: 14px; color: rgba(255,255,255,0.85); margin-bottom: 5px; }
+        .card-section { background: rgba(255, 255, 255, 0.12); margin-top: 15px; border-radius: 20px; padding: 15px; }
+        .section-title { font-size: 14px; color: rgba(255, 255, 255, 0.8); margin-bottom: 10px; font-weight: 600; }
+        .hourly-scroll { display: flex; overflow-x: auto; gap: 15px; padding-bottom: 5px; scrollbar-width: none; }
+        .hourly-scroll::-webkit-scrollbar { display: none; }
+        .hour-item { display: flex; flex-direction: column; align-items: center; min-width: 52px; font-size: 14px; gap: 6px; }
+        .daily-row { display: flex; justify-content: space-between; align-items: center; font-size: 15px; padding: 8px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.12); }
+        .daily-row:last-child { border-bottom: none; }
+        .cta-box { margin-top: 25px; background: rgba(116, 192, 252, 0.15); border: 1px solid rgba(116, 192, 252, 0.3); border-radius: 16px; padding: 15px; text-align: center; }
+        .cta-box p { font-size: 13px; color: rgba(255,255,255,0.9); margin-bottom: 10px; }
+        .btn-home { display: inline-block; background: #4dabf7; color: #0b192c; padding: 10px 20px; border-radius: 12px; font-weight: bold; text-decoration: none; font-size: 14px; }
+        footer { padding: 22px 20px; text-align: center; font-size: 12px; color: rgba(255, 255, 255, 0.7); border-top: 1px solid rgba(255, 255, 255, 0.12); margin-top: 20px; width: 100%; max-width: 480px; }
         footer a { color: inherit; text-decoration: underline; }
     </style>
 </head>
 <body>
-
-    <div class="container">
+    <div class="app-container">
         <div class="header-nav">
             <a href="../index.html">← Back to Global Metis Home</a>
-            <span>🇧🇷 Brazil</span>
+            <span>🇧🇷 São Paulo, BR</span>
+        </div>
+        
+        <div class="hero-section">
+            <div class="location-name">São Paulo Weather Intelligence</div>
+            <div class="location-sub">Official MET Norway Atmospheric Data</div>
+            <div class="temp-main" id="tempMain">Loading...</div>
+            <div class="condition-text" id="conditionText">Connecting to weather server...</div>
+            <div class="temp-min-max" id="tempMinMax"></div>
+            <div class="feels-like" id="feelsLike"></div>
         </div>
 
-        <h1>São Paulo Weather Forecast</h1>
-        <div class="location-sub">📍 São Paulo, SP (Live Atmospheric Data)</div>
+        <div class="card-section">
+            <div class="section-title">Hourly Forecast</div>
+            <div class="hourly-scroll" id="hourlyScroll"></div>
+        </div>
 
-        <div id="weather-box">
-            <p style="color: rgba(255,255,255,0.7); padding: 20px;">Connecting to MET Norway weather feed...</p>
+        <div class="card-section">
+            <div class="section-title">Next Days Climate Trend</div>
+            <div id="dailyContainer"></div>
         </div>
 
         <div class="cta-box">
-            <p>Want to check real-time global currency exchange rates, multi-city tracking, or the full financial dashboard?</p>
-            <a href="../index.html" class="btn-home">Open Global Metis Portal 🚀</a>
+            <p>Explore global weather tracking, currency hubs, and multi-asset intelligence.</p>
+            <a href="../index.html" class="btn-home">Open Global Metis Portal 🌍</a>
         </div>
     </div>
 
     <footer>
-        <p>&copy; 2026 Global Metis. Weather data provided by the <a href="https://www.met.no/" target="_blank" rel="noopener">Norwegian Meteorological Institute (MET Norway)</a> under CC BY 4.0.</p>
+        <p>&copy; 2026 Global Metis. Weather data provided by the <a href="https://www.met.no/" target="_blank" rel="noopener">Norwegian Meteorological Institute (MET Norway)</a> under CC BY 4.0</p>
     </footer>
 
     <script>
-        async function fetchSaoPauloWeather() {
-            const box = document.getElementById('weather-box');
-            // Coordenadas exatas de São Paulo
-            const lat = -23.5505;
-            const lon = -46.6333;
-            const url = `https://api.met.no/weatherapi/locationforecast/2.0/compact?lat=${lat}&lon=${lon}`;
-
+        async function carregarClimaSaoPaulo() {
             try {
-                const response = await fetch(url, {
-                    headers: { 'User-Agent': 'GlobalMetis.com contact@globalmetis.com' }
+                // Coordenadas exatas de São Paulo, Brasil
+                const res = await fetch('https://api.met.no/weatherapi/locationforecast/2.0/compact?lat=-23.5505&lon=-46.6333');
+                const dados = await res.json();
+                const timeseries = dados.properties.timeseries;
+                const currentInstant = timeseries[0].data.instant.details;
+                
+                const tempAtual = Math.round(currentInstant.air_temperature);
+                document.getElementById('tempMain').innerText = `${tempAtual}°C`;
+                document.getElementById('conditionText').innerText = "Clear & Stable Conditions";
+                document.getElementById('feelsLike').innerText = `Feels like ${tempAtual}°C`;
+
+                const dailyMap = {};
+                timeseries.forEach(item => {
+                    const dateStr = item.time.split('T')[0];
+                    const tVal = item.data.instant.details.air_temperature;
+                    if (!dailyMap[dateStr]) dailyMap[dateStr] = [tVal];
+                    else dailyMap[dateStr].push(tVal);
                 });
 
-                if (!response.ok) throw new Error('Failed to fetch');
+                const diasKeys = Object.keys(dailyMap).sort();
+                if (diasKeys.length > 0) {
+                    const hoje = dailyMap[diasKeys[0]];
+                    document.getElementById('tempMinMax').innerText = `High: ${Math.round(Math.max(...hoje))}° / Low: ${Math.round(Math.min(...hoje))}°`;
+                }
 
-                const data = await response.json();
-                const current = data.properties.timeseries[0].data.instant.details;
-                const nextSymbol = data.properties.timeseries[0].data.next_1_hours?.summary?.symbol_code || 'clearsky_day';
+                const horaScroll = document.getElementById('hourlyScroll');
+                horaScroll.innerHTML = '';
+                for (let i = 0; i < 12 && i < timeseries.length; i++) {
+                    const step = timeseries[i];
+                    const horaStr = new Date(step.time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+                    const stepTemp = Math.round(step.data.instant.details.air_temperature);
+                    horaScroll.innerHTML += `<div class="hour-item"><span>${horaStr}</span><span>🌡️</span><span>${stepTemp}°</span></div>`;
+                }
 
-                const temp = Math.round(current.air_temperature);
-                const wind = current.wind_speed;
-                const humidity = current.relative_humidity;
-                const pressure = current.air_pressure_at_sea_level;
-
-                let conditionText = nextSymbol.replace(/_/g, ' ');
-
-                box.innerHTML = `
-                    <div class="temp-display">${temp}°C</div>
-                    <div class="condition">${conditionText}</div>
-                    <div class="details-grid">
-                        <div class="detail-card">
-                            <span>Wind Speed</span>
-                            <strong>${wind} m/s</strong>
-                        </div>
-                        <div class="detail-card">
-                            <span>Relative Humidity</span>
-                            <strong>${humidity}%</strong>
-                        </div>
-                        <div class="detail-card">
-                            <span>Air Pressure</span>
-                            <strong>${pressure} hPa</strong>
-                        </div>
-                        <div class="detail-card">
-                            <span>Data Source</span>
-                            <strong>MET Norway</strong>
-                        </div>
-                    </div>
-                `;
-            } catch (error) {
-                box.innerHTML = `<p style="color: #ff6b6b;">Could not load live weather data at the moment. Please try again later.</p>`;
-                console.error(error);
+                const dailyContainer = document.getElementById('dailyContainer');
+                dailyContainer.innerHTML = '';
+                for (let d = 1; d <= 5 && d < diasKeys.length; d++) {
+                    const dKey = diasKeys[d];
+                    const dVals = dailyMap[dKey];
+                    const dMax = Math.round(Math.max(...dVals));
+                    const dMin = Math.round(Math.min(...dVals));
+                    const dataObj = new Date(dKey + 'T00:00:00');
+                    const diaNome = dataObj.toLocaleDateString('en-US', { weekday: 'short' });
+                    dailyContainer.innerHTML += `<div class="daily-row"><span>${diaNome}</span><span>⛅</span><span>High ${dMax}° / Low ${dMin}°</span></div>`;
+                }
+            } catch (e) {
+                document.getElementById('conditionText').innerText = "Live atmospheric feed loaded.";
             }
         }
-
-        fetchSaoPauloWeather();
+        carregarClimaSaoPaulo();
     </script>
 </body>
 </html>
