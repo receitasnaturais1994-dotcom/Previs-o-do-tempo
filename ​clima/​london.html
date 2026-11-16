@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather in London Today & Live Market Intelligence - Global Metis</title>
+    <meta name="description" content="Get real-time weather forecasts, temperature, wind, and financial market intelligence for London, UK on Global Metis. Powered by MET Norway.">
+    <link rel="canonical" href="https://globalmetis.com/clima/london.html">
+    <link rel="icon" type="image/png" href="../favicon.png">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+        body { background: linear-gradient(135deg, #0b192c, #1e3e62); color: #fff; min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 20px; }
+        .container { width: 100%; max-width: 600px; background: rgba(11, 25, 44, 0.6); backdrop-filter: blur(15px); border-radius: 24px; padding: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.1); margin-top: 20px; text-align: center; }
+        .header-nav { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; font-size: 14px; }
+        .header-nav a { color: #74c0fc; text-decoration: none; font-weight: 600; }
+        .header-nav a:hover { text-decoration: underline; }
+        h1 { font-size: 24px; font-weight: 600; margin-bottom: 5px; }
+        .location-sub { font-size: 14px; color: rgba(255,255,255,0.7); margin-bottom: 25px; }
+        .temp-display { font-size: 64px; font-weight: 300; margin: 15px 0; color: #ffd43b; }
+        .condition { font-size: 20px; font-weight: 500; margin-bottom: 20px; text-transform: capitalize; }
+        .details-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; text-align: left; }
+        .detail-card { background: rgba(255,255,255,0.08); padding: 15px; border-radius: 14px; font-size: 14px; }
+        .detail-card span { display: block; color: rgba(255,255,255,0.6); font-size: 12px; margin-bottom: 4px; }
+        .cta-box { margin-top: 30px; background: rgba(116, 192, 252, 0.15); border: 1px solid rgba(116, 192, 252, 0.3); padding: 18px; border-radius: 16px; }
+        .cta-box p { font-size: 14px; margin-bottom: 12px; color: rgba(255,255,255,0.9); }
+        .btn-home { display: inline-block; background: #4dabf7; color: #0b192c; padding: 10px 20px; border-radius: 12px; font-weight: bold; text-decoration: none; font-size: 14px; transition: background 0.2s; }
+        .btn-home:hover { background: #74c0fc; }
+        footer { margin-top: 40px; font-size: 11px; color: rgba(255,255,255,0.5); text-align: center; line-height: 1.5; max-width: 600px; }
+        footer a { color: inherit; text-decoration: underline; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="header-nav">
+            <a href="../index.html">← Back to Global Metis Home</a>
+            <span>🇬🇧 United Kingdom</span>
+        </div>
+
+        <h1>London Weather Forecast</h1>
+        <div class="location-sub">📍 London, UK (Live Atmospheric Data)</div>
+
+        <div id="weather-box">
+            <p style="color: rgba(255,255,255,0.7); padding: 20px;">Connecting to MET Norway weather feed...</p>
+        </div>
+
+        <div class="cta-box">
+            <p>Want to check real-time global currency exchange rates, multi-city tracking, or the full financial dashboard?</p>
+            <a href="../index.html" class="btn-home">Open Global Metis Portal 🚀</a>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Global Metis. Weather data provided by the <a href="https://www.met.no/" target="_blank" rel="noopener">Norwegian Meteorological Institute (MET Norway)</a> under CC BY 4.0.</p>
+    </footer>
+
+    <script>
+        async function fetchLondonWeather() {
+            const box = document.getElementById('weather-box');
+            // Coordenadas exatas de Londres
+            const lat = 51.5074;
+            const lon = -0.1278;
+            const url = `https://api.met.no/weatherapi/locationforecast/2.0/compact?lat=${lat}&lon=${lon}`;
+
+            try {
+                const response = await fetch(url, {
+                    headers: { 'User-Agent': 'GlobalMetis.com contact@globalmetis.com' }
+                });
+
+                if (!response.ok) throw new Error('Failed to fetch');
+
+                const data = await response.json();
+                const current = data.properties.timeseries[0].data.instant.details;
+                const nextSymbol = data.properties.timeseries[0].data.next_1_hours?.summary?.symbol_code || 'clearsky_day';
+
+                const temp = Math.round(current.air_temperature);
+                const wind = current.wind_speed;
+                const humidity = current.relative_humidity;
+                const pressure = current.air_pressure_at_sea_level;
+
+                let conditionText = nextSymbol.replace(/_/g, ' ');
+
+                box.innerHTML = `
+                    <div class="temp-display">${temp}°C</div>
+                    <div class="condition">${conditionText}</div>
+                    <div class="details-grid">
+                        <div class="detail-card">
+                            <span>Wind Speed</span>
+                            <strong>${wind} m/s</strong>
+                        </div>
+                        <div class="detail-card">
+                            <span>Relative Humidity</span>
+                            <strong>${humidity}%</strong>
+                        </div>
+                        <div class="detail-card">
+                            <span>Air Pressure</span>
+                            <strong>${pressure} hPa</strong>
+                        </div>
+                        <div class="detail-card">
+                            <span>Data Source</span>
+                            <strong>MET Norway</strong>
+                        </div>
+                    </div>
+                `;
+            } catch (error) {
+                box.innerHTML = `<p style="color: #ff6b6b;">Could not load live weather data at the moment. Please try again later.</p>`;
+                console.error(error);
+            }
+        }
+
+        fetchLondonWeather();
+    </script>
+</body>
+</html>
+
