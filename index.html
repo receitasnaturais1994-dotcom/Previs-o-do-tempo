@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title id="pageTitle">Global Weather & Market Intelligence</title>
-    <meta name="description" content="Global Weather & Market Intelligence Platform in Real Time.">
+    <meta name="description" content="Global Weather & Market Intelligence Platform in Real Time. Live forecasts, currency exchange rates, and stock market sessions.">
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#0b192c">
     <style>
@@ -71,6 +71,15 @@
         
         .daily-row { display: flex; justify-content: space-between; align-items: center; font-size: 15px; padding: 8px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.12); }
         .daily-row:last-child { border-bottom: none; }
+
+        /* Hubs Globais SEO (30 Links Internos) */
+        .hubs-section { background: rgba(255, 255, 255, 0.08); margin: 15px 20px; border-radius: 20px; padding: 20px; }
+        .hubs-section h3 { font-size: 15px; color: #74c0fc; margin-bottom: 12px; }
+        .hubs-grid { display: grid; grid-template-columns: 1fr; gap: 14px; }
+        .hub-group h4 { font-size: 13px; color: rgba(255,255,255,0.75); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px; }
+        .hub-links { display: flex; flex-wrap: wrap; gap: 6px; }
+        .hub-links a { background: rgba(0, 0, 0, 0.25); border: 1px solid rgba(255, 255, 255, 0.12); color: #e7f5ff; text-decoration: none; font-size: 12px; padding: 5px 10px; border-radius: 10px; transition: all 0.2s; }
+        .hub-links a:hover { background: #4dabf7; color: #0b192c; font-weight: 600; }
         
         .editorial-section { background: rgba(255, 255, 255, 0.08); margin: 15px 20px; border-radius: 20px; padding: 20px; font-size: 13.5px; line-height: 1.6; color: rgba(255, 255, 255, 0.9); }
         .editorial-section h3 { font-size: 15px; color: #74c0fc; margin-bottom: 8px; }
@@ -90,7 +99,7 @@
         .footer-cookie-notice a { color: #74c0fc; text-decoration: underline; cursor: pointer; font-weight: 600; }
         .footer-credits { font-size: 11px; color: rgba(255, 255, 255, 0.45); margin-top: 6px; }
 
-        /* Janela Modal Profissional (Grande e Detalhada) */
+        /* Janela Modal Profissional */
         #infoModal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(8px); z-index: 10000; justify-content: center; align-items: center; padding: 15px; }
         .modal-content { background: #0f172a; border: 1px solid rgba(255,255,255,0.18); width: 100%; max-width: 760px; border-radius: 24px; padding: 32px; box-shadow: 0 25px 50px rgba(0,0,0,0.8); max-height: 85vh; overflow-y: auto; text-align: left; }
         .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.12); padding-bottom: 15px; position: sticky; top: -32px; background: #0f172a; z-index: 2; }
@@ -125,6 +134,8 @@
             .mascot-svg { width: 150px; height: 150px; }
             .adsense-box { grid-column: span 2; margin: 10px 0; }
             .card-section { grid-column: 2; margin: 0; }
+            .hubs-section { grid-column: span 2; margin: 10px 0; }
+            .hubs-grid { grid-template-columns: repeat(3, 1fr); }
             .editorial-section { grid-column: span 2; margin: 10px 0; }
             footer { max-width: 1100px; grid-column: span 2; }
             #cookieBanner { flex-direction: row; align-items: center; justify-content: space-between; }
@@ -197,6 +208,58 @@
                 <div class="market-status-card"><span id="txtB3">B3 (São Paulo)</span><span id="statusB3">🟢 Open</span></div>
             </div>
         </div>
+
+        <!-- 3. Hubs Globais (Links Diretos para Indexação SEO das 30 Páginas) -->
+        <nav class="hubs-section" aria-label="Global Cities Hubs">
+            <h3>🌍 Global Financial & Weather Hubs</h3>
+            <div class="hubs-grid">
+                <div class="hub-group">
+                    <h4>🌦️ Weather Hubs</h4>
+                    <div class="hub-links">
+                        <a href="clima/newyork.html">New York</a>
+                        <a href="clima/london.html">London</a>
+                        <a href="clima/tokyo.html">Tokyo</a>
+                        <a href="clima/saopaulo.html">São Paulo</a>
+                        <a href="clima/frankfurt.html">Frankfurt</a>
+                        <a href="clima/hongkong.html">Hong Kong</a>
+                        <a href="clima/singapore.html">Singapore</a>
+                        <a href="clima/paris.html">Paris</a>
+                        <a href="clima/sydney.html">Sydney</a>
+                        <a href="clima/zurich.html">Zurich</a>
+                    </div>
+                </div>
+                <div class="hub-group">
+                    <h4>💱 Currency Hubs</h4>
+                    <div class="hub-links">
+                        <a href="cambio/newyork.html">New York</a>
+                        <a href="cambio/london.html">London</a>
+                        <a href="cambio/tokyo.html">Tokyo</a>
+                        <a href="cambio/saopaulo.html">São Paulo</a>
+                        <a href="cambio/frankfurt.html">Frankfurt</a>
+                        <a href="cambio/hongkong.html">Hong Kong</a>
+                        <a href="cambio/singapore.html">Singapore</a>
+                        <a href="cambio/paris.html">Paris</a>
+                        <a href="cambio/sydney.html">Sydney</a>
+                        <a href="cambio/zurich.html">Zurich</a>
+                    </div>
+                </div>
+                <div class="hub-group">
+                    <h4>📈 Stock Market Hubs</h4>
+                    <div class="hub-links">
+                        <a href="bolsas/newyork.html">New York</a>
+                        <a href="bolsas/london.html">London</a>
+                        <a href="bolsas/tokyo.html">Tokyo</a>
+                        <a href="bolsas/saopaulo.html">São Paulo</a>
+                        <a href="bolsas/frankfurt.html">Frankfurt</a>
+                        <a href="bolsas/hongkong.html">Hong Kong</a>
+                        <a href="bolsas/singapore.html">Singapore</a>
+                        <a href="bolsas/paris.html">Paris</a>
+                        <a href="bolsas/sydney.html">Sydney</a>
+                        <a href="bolsas/zurich.html">Zurich</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
 
         <!-- Seção Editorial para AdSense -->
         <div class="editorial-section">
