@@ -1,62 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-    <!-- Main PWA Portal -->
+    <!-- Homepage -->
     <url>
         <loc>https://globalmetis.com/</loc>
         <changefreq>daily</changefreq>
         <priority>1.0</priority>
     </url>
 
-    <!-- Global Financial Hubs - Weather & Market Intelligence Satellite Pages -->
-    <url>
-        <loc>https://globalmetis.com/clima/newyork.html</loc>
-        <changefreq>hourly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://globalmetis.com/clima/london.html</loc>
-        <changefreq>hourly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://globalmetis.com/clima/tokyo.html</loc>
-        <changefreq>hourly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://globalmetis.com/clima/saopaulo.html</loc>
-        <changefreq>hourly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://globalmetis.com/clima/frankfurt.html</loc>
-        <changefreq>hourly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://globalmetis.com/clima/hongkong.html</loc>
-        <changefreq>hourly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://globalmetis.com/clima/singapore.html</loc>
-        <changefreq>hourly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://globalmetis.com/clima/paris.html</loc>
-        <changefreq>hourly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://globalmetis.com/clima/sydney.html</loc>
-        <changefreq>hourly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://globalmetis.com/clima/zurich.html</loc>
-        <changefreq>hourly</changefreq>
-        <priority>0.8</priority>
-    </url>
-</urlset>
+    <!-- Clima / Weather Hubs -->
+    <url><loc>https://globalmetis.com/clima/newyork.html</loc><changefreq>hourly</changefreq><priority>0.8</priority></url>
+    <url><loc>https://globalmetis.com/clima/london.html</loc><changefreq>hourly</changefreq><priority>0.8</priority></url>
+    <url><loc>https://globalmetis.com/clima/tokyo.html</loc><changefreq>hourly</changefreq><priority>0.8</priority></url>
+    <url><loc>https://globalmetis.com/clima/saopaulo.html</loc><changefreq>hourly</changefreq><priority>0.8</priority></url>
+    <url><loc>https://globalmetis.com/clima/frankfurt.html</loc><changefreq>hourly</changefreq><priority>0.8</priority></url>
+    <url><loc>https://globalmetis.com/clima/hongkong.html</loc><changefreq>hourly</changefreq><priority>0.8</priority></url>
+    <url><loc>https://globalmetis.com/clima/singapore.html</loc><changefreq>hourly</changefreq><priority>0.8</priority></url>
+    <url><loc>https://globalmetis.com/clima/paris.html</loc><changefreq>hourly</changefreq><priority>0.8</priority></url>
+    <url><loc>https://globalmetis.com/clima/sydney.html</loc><changefreq>hourly</changefreq><priority>0.8</priority></url>
+    <url><loc>https://globalmetis.com/clima/zurich.html</loc><changefreq>hourly</changefreq><priority>0.8</priority></url>
 
+    <!-- Câmbio / Currency Hubs -->
+    <url><loc>https://globalmetis.com/cambio/newyork.html</loc><changefreq>hourly</changefreq><priority>0.9</priority></url>
+    <url><loc>https://globalmetis.com/cambio/london.html</loc><changefreq>hourly</changefreq><priority>0.9</priority></url>
+    <url><loc>https://globalmetis.com/cambio/tokyo.html</loc><changefreq>hourly</changefreq><priority>0.9</priority></url>
+    <url><loc>https://globalmetis.com/cambio/saopaulo.html</loc><changefreq>hourly</changefreq><priority>0.9</priority></url>
+    <url><loc>https://globalmetis.com/cambio/frankfurt.html</loc><changefreq>hourly</changefreq><priority>0.9</priority></url>
+    <url><loc>https://globalmetis.com/cambio/hongkong.html</loc><changefreq>hourly</changefreq><priority>0.9</priority></url>
+    <url><loc>https://globalmetis.com/cambio/singapore.html</loc><changefreq>hourly</changefreq><priority>0.9</priority></url>
+    <url><loc>https://globalmetis.com/cambio/paris.html</loc><changefreq>hourly</changefreq><priority>0.9</priority></url>
+    <url><loc>https://globalmetis.com/cambio/sydney.html</loc><changefreq>hourly</changefreq><priority>0.9</priority></url>
+    <url><loc>https://globalmetis.com/cambio/zurich.html</loc><changefreq>hourly</changefreq><priority>0.9</priority></url>
+</urlset>
