@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap.0.9">
     <!-- Home -->
     <url>
         <loc>https://globalmetis.com/index.html</loc>
@@ -8,49 +7,7 @@
         <priority>1.0</priority>
     </url>
 
-    <!-- Clima / Weather Hubs -->
-    <url>
-        <loc>https://globalmetis.com/clima/newyork.html</loc>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://globalmetis.com/clima/london.html</loc>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://globalmetis.com/clima/tokyo.html</loc>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://globalmetis.com/clima/saopaulo.html</loc>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://globalmetis.com/clima/frankfurt.html</loc>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://globalmetis.com/clima/hongkong.html</loc>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://globalmetis.com/clima/singapore.html</loc>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://globalmetis.com/clima/paris.html</loc>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://globalmetis.com/clima/sydney.html</loc>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://globalmetis.com/clima/zurich.html</loc>
-        <priority>0.8</priority>
-    </url>
-
-    <!-- Cambio / Currency Hubs -->
+    <!-- Currency Exchange Hubs -->
     <url>
         <loc>https://globalmetis.com/cambio/newyork.html</loc>
         <priority>0.8</priority>
@@ -87,12 +44,8 @@
         <loc>https://globalmetis.com/cambio/sydney.html</loc>
         <priority>0.8</priority>
     </url>
-    <url>
-        <loc>https://globalmetis.com/cambio/zurich.html</loc>
-        <priority>0.8</priority>
-    </url>
 
-    <!-- Bolsas / Stock Market Hubs -->
+    <!-- Stock Market Hubs -->
     <url>
         <loc>https://globalmetis.com/bolsas/newyork.html</loc>
         <priority>0.8</priority>
@@ -133,6 +86,5 @@
         <loc>https://globalmetis.com/bolsas/zurich.html</loc>
         <priority>0.8</priority>
     </url>
-
 </urlset>
 
