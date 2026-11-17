@@ -25,16 +25,17 @@
         /* Container Principal */
         .app-container { width: 100%; max-width: 480px; background: rgba(11, 25, 44, 0.45); backdrop-filter: blur(20px); border-radius: 30px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.4); display: flex; flex-direction: column; position: relative; padding-bottom: 20px; }
         
-        .search-box { padding: 20px 20px 10px 20px; display: flex; gap: 10px; z-index: 10; align-items: center; }
-        .search-box input { flex: 1; padding: 12px 18px; border-radius: 20px; border: none; background: rgba(255, 255, 255, 0.2); color: #fff; font-size: 16px; outline: none; }
+        .search-box { padding: 20px 20px 10px 20px; display: flex; gap: 8px; z-index: 10; align-items: center; }
+        .search-box input { flex: 1; padding: 12px 16px; border-radius: 20px; border: none; background: rgba(255, 255, 255, 0.2); color: #fff; font-size: 15px; outline: none; min-width: 0; }
         .search-box input::placeholder { color: rgba(255, 255, 255, 0.7); }
-        .search-box button { padding: 0 16px; height: 44px; border-radius: 20px; border: none; background: #fff; color: #0b192c; font-weight: bold; cursor: pointer; }
-        .btn-fav { background: rgba(255,255,255,0.2) !important; color: #ffd43b !important; font-size: 18px; padding: 0 12px !important; }
+        .search-box button { padding: 0 14px; height: 44px; border-radius: 20px; border: none; background: #fff; color: #0b192c; font-weight: bold; cursor: pointer; flex-shrink: 0; }
+        .btn-gps { background: rgba(116, 192, 252, 0.25) !important; color: #74c0fc !important; font-size: 17px; border: 1px solid rgba(116, 192, 252, 0.4) !important; }
+        .btn-fav { background: rgba(255,255,255,0.2) !important; color: #ffd43b !important; font-size: 17px; }
         
         .hero-section { padding: 10px 20px 20px 20px; position: relative; text-align: left; }
-        .location-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px; }
+        .location-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px; gap: 10px; }
         .location-name { font-size: 20px; font-weight: 600; display: flex; align-items: center; gap: 6px; }
-        .live-clock { font-size: 14px; background: rgba(255,255,255,0.15); padding: 4px 10px; border-radius: 12px; font-weight: 500; }
+        .live-clock { font-size: 14px; background: rgba(255,255,255,0.15); padding: 4px 10px; border-radius: 12px; font-weight: 500; white-space: nowrap; }
         
         .temp-main { font-size: 72px; font-weight: 300; line-height: 1; margin-bottom: 5px; }
         .condition-text { font-size: 22px; font-weight: 500; margin-bottom: 12px; }
@@ -72,7 +73,7 @@
         .daily-row { display: flex; justify-content: space-between; align-items: center; font-size: 15px; padding: 8px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.12); }
         .daily-row:last-child { border-bottom: none; }
 
-        /* Hubs Globais SEO (20 Links Internos: Câmbio & Bolsas) */
+        /* Hubs Globais SEO (19 Links: 9 Câmbio + 10 Bolsas) */
         .hubs-section { background: rgba(255, 255, 255, 0.08); margin: 15px 20px; border-radius: 20px; padding: 20px; }
         .hubs-section h3 { font-size: 16px; color: #74c0fc; margin-bottom: 14px; }
         .hubs-grid { display: grid; grid-template-columns: 1fr; gap: 16px; }
@@ -162,22 +163,21 @@
     <div class="app-container">
         <div class="search-box">
             <input type="text" id="searchInput" placeholder="Enter city, country or region..." onkeypress="if(event.key==='Enter') buscarCidade()">
-            <button onclick="buscarCidade()">🔍</button>
+            <button onclick="buscarCidade()" title="Search">🔍</button>
+            <button class="btn-gps" onclick="usarLocalizacaoGPS()" title="Use My Exact Location 🎯">🎯</button>
             <button class="btn-fav" onclick="salvarCidadeAtual()" title="Save City ⭐">⭐</button>
         </div>
         <div class="hero-section">
             <div class="location-header">
-                <div class="location-name" id="locationName">📍 New York, NY</div>
-                <div class="live-clock" id="liveClock">🕒 12:00:00</div>
+                <div class="location-name" id="locationName">📍 Detecting location...</div>
+                <div class="live-clock" id="liveClock">🕒 --:--:--</div>
             </div>
-            <div class="temp-main" id="tempMain">20°</div>
-            <div class="condition-text" id="conditionText">Clear Sky</div>
-            <div class="temp-min-max" id="tempMinMax">↑ 24° / ↓ 15°</div>
-            <div class="feels-like" id="feelsLike">Feels like 21°</div>
-            <div class="summary-box" id="summaryBox">Clear Sky in New York, NY. Min 15°C / Max 24°C.</div>
-            <div class="mascot-stage" id="mascotStage">
-                <svg class="mascot-svg" viewBox="0 0 120 120"><circle cx="95" cy="25" r="14" fill="#fcc419"/><circle cx="60" cy="65" r="16" fill="#ffd43b"/><rect x="48" y="60" width="10" height="6" rx="2" fill="#212529"/><rect x="62" y="60" width="10" height="6" rx="2" fill="#212529"/><line x1="58" y1="62" x2="62" y2="62" stroke="#212529" stroke-width="2"/><path d="M55,72 Q60,77 65,72" stroke="#000" stroke-width="2" fill="none"/><path d="M45,83 Q60,78 75,83 L75,108 L45,108 Z" fill="#ff922b"/></svg>
-            </div>
+            <div class="temp-main" id="tempMain">--°</div>
+            <div class="condition-text" id="conditionText">Loading...</div>
+            <div class="temp-min-max" id="tempMinMax">↑ --° / ↓ --°</div>
+            <div class="feels-like" id="feelsLike">Feels like --°</div>
+            <div class="summary-box" id="summaryBox">Synchronizing local forecast...</div>
+            <div class="mascot-stage" id="mascotStage"></div>
         </div>
         
         <div class="adsense-box" id="adsenseBox"></div>
@@ -216,7 +216,7 @@
             </div>
         </div>
 
-        <!-- 3. Hubs Globais SEO (20 Links: Câmbio e Bolsas Mundiais) -->
+        <!-- 3. Hubs Globais SEO (Sem Zurich em Câmbio) -->
         <nav class="hubs-section" aria-label="Global Financial Hubs">
             <h3 id="hubsMainTitle">🌍 Global Financial & Currency Hubs</h3>
             <div class="hubs-grid">
@@ -232,7 +232,6 @@
                         <a href="/cambio/singapore.html">Singapore</a>
                         <a href="/cambio/paris.html">Paris</a>
                         <a href="/cambio/sydney.html">Sydney</a>
-                        <a href="/cambio/zurich.html">Zurich</a>
                     </div>
                 </div>
                 <div class="hub-group">
@@ -255,7 +254,6 @@
 
         <!-- 4. Guias Completos & Inteligência Editorial (SEO + AdSense) -->
         <main class="guides-wrapper" id="guidesWrapper">
-            <!-- Conteúdo injetado dinamicamente no idioma do utilizador com fallback completo em Inglês -->
             <article class="guide-article">
                 <h2>📈 Complete Guide to Global Stock Exchanges & Market Sessions</h2>
                 <p>Understanding how international stock exchanges operate across different time zones is essential for investors, traders, and businesses tracking global capital flows. Financial markets follow a continuous 24-hour cycle during weekdays, transitioning liquidity from Asia-Pacific to Europe and finally to the Americas.</p>
@@ -289,7 +287,7 @@
                 <h3>4 Pillars of Strong Financial Health</h3>
                 <ul>
                     <li><strong>1. Multi-Currency Emergency Reserve:</strong> Maintain 6 to 12 months of essential living expenses in highly liquid, low-risk instruments. Diversifying a portion into strong reserve currencies (such as USD, EUR, or CHF) adds protection against local currency devaluation.</li>
-                    <li><strong>2. Intelligent Budget Allocation:</strong> Follow a structured rule such as 50% for essential needs, 30% for lifestyle and personal growth, and at least 20% dedicated strictly to debt elimination and wealth accumulation.</li>
+                    <li><strong>2. Intelligent Budget Allocation:</strong> Follow a structured rule such as 50% for essential needs, 30% for lifestyle and personal growth, and no less than 20% dedicated strictly to debt elimination and wealth accumulation.</li>
                     <li><strong>3. Protection Against Inflation:</strong> Leaving cash idle in non-yielding accounts erodes purchasing power every year. Prioritize inflation-indexed bonds, dividend-paying equities, or diversified global index funds aligned with your risk profile.</li>
                     <li><strong>4. Continuous Risk Management:</strong> Avoid high-interest consumer debt and never allocate short-term emergency funds into high-volatility assets like cryptocurrencies or leveraged derivatives.</li>
                 </ul>
@@ -384,7 +382,9 @@
                 titleConv: "💱 Instant Currency Converter",
                 titleMarketsRadar: "🌐 Global Markets Session Radar",
                 hubsMainTitle: "🌍 Global Financial & Currency Hubs",
-                guidesHtml: null, // Usa o HTML nativo completo em Inglês já renderizado para SEO
+                locatingText: "📍 Locating GPS...",
+                gpsDenied: "Please allow location access in your browser settings or search your city manually.",
+                guidesHtml: null,
                 modals: {
                     about: { 
                         title: "About Global Weather & Markets Intelligence", 
@@ -420,6 +420,8 @@
                 titleConv: "💱 Conversor de Moedas Instantâneo",
                 titleMarketsRadar: "🌐 Radar de Sessões das Bolsas Mundiais",
                 hubsMainTitle: "🌍 Hubs Globais de Câmbio e Bolsas de Valores",
+                locatingText: "📍 Buscando GPS exato...",
+                gpsDenied: "Ative a permissão de localização no navegador ou digite o nome da sua cidade na barra acima.",
                 guidesHtml: `
                     <article class="guide-article">
                         <h2>📈 Guia Completo das Bolsas de Valores e Sessões Globais</h2>
@@ -501,6 +503,8 @@
                 titleConv: "💱 Conversor de Monedas",
                 titleMarketsRadar: "🌐 Radar de Bolsas Globales",
                 hubsMainTitle: "🌍 Centros Globales de Divisas y Bolsas",
+                locatingText: "📍 Buscando GPS...",
+                gpsDenied: "Active el permiso de ubicación en su navegador o busque su ciudad manualmente.",
                 guidesHtml: `
                     <article class="guide-article">
                         <h2>📈 Guía Completa de Bolsas Mundiales y Sesiones de Mercado</h2>
@@ -539,6 +543,8 @@
                 titleConv: "💱 通貨コンバーター",
                 titleMarketsRadar: "🌐 世界市場セッションレーダー",
                 hubsMainTitle: "🌍 グローバル金融・為替ハブ",
+                locatingText: "📍 GPS取得中...",
+                gpsDenied: "位置情報の許可を有効にするか、都市名を入力してください。",
                 guidesHtml: `
                     <article class="guide-article">
                         <h2>📈 世界株式市場・為替・資産管理ガイド</h2>
@@ -616,7 +622,7 @@
             }
         }
 
-        let fusoHorarioAtual = 'America/New_York';
+        let fusoHorarioAtual = Intl.DateTimeFormat().resolvedOptions().timeZone || 'America/Sao_Paulo';
         function atualizarRelogio() {
             try {
                 const agora = new Date().toLocaleTimeString(userLang, { timeZone: fusoHorarioAtual, hour: '2-digit', minute: '2-digit', second: '2-digit' });
@@ -627,6 +633,18 @@
         }
         atualizarRelogio();
         setInterval(atualizarRelogio, 1000);
+
+        // Verifica se é dia ou noite no fuso horário da cidade exibida
+        function verificarSeEhDiaNoLocal() {
+            try {
+                const horaStr = new Date().toLocaleTimeString('en-US', { timeZone: fusoHorarioAtual, hour12: false, hour: '2-digit' });
+                const horaLocal = parseInt(horaStr, 10);
+                return horaLocal >= 6 && horaLocal < 18;
+            } catch (e) {
+                const horaSistema = new Date().getHours();
+                return horaSistema >= 6 && horaSistema < 18;
+            }
+        }
 
         // Radar de Sessões das Bolsas Mundiais
         function atualizarRadarBolsas() {
@@ -744,9 +762,11 @@
             }
         }
 
-        function interpretarClimaMET(symbolCode = '') {
+        function interpretarClimaMET(symbolCode = '', forcarDiaOuNoite = null) {
             const code = symbolCode.toLowerCase();
-            let isDay = !code.includes('night');
+            let isDay = forcarDiaOuNoite !== null ? forcarDiaOuNoite : verificarSeEhDiaNoLocal();
+            if (code.includes('night')) isDay = false;
+
             let icone = "☁️";
             let textoEn = "Cloudy";
 
@@ -792,7 +812,8 @@
                 const currentSymbol = timeseries[0].data.next_1_hours?.summary?.symbol_code || timeseries[0].data.next_6_hours?.summary?.symbol_code || 'clearsky_day';
 
                 const tempAtual = Math.round(currentInstant.air_temperature);
-                const infoClima = interpretarClimaMET(currentSymbol);
+                const ehDiaAgora = verificarSeEhDiaNoLocal();
+                const infoClima = interpretarClimaMET(currentSymbol, ehDiaAgora);
 
                 document.getElementById('locationName').innerText = `📍 ${nomeLocal}`;
                 document.getElementById('tempMain').innerText = `${tempAtual}°`;
@@ -818,7 +839,7 @@
                     const maxT = Math.round(Math.max(...hojeData.temps));
                     const minT = Math.round(Math.min(...hojeData.temps));
                     document.getElementById('tempMinMax').innerText = `↑ ${maxT}° / ↓ ${minT}°`;
-                    document.getElementById('summaryBox').innerText = `${infoClima.texto} em ${nomeLocal}. Mín ${minT}°C / Máx ${maxT}°C.`;
+                    document.getElementById('summaryBox').innerText = `${infoClima.texto} - ${nomeLocal}. Min ${minT}°C / Max ${maxT}°C.`;
                 }
 
                 renderMascot(currentSymbol, infoClima.isDay);
@@ -827,10 +848,14 @@
                 horaScroll.innerHTML = '';
                 for (let i = 0; i < 12 && i < timeseries.length; i++) {
                     const step = timeseries[i];
-                    const horaStr = new Date(step.time).toLocaleTimeString(userLang, { hour: '2-digit', minute: '2-digit' });
+                    const stepDate = new Date(step.time);
+                    const horaStr = stepDate.toLocaleTimeString(userLang, { timeZone: fusoHorarioAtual, hour: '2-digit', minute: '2-digit' });
+                    const horaNum = parseInt(stepDate.toLocaleTimeString('en-US', { timeZone: fusoHorarioAtual, hour12: false, hour: '2-digit' }), 10);
+                    const stepIsDay = horaNum >= 6 && horaNum < 18;
+
                     const stepTemp = Math.round(step.data.instant.details.air_temperature);
                     const stepSym = step.data.next_1_hours?.summary?.symbol_code || 'clearsky_day';
-                    const stepInfo = interpretarClimaMET(stepSym);
+                    const stepInfo = interpretarClimaMET(stepSym, stepIsDay);
                     const pop = step.data.next_1_hours?.details?.probability_of_precipitation || 0;
 
                     horaScroll.innerHTML += `
@@ -850,8 +875,8 @@
                     const dMax = Math.round(Math.max(...dData.temps));
                     const dMin = Math.round(Math.min(...dData.temps));
                     const dSym = dData.symbols[Math.floor(dData.symbols.length / 2)] || 'clearsky_day';
-                    const dInfo = interpretarClimaMET(dSym);
-                    const dataObj = new Date(dKey + 'T00:00:00');
+                    const dInfo = interpretarClimaMET(dSym, true);
+                    const dataObj = new Date(dKey + 'T12:00:00');
                     const diaNome = dataObj.toLocaleDateString(userLang, { weekday: 'short' });
 
                     dailyContainer.innerHTML += `
@@ -875,7 +900,10 @@
                 const data = await res.json();
                 if (data.results && data.results.length > 0) {
                     const c = data.results[0];
-                    if (c.timezone) fusoHorarioAtual = c.timezone;
+                    if (c.timezone) {
+                        fusoHorarioAtual = c.timezone;
+                        atualizarRelogio();
+                    }
                     carregarClima(c.latitude, c.longitude, `${c.name}, ${c.admin1 || c.country}`);
                 } else {
                     alert(idiomaUsuario === 'pt' ? "Localização não encontrada." : "Location not found.");
@@ -887,41 +915,63 @@
 
         async function obterNomePorCoordenadas(lat, lon) {
             try {
+                fusoHorarioAtual = Intl.DateTimeFormat().resolvedOptions().timeZone || fusoHorarioAtual;
+                atualizarRelogio();
                 const res = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}&accept-language=${idiomaUsuario}`);
                 const data = await res.json();
                 const addr = data.address || {};
                 const cidade = addr.city || addr.town || addr.village || addr.municipality || "Local Region";
                 const estado = addr.state || addr.country || "";
                 const nomeCompleto = estado ? `${cidade}, ${estado}` : cidade;
-                fusoHorarioAtual = Intl.DateTimeFormat().resolvedOptions().timeZone || fusoHorarioAtual;
                 carregarClima(lat, lon, nomeCompleto);
             } catch (e) {
-                carregarClima(lat, lon, idiomaUsuario === 'pt' ? "Localização Atual" : "Current Location");
+                carregarClima(lat, lon, idiomaUsuario === 'pt' ? "Localização Exata" : "Exact Location");
             }
         }
 
-        async function detectarLocalizacaoAutomatica() {
+        function usarLocalizacaoGPS() {
+            if (!("geolocation" in navigator)) {
+                alert(t.gpsDenied);
+                return;
+            }
+            document.getElementById('locationName').innerText = t.locatingText;
+            navigator.geolocation.getCurrentPosition(
+                (pos) => obterNomePorCoordenadas(pos.coords.latitude, pos.coords.longitude),
+                (err) => {
+                    alert(t.gpsDenied);
+                    detectarLocalizacaoPorIP();
+                },
+                { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 }
+            );
+        }
+
+        async function detectarLocalizacaoPorIP() {
             try {
-                const ipRes = await fetch('https://ipwho.is');
+                const ipRes = await fetch('https://get.geojs.io/v1/ip/geo.json');
                 const ipData = await ipRes.json();
-                if (ipData && ipData.success && ipData.latitude && ipData.longitude) {
-                    if (ipData.timezone && ipData.timezone.id) {
-                        fusoHorarioAtual = ipData.timezone.id;
+                if (ipData && ipData.latitude && ipData.longitude) {
+                    if (ipData.timezone) {
+                        fusoHorarioAtual = ipData.timezone;
+                        atualizarRelogio();
                     }
-                    const localIp = ipData.region_code ? `${ipData.city}, ${ipData.region_code}` : `${ipData.city}, ${ipData.country}`;
-                    carregarClima(ipData.latitude, ipData.longitude, localIp);
+                    const localIp = ipData.region ? `${ipData.city}, ${ipData.region}` : `${ipData.city}, ${ipData.country}`;
+                    carregarClima(parseFloat(ipData.latitude), parseFloat(ipData.longitude), localIp);
                 } else {
                     carregarClima(40.7128, -74.0060, "New York, NY");
                 }
             } catch (e) {
                 carregarClima(40.7128, -74.0060, "New York, NY");
             }
+        }
+
+        async function detectarLocalizacaoAutomatica() {
+            await detectarLocalizacaoPorIP();
 
             if ("geolocation" in navigator) {
                 navigator.geolocation.getCurrentPosition(
                     (pos) => obterNomePorCoordenadas(pos.coords.latitude, pos.coords.longitude),
-                    () => { /* Mantém a localização por IP se o GPS for negado */ },
-                    { timeout: 6000 }
+                    () => {},
+                    { enableHighAccuracy: true, timeout: 8000 }
                 );
             }
         }
@@ -930,3 +980,4 @@
     </script>
 </body>
 </html>
+
