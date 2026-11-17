@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title id="pageTitle">Global Weather & Market Intelligence</title>
-    <meta name="description" content="Global Weather & Market Intelligence Platform in Real Time. Live forecasts, currency exchange rates, and stock market sessions.">
+    <meta name="description" content="Global Weather & Market Intelligence Platform in Real Time. Live forecasts, currency exchange rates, stock market sessions, and financial health guides.">
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#0b192c">
     <style>
@@ -72,17 +72,24 @@
         .daily-row { display: flex; justify-content: space-between; align-items: center; font-size: 15px; padding: 8px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.12); }
         .daily-row:last-child { border-bottom: none; }
 
-        /* Hubs Globais SEO (30 Links Internos com barras absolutas) */
+        /* Hubs Globais SEO (20 Links Internos: Câmbio & Bolsas) */
         .hubs-section { background: rgba(255, 255, 255, 0.08); margin: 15px 20px; border-radius: 20px; padding: 20px; }
-        .hubs-section h3 { font-size: 15px; color: #74c0fc; margin-bottom: 12px; }
-        .hubs-grid { display: grid; grid-template-columns: 1fr; gap: 14px; }
+        .hubs-section h3 { font-size: 16px; color: #74c0fc; margin-bottom: 14px; }
+        .hubs-grid { display: grid; grid-template-columns: 1fr; gap: 16px; }
         .hub-group h4 { font-size: 13px; color: rgba(255,255,255,0.75); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px; }
         .hub-links { display: flex; flex-wrap: wrap; gap: 6px; }
-        .hub-links a { background: rgba(0, 0, 0, 0.25); border: 1px solid rgba(255, 255, 255, 0.12); color: #e7f5ff; text-decoration: none; font-size: 12px; padding: 5px 10px; border-radius: 10px; transition: all 0.2s; }
+        .hub-links a { background: rgba(0, 0, 0, 0.25); border: 1px solid rgba(255, 255, 255, 0.12); color: #e7f5ff; text-decoration: none; font-size: 12px; padding: 6px 11px; border-radius: 10px; transition: all 0.2s; }
         .hub-links a:hover { background: #4dabf7; color: #0b192c; font-weight: 600; }
         
-        .editorial-section { background: rgba(255, 255, 255, 0.08); margin: 15px 20px; border-radius: 20px; padding: 20px; font-size: 13.5px; line-height: 1.6; color: rgba(255, 255, 255, 0.9); }
-        .editorial-section h3 { font-size: 15px; color: #74c0fc; margin-bottom: 8px; }
+        /* Guias Completos & Inteligência Editorial (SEO + AdSense) */
+        .guides-wrapper { margin: 15px 20px; display: flex; flex-direction: column; gap: 18px; }
+        .guide-article { background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 22px; padding: 24px; font-size: 14px; line-height: 1.75; color: rgba(255, 255, 255, 0.9); text-align: left; }
+        .guide-article h2 { font-size: 18px; color: #74c0fc; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px; }
+        .guide-article h3 { font-size: 15px; color: #ffd43b; margin-top: 16px; margin-bottom: 8px; }
+        .guide-article p { margin-bottom: 12px; }
+        .guide-article ul { margin-left: 20px; margin-bottom: 12px; }
+        .guide-article li { margin-bottom: 8px; }
+        .guide-highlight { background: rgba(77, 171, 247, 0.12); border-left: 3px solid #4dabf7; padding: 12px 15px; border-radius: 0 12px 12px 0; margin: 14px 0; font-size: 13.5px; color: #e7f5ff; }
 
         .adsense-box { margin: 10px 20px; background: rgba(255, 255, 255, 0.03); border-radius: 12px; min-height: 50px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
 
@@ -135,8 +142,8 @@
             .adsense-box { grid-column: span 2; margin: 10px 0; }
             .card-section { grid-column: 2; margin: 0; }
             .hubs-section { grid-column: span 2; margin: 10px 0; }
-            .hubs-grid { grid-template-columns: repeat(3, 1fr); }
-            .editorial-section { grid-column: span 2; margin: 10px 0; }
+            .hubs-grid { grid-template-columns: repeat(2, 1fr); }
+            .guides-wrapper { grid-column: span 2; margin: 10px 0; }
             footer { max-width: 1100px; grid-column: span 2; }
             #cookieBanner { flex-direction: row; align-items: center; justify-content: space-between; }
             .cookie-text-group { max-width: 72%; }
@@ -209,27 +216,12 @@
             </div>
         </div>
 
-        <!-- 3. Hubs Globais SEO (Links com barras absolutas / para evitar 404) -->
-        <nav class="hubs-section" aria-label="Global Cities Hubs">
-            <h3>🌍 Global Financial & Weather Hubs</h3>
+        <!-- 3. Hubs Globais SEO (20 Links: Câmbio e Bolsas Mundiais) -->
+        <nav class="hubs-section" aria-label="Global Financial Hubs">
+            <h3 id="hubsMainTitle">🌍 Global Financial & Currency Hubs</h3>
             <div class="hubs-grid">
                 <div class="hub-group">
-                    <h4>🌦️ Weather Hubs</h4>
-                    <div class="hub-links">
-                        <a href="/clima/newyork.html">New York</a>
-                        <a href="/clima/london.html">London</a>
-                        <a href="/clima/tokyo.html">Tokyo</a>
-                        <a href="/clima/saopaulo.html">São Paulo</a>
-                        <a href="/clima/frankfurt.html">Frankfurt</a>
-                        <a href="/clima/hongkong.html">Hong Kong</a>
-                        <a href="/clima/singapore.html">Singapore</a>
-                        <a href="/clima/paris.html">Paris</a>
-                        <a href="/clima/sydney.html">Sydney</a>
-                        <a href="/clima/zurich.html">Zurich</a>
-                    </div>
-                </div>
-                <div class="hub-group">
-                    <h4>💱 Currency Hubs</h4>
+                    <h4>💱 Currency Exchange Hubs</h4>
                     <div class="hub-links">
                         <a href="/cambio/newyork.html">New York</a>
                         <a href="/cambio/london.html">London</a>
@@ -261,11 +253,54 @@
             </div>
         </nav>
 
-        <!-- Seção Editorial para AdSense -->
-        <div class="editorial-section">
-            <h3 id="edTitle">Global Weather & Financial Market Intelligence</h3>
-            <p id="edText">Our platform integrates state-of-the-art atmospheric numerical models provided by the Norwegian Meteorological Institute (MET Norway) alongside real-time global currency feeds. Designed for precision and speed, Global Metis ensures high-resolution meteorological tracking and economic indicators across international sessions.</p>
-        </div>
+        <!-- 4. Guias Completos & Inteligência Editorial (SEO + AdSense) -->
+        <main class="guides-wrapper" id="guidesWrapper">
+            <!-- Conteúdo injetado dinamicamente no idioma do utilizador com fallback completo em Inglês -->
+            <article class="guide-article">
+                <h2>📈 Complete Guide to Global Stock Exchanges & Market Sessions</h2>
+                <p>Understanding how international stock exchanges operate across different time zones is essential for investors, traders, and businesses tracking global capital flows. Financial markets follow a continuous 24-hour cycle during weekdays, transitioning liquidity from Asia-Pacific to Europe and finally to the Americas.</p>
+                <h3>Major Global Financial Centers</h3>
+                <ul>
+                    <li><strong>New York Stock Exchange (NYSE) & NASDAQ:</strong> The largest equity markets in the world by market capitalization, setting the benchmark for global technology, industrial, and blue-chip valuations.</li>
+                    <li><strong>London Stock Exchange (LSE):</strong> Europe's primary liquidity hub, bridging Asian closing hours with the North American morning session, creating peak daily trading volume.</li>
+                    <li><strong>Tokyo Stock Exchange (TSE):</strong> The powerhouse of Asian equities, heavily influenced by export-driven conglomerates, monetary policy from the Bank of Japan, and USD/JPY movements.</li>
+                    <li><strong>B3 (Brasil, Bolsa, Balcão - São Paulo):</strong> Latin America's leading financial exchange, reflecting commodity cycles, emerging market capital inflows, and interest rate differentials.</li>
+                </ul>
+                <div class="guide-highlight">
+                    <strong>Market Overlap Insight:</strong> The highest daily liquidity and volatility typically occur during the London–New York session overlap (13:30 to 16:30 UTC), when institutional desks on both sides of the Atlantic execute major portfolio rebalancing.
+                </div>
+            </article>
+
+            <article class="guide-article">
+                <h2>💱 Foreign Exchange (Forex) & International Currency Dynamics</h2>
+                <p>The foreign exchange market is the largest and most liquid financial market globally, with daily trading volumes exceeding trillions of dollars. Unlike centralized stock exchanges, currency trading occurs over-the-counter (OTC) across global banking networks.</p>
+                <h3>Key Drivers of Exchange Rates</h3>
+                <ul>
+                    <li><strong>Central Bank Interest Rates:</strong> Decisions by the Federal Reserve (Fed), European Central Bank (ECB), Bank of Japan (BoJ), and Central Bank of Brazil (BCB) directly affect yield differentials and capital attraction.</li>
+                    <li><strong>Inflation & Purchasing Power:</strong> Consumer Price Index (CPI) releases determine real yields; currencies with controlled inflation tend to preserve long-term purchasing power.</li>
+                    <li><strong>Trade Balances & Commodities:</strong> Commodity-exporting nations (such as Brazil and Australia) experience currency appreciation when global demand for raw materials, energy, and agriculture rises.</li>
+                </ul>
+                <p>Using real-time currency conversion tools helps travelers, remote professionals, importers, and investors monitor spread variations and time their international transfers efficiently.</p>
+            </article>
+
+            <article class="guide-article">
+                <h2>💰 Personal Financial Health & Macroeconomic Resilience</h2>
+                <p>Building solid financial health requires protecting your personal budget against inflation, currency fluctuations, and unexpected economic downturns. Whether you live in a major financial hub or an emerging economy, structured financial habits create long-term stability.</p>
+                <h3>4 Pillars of Strong Financial Health</h3>
+                <ul>
+                    <li><strong>1. Multi-Currency Emergency Reserve:</strong> Maintain 6 to 12 months of essential living expenses in highly liquid, low-risk instruments. Diversifying a portion into strong reserve currencies (such as USD, EUR, or CHF) adds protection against local currency devaluation.</li>
+                    <li><strong>2. Intelligent Budget Allocation:</strong> Follow a structured rule such as 50% for essential needs, 30% for lifestyle and personal growth, and at least 20% dedicated strictly to debt elimination and wealth accumulation.</li>
+                    <li><strong>3. Protection Against Inflation:</strong> Leaving cash idle in non-yielding accounts erodes purchasing power every year. Prioritize inflation-indexed bonds, dividend-paying equities, or diversified global index funds aligned with your risk profile.</li>
+                    <li><strong>4. Continuous Risk Management:</strong> Avoid high-interest consumer debt and never allocate short-term emergency funds into high-volatility assets like cryptocurrencies or leveraged derivatives.</li>
+                </ul>
+            </article>
+
+            <article class="guide-article">
+                <h2>🌦️ High-Resolution Meteorology & Economic Impact</h2>
+                <p>Global Metis integrates state-of-the-art atmospheric numerical models provided by the <strong>Norwegian Meteorological Institute (MET Norway)</strong>. Beyond daily convenience, accurate weather forecasting plays a decisive role in global supply chains, energy consumption, aviation logistics, and agricultural commodity pricing.</p>
+                <p>Temperature anomalies directly impact natural gas and electricity demand across North America and Europe, while precipitation patterns in South America influence global harvests of soybeans, coffee, and sugar—connecting real-time meteorology directly to financial markets.</p>
+            </article>
+        </main>
     </div>
 
     <footer>
@@ -348,8 +383,8 @@
                 dailyTitle: "Next Days",
                 titleConv: "💱 Instant Currency Converter",
                 titleMarketsRadar: "🌐 Global Markets Session Radar",
-                edTitle: "Global Weather & Financial Market Intelligence",
-                edText: "Our platform integrates state-of-the-art atmospheric numerical models provided by the Norwegian Meteorological Institute (MET Norway) alongside real-time global currency feeds. Designed for precision and speed, Global Metis ensures high-resolution meteorological tracking and economic indicators across international sessions.",
+                hubsMainTitle: "🌍 Global Financial & Currency Hubs",
+                guidesHtml: null, // Usa o HTML nativo completo em Inglês já renderizado para SEO
                 modals: {
                     about: { 
                         title: "About Global Weather & Markets Intelligence", 
@@ -384,12 +419,57 @@
                 dailyTitle: "Próximos Dias",
                 titleConv: "💱 Conversor de Moedas Instantâneo",
                 titleMarketsRadar: "🌐 Radar de Sessões das Bolsas Mundiais",
-                edTitle: "Inteligência Global de Meteorologia e Mercados Financeiros",
-                edText: "Nossa plataforma integra modelos numéricos atmosféricos de alta precisão fornecidos pelo Instituto Meteorológico da Noruega (MET Norway) juntamente com feeds globais de câmbio em tempo real. Projetada para rapidez e utilidade, a Global Metis oferece monitoramento meteorológico detalhado e indicadores econômicos mundiais.",
+                hubsMainTitle: "🌍 Hubs Globais de Câmbio e Bolsas de Valores",
+                guidesHtml: `
+                    <article class="guide-article">
+                        <h2>📈 Guia Completo das Bolsas de Valores e Sessões Globais</h2>
+                        <p>Compreender como as bolsas de valores internacionais operam nos diferentes fusos horários é indispensável para investidores, traders e empresas que acompanham o fluxo de capital global. Os mercados financeiros funcionam num ciclo contínuo de 24 horas durante os dias úteis, transferindo a liquidez da Ásia-Pacífico para a Europa e, por fim, para as Américas.</p>
+                        <h3>Principais Centros Financeiros Mundiais</h3>
+                        <ul>
+                            <li><strong>Bolsa de Nova York (NYSE) e NASDAQ:</strong> Os maiores mercados acionários do mundo em valor de mercado, ditando a referência global para tecnologia, indústria e grandes corporações.</li>
+                            <li><strong>Bolsa de Londres (LSE):</strong> O principal centro de liquidez da Europa, conectando o fecho asiático com a abertura norte-americana e gerando o maior volume diário de negociações.</li>
+                            <li><strong>Bolsa de Tóquio (TSE):</strong> A potência financeira da Ásia, fortemente influenciada por conglomerados exportadores, pela política monetária do Banco do Japão e pela cotação USD/JPY.</li>
+                            <li><strong>B3 (Brasil, Bolsa, Balcão - São Paulo):</strong> A principal bolsa da América Latina, refletindo os ciclos de commodities, o fluxo de capital estrangeiro e os diferenciais da taxa Selic.</li>
+                        </ul>
+                        <div class="guide-highlight">
+                            <strong>Dica de Liquidez:</strong> O pico de volume e volatilidade diária ocorre geralmente durante a sobreposição das sessões de Londres e Nova York (entre 10h30 e 13h30 no horário de Brasília), quando grandes fundos institucionais executam suas ordens.
+                        </div>
+                    </article>
+
+                    <article class="guide-article">
+                        <h2>💱 Câmbio Internacional (Forex) e Dinâmica das Moedas</h2>
+                        <p>O mercado de câmbio é o maior e mais líquido mercado financeiro do planeta, movimentando trilhões de dólares diariamente. Diferente das bolsas tradicionais, as negociações de moedas ocorrem em rede global entre bancos centrais, instituições financeiras e empresas.</p>
+                        <h3>Fatores que Determinam a Cotação das Moedas</h3>
+                        <ul>
+                            <li><strong>Taxas de Juros dos Bancos Centrais:</strong> Decisões do Federal Reserve (EUA), Banco Central Europeu (BCE), Banco do Japão e Banco Central do Brasil definem o rendimento dos títulos e atraem ou afastam capital estrangeiro.</li>
+                            <li><strong>Inflação e Poder de Compra:</strong> Índices de preços determinam o juro real de um país; moedas com inflação controlada tendem a preservar melhor o seu valor ao longo do tempo.</li>
+                            <li><strong>Balança Comercial e Commodities:</strong> Países exportadores de matérias-primas, petróleo e alimentos (como o Brasil e a Austrália) tendem a ter moedas valorizadas quando os preços globais das commodities sobem.</li>
+                        </ul>
+                        <p>Acompanhar conversores em tempo real ajuda viajantes, profissionais remotos, importadores e investidores a identificar o melhor momento para remessas internacionais e proteção patrimonial.</p>
+                    </article>
+
+                    <article class="guide-article">
+                        <h2>💰 Saúde Financeira Pessoal e Proteção Patrimonial</h2>
+                        <p>Construir uma saúde financeira sólida exige blindar o orçamento contra a inflação, oscilações cambiais e imprevistos económicos. Independentemente do cenário macroeconómico, hábitos financeiros estruturados garantem tranquilidade e liberdade de escolha.</p>
+                        <h3>4 Pilares da Saúde Financeira Sólida</h3>
+                        <ul>
+                            <li><strong>1. Reserva de Emergência Líquida:</strong> Mantenha de 6 a 12 meses do seu custo de vida essencial aplicados em investimentos de liquidez diária e baixo risco. Manter uma parcela diversificada em moedas fortes (como Dólar ou Euro) protege contra desvalorizações locais.</li>
+                            <li><strong>2. Regra de Alocação de Orçamento:</strong> Estruture seus rendimentos destinando cerca de 50% para despesas essenciais, 30% para estilo de vida e desenvolvimento pessoal, e no mínimo 20% para quitação de dívidas e investimentos.</li>
+                            <li><strong>3. Proteção Contra a Inflação:</strong> Deixar dinheiro parado em contas sem rendimento corrói o poder de compra todos os anos. Priorize títulos indexados à inflação, ativos geradores de dividendos ou fundos diversificados de acordo com o seu perfil.</li>
+                            <li><strong>4. Gestão Inteligente de Riscos:</strong> Evite dívidas com juros elevados e nunca utilize dinheiro da reserva de emergência em ativos de altíssima volatilidade ou operações alavancadas.</li>
+                        </ul>
+                    </article>
+
+                    <article class="guide-article">
+                        <h2>🌦️ Meteorologia de Alta Precisão e Impacto Económico</h2>
+                        <p>O portal Global Metis integra modelos numéricos atmosféricos de última geração fornecidos pelo <strong>Instituto Meteorológico da Noruega (MET Norway)</strong>. Além do planeamento diário, a previsão meteorológica rigorosa desempenha um papel decisivo nas cadeias logísticas, no consumo de energia, na aviação e na formação de preços agrícolas.</p>
+                        <p>Ondas de frio ou calor extremo alteram imediatamente a procura por gás natural e eletricidade na América do Norte e Europa, enquanto o regime de chuvas na América do Sul influencia diretamente as safras globais de soja, café e açúcar — conectando a meteorologia em tempo real diretamente aos mercados financeiros.</p>
+                    </article>
+                `,
                 modals: {
                     about: { 
                         title: "Sobre o Portal Global Weather & Markets Intelligence", 
-                        content: `<p>A <b>Global Weather & Market Intelligence (globalmetis.com)</b> é uma plataforma digital independente de ponta, dedicada a fornecer previsões meteorológicas em tempo real de alta precisão e inteligência de mercado financeiro em escala global.</p><h4>Nossa Missão Técnica</h4><p>Utilizamos algoritmos avançados de processamento de dados para agregar e exibir métricas ambientais e econômicas cruciais instantaneamente. Nossa arquitetura prioriza a experiência móvel (*mobile-first*), garantindo desempenho fluido, baixa latência e total ausência de elementos intrusivos para todos os visitantes.</p><h4>Fontes de Dados Oficiais e Padrões Abertos</h4><ul><li><b>Modelos Meteorológicos:</b> Integração direta e oficial com previsões numéricas atmosféricas de alta resolução fornecidas pelo <i>Instituto Meteorológico da Noruega (MET Norway)</i> sob a licença Creative Commons Atribuição 4.0 Internacional (CC BY 4.0).</li><li><b>Feeds Financeiros e de Câmbio:</b> Cotações de moedas em tempo real e índices de ativos sincronizados continuamente com as principais sessões globais de negociação.</li></ul><h4>Acessibilidade Global e Conformidade</h4><p>Projetada para uma audiência mundial, a Global Metis deteta automaticamente parâmetros regionais do utilizador, fornecendo relógios de fuso horário localizados, coordenadas exatas e suporte multilíngue, em total conformidade com as normativas internacionais de privacidade.</p>` 
+                        content: `<p>A <b>Global Weather & Market Intelligence (globalmetis.com)</b> é uma plataforma digital independente de ponta, dedicada a fornecer previsões meteorológicas em tempo real de alta precisão e inteligência de mercado financeiro em escala global.</p><h4>Nossa Missão Técnica</h4><p>Utilizamos algoritmos avançados de processamento de dados para agregar e exibir métricas ambientais e econômicas cruciais instantaneamente. Nossa arquitetura prioriza a experiência móvel (<i>mobile-first</i>), garantindo desempenho fluido, baixa latência e total ausência de elementos intrusivos para todos os visitantes.</p><h4>Fontes de Dados Oficiais e Padrões Abertos</h4><ul><li><b>Modelos Meteorológicos:</b> Integração direta e oficial com previsões numéricas atmosféricas de alta resolução fornecidas pelo <i>Instituto Meteorológico da Noruega (MET Norway)</i> sob a licença Creative Commons Atribuição 4.0 Internacional (CC BY 4.0).</li><li><b>Feeds Financeiros e de Câmbio:</b> Cotações de moedas em tempo real e índices de ativos sincronizados continuamente com as principais sessões globais de negociação.</li></ul><h4>Acessibilidade Global e Conformidade</h4><p>Projetada para uma audiência mundial, a Global Metis deteta automaticamente parâmetros regionais do utilizador, fornecendo relógios de fuso horário localizados, coordenadas exatas e suporte multilíngue, em total conformidade com as normativas internacionais de privacidade.</p>` 
                     },
                     cookies: { 
                         title: "Política de Cookies e Tecnologias de Rastreamento", 
@@ -420,8 +500,22 @@
                 dailyTitle: "Próximos Días",
                 titleConv: "💱 Conversor de Monedas",
                 titleMarketsRadar: "🌐 Radar de Bolsas Globales",
-                edTitle: "Inteligencia Global de Meteorología y Mercados Financieros",
-                edText: "Nuestra plataforma integra modelos numéricos atmosféricos proporcionados por el Instituto Meteorológico de Noruega (MET Norway) junto con cotizaciones financieras en tiempo real.",
+                hubsMainTitle: "🌍 Centros Globales de Divisas y Bolsas",
+                guidesHtml: `
+                    <article class="guide-article">
+                        <h2>📈 Guía Completa de Bolsas Mundiales y Sesiones de Mercado</h2>
+                        <p>Comprender cómo operan las bolsas internacionales en distintas zonas horarias es fundamental para inversores y empresas. Los mercados financieros siguen un ciclo continuo de 24 horas durante los días hábiles, trasladando la liquidez desde Asia-Pacífico hacia Europa y América.</p>
+                        <ul>
+                            <li><strong>NYSE y NASDAQ (Nueva York):</strong> Los mayores mercados bursátiles del mundo por capitalización.</li>
+                            <li><strong>Bolsa de Londres (LSE):</strong> El principal centro financiero europeo, conectando las sesiones asiática y americana.</li>
+                            <li><strong>Bolsa de Tokio (TSE) y B3 (São Paulo):</strong> Referentes clave para los mercados de Asia y América Latina.</li>
+                        </ul>
+                    </article>
+                    <article class="guide-article">
+                        <h2>💱 Dinámica de Divisas y Salud Financiera</h2>
+                        <p>Los tipos de cambio responden directamente a las tasas de interés de los bancos centrales, la inflación y la balanza comercial. Mantener un fondo de emergencia diversificado, controlar gastos esenciales y proteger los ahorros frente a la inflación son los pilares fundamentales de una salud financiera sólida.</p>
+                    </article>
+                `,
                 modals: {
                     about: { title: "Acerca de Global Weather & Markets", content: "<p>Plataforma de meteorología y mercados en tiempo real. Datos de MET Norway (CC BY 4.0). Contacto: <b>globalmetis.contato@gmail.com</b>.</p>" },
                     cookies: { title: "Política de Cookies", content: "<p>Utilizamos cookies esenciales, funcionales y de publicidad (Google AdSense).</p><button class=\"btn-reopen-cookie\" onclick=\"fecharModal(); reabrirBannerCookies();\">⚙️ Gestionar Preferencias</button>" },
@@ -444,8 +538,13 @@
                 dailyTitle: "週間予報",
                 titleConv: "💱 通貨コンバーター",
                 titleMarketsRadar: "🌐 世界市場セッションレーダー",
-                edTitle: "グローバル気象・金融市場インテリジェンス",
-                edText: "ノルウェー気象研究所（MET Norway）が提供する高精度な気象モデルとリアルタイムの為替データを統合しています。",
+                hubsMainTitle: "🌍 グローバル金融・為替ハブ",
+                guidesHtml: `
+                    <article class="guide-article">
+                        <h2>📈 世界株式市場・為替・資産管理ガイド</h2>
+                        <p>世界の株式市場（ニューヨーク証券取引所、ロンドン証券取引所、東京証券取引所、B3サンパウロ）は24時間サイクルで連動しています。各国中央銀行の金利政策やインフレ指標を把握し、緊急資金の確保と分散投資を行うことが健全な資産形成の基本です。</p>
+                    </article>
+                `,
                 modals: {
                     about: { title: "概要", content: "<p>気象データ提供：ノルウェー気象研究所 (MET Norway)。連絡先: <b>globalmetis.contato@gmail.com</b></p>" },
                     cookies: { title: "Cookieポリシー", content: "<p>Cookieおよび広告配信クッキーを使用します。</p><button class=\"btn-reopen-cookie\" onclick=\"fecharModal(); reabrirBannerCookies();\">⚙️ 設定変更</button>" },
@@ -461,6 +560,7 @@
         document.getElementById('titleDaily').innerText = t.dailyTitle;
         document.getElementById('titleConv').innerText = t.titleConv;
         document.getElementById('titleMarketsRadar').innerText = t.titleMarketsRadar;
+        document.getElementById('hubsMainTitle').innerText = t.hubsMainTitle;
         document.getElementById('linkAbout').innerText = t.about;
         document.getElementById('linkPrivacy').innerText = t.privacy;
         document.getElementById('linkCookies').innerText = t.cookies;
@@ -473,8 +573,9 @@
         document.getElementById('btnAccept').innerText = t.accept;
         document.getElementById('txtLoadingMarkets').innerText = t.loadingMarkets;
         document.getElementById('footerCredits').innerHTML = t.credits;
-        document.getElementById('edTitle').innerText = t.edTitle;
-        document.getElementById('edText').innerText = t.edText;
+        if (t.guidesHtml) {
+            document.getElementById('guidesWrapper').innerHTML = t.guidesHtml;
+        }
         document.getElementById('htmlRoot').setAttribute('lang', idiomaUsuario);
 
         function abrirModal(tipo) {
