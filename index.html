@@ -48,11 +48,13 @@
         .card-section { background: rgba(255, 255, 255, 0.12); margin: 10px 20px; border-radius: 20px; padding: 15px; }
         .section-title { font-size: 14px; color: rgba(255, 255, 255, 0.8); margin-bottom: 10px; font-weight: 600; display: flex; justify-content: space-between; align-items: center; }
         
-        /* Favoritos Chips */
+        /* Favoritos Chips com botão X para excluir */
         .favorites-bar { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 5px; margin: 0 20px 10px 20px; scrollbar-width: none; }
         .favorites-bar::-webkit-scrollbar { display: none; }
-        .fav-chip { background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.2); padding: 6px 12px; border-radius: 15px; font-size: 12px; color: #fff; cursor: pointer; white-space: nowrap; transition: background 0.2s; }
+        .fav-chip { display: inline-flex; align-items: center; gap: 6px; background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.2); padding: 6px 12px; border-radius: 15px; font-size: 12px; color: #fff; cursor: pointer; white-space: nowrap; transition: background 0.2s; }
         .fav-chip:hover { background: rgba(255,255,255,0.3); }
+        .fav-remove { color: #ff6b6b; font-weight: bold; font-size: 14px; margin-left: 2px; padding: 0 2px; border-radius: 50%; }
+        .fav-remove:hover { background: rgba(255,107,107,0.3); color: #fff; }
 
         /* Conversor de Moedas */
         .converter-box { display: flex; gap: 8px; align-items: center; margin-top: 8px; }
@@ -73,7 +75,7 @@
         .daily-row { display: flex; justify-content: space-between; align-items: center; font-size: 15px; padding: 8px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.12); }
         .daily-row:last-child { border-bottom: none; }
 
-        /* Hubs Globais SEO (19 Links: 9 Câmbio + 10 Bolsas) */
+        /* Hubs Globais SEO */
         .hubs-section { background: rgba(255, 255, 255, 0.08); margin: 15px 20px; border-radius: 20px; padding: 20px; }
         .hubs-section h3 { font-size: 16px; color: #74c0fc; margin-bottom: 14px; }
         .hubs-grid { display: grid; grid-template-columns: 1fr; gap: 16px; }
@@ -82,7 +84,7 @@
         .hub-links a { background: rgba(0, 0, 0, 0.25); border: 1px solid rgba(255, 255, 255, 0.12); color: #e7f5ff; text-decoration: none; font-size: 12px; padding: 6px 11px; border-radius: 10px; transition: all 0.2s; }
         .hub-links a:hover { background: #4dabf7; color: #0b192c; font-weight: 600; }
         
-        /* Guias Completos & Inteligência Editorial (SEO + AdSense) */
+        /* Guias Completos & Inteligência Editorial */
         .guides-wrapper { margin: 15px 20px; display: flex; flex-direction: column; gap: 18px; }
         .guide-article { background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 22px; padding: 24px; font-size: 14px; line-height: 1.75; color: rgba(255, 255, 255, 0.9); text-align: left; }
         .guide-article h2 { font-size: 18px; color: #74c0fc; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px; }
@@ -169,13 +171,13 @@
         </div>
         <div class="hero-section">
             <div class="location-header">
-                <div class="location-name" id="locationName">📍 Detecting location...</div>
+                <div class="location-name" id="locationName">📍 New York, NY</div>
                 <div class="live-clock" id="liveClock">🕒 --:--:--</div>
             </div>
-            <div class="temp-main" id="tempMain">--°</div>
-            <div class="condition-text" id="conditionText">Loading...</div>
-            <div class="temp-min-max" id="tempMinMax">↑ --° / ↓ --°</div>
-            <div class="feels-like" id="feelsLike">Feels like --°</div>
+            <div class="temp-main" id="tempMain">20°</div>
+            <div class="condition-text" id="conditionText">Clear Sky</div>
+            <div class="temp-min-max" id="tempMinMax">↑ 24° / ↓ 15°</div>
+            <div class="feels-like" id="feelsLike">Feels like 21°</div>
             <div class="summary-box" id="summaryBox">Synchronizing local forecast...</div>
             <div class="mascot-stage" id="mascotStage"></div>
         </div>
@@ -216,7 +218,7 @@
             </div>
         </div>
 
-        <!-- 3. Hubs Globais SEO (Sem Zurich em Câmbio) -->
+        <!-- 3. Hubs Globais SEO -->
         <nav class="hubs-section" aria-label="Global Financial Hubs">
             <h3 id="hubsMainTitle">🌍 Global Financial & Currency Hubs</h3>
             <div class="hubs-grid">
@@ -252,7 +254,7 @@
             </div>
         </nav>
 
-        <!-- 4. Guias Completos & Inteligência Editorial (SEO + AdSense) -->
+        <!-- 4. Guias Completos & Inteligência Editorial -->
         <main class="guides-wrapper" id="guidesWrapper">
             <article class="guide-article">
                 <h2>📈 Complete Guide to Global Stock Exchanges & Market Sessions</h2>
@@ -479,7 +481,7 @@
                     },
                     privacy: { 
                         title: "Política de Privacidade (Conformidade GDPR, LGPD e AdSense)", 
-                        content: `<p><b>Data de Vigência:</b> Novembro de 2026<br><b>Plataforma:</b> globalmetis.com<br><b>E-mail de Contato:</b> globalmetis.contato@gmail.com</p><h4>1. Compromisso com a Privacidade</h4><p>A Global Metis respeita a sua privacidade e está totalmente empenhada em proteger os seus dados pessoais em conformidade com o Regulamento Geral sobre a Proteção de Dados (GDPR), a Lei Geral de Proteção de Dados (LGPD) e os requisitos para editores do Google AdSense.</p><h4>2. Informações Recolhidas</h4><ul><li><b>Geolocalização em Tempo Real:</b> Processamos coordenadas GPS baseadas no navegador ou estimativas de endereço IP estritamente em tempo real para apresentar as condições meteorológicas locais. Não armazenamos registos permanentes de localizações físicas nas nossas bases de dados.</li><li><b>Dados de Armazenamento Local (LocalStorage):</b> As cidades favoritas selecionadas pelo utilizador e as escolhas de consentimento são retidas localmente no seu dispositivo.</li><li><b>Registos e Dados Analíticos:</b> Registos padrão de servidor, endereços IP, tipos de navegador e carimbos de data/hora podem ser recolhidos automaticamente para fins de segurança e otimização de desempenho.</li></ul><h4>3. Publicidade de Terceiros (Google AdSense)</h4><p>Utilizamos fornecedores de publicidade terceiros, incluindo o Google, para exibir anúncios quando visita o nosso site. O Google utiliza cookies para apresentar anúncios com base em visitas anteriores. Os utilizadores podem desativar a publicidade personalizada visitando as Definições de Anúncios do Google.</p><h4>4. Fale Connosco</h4><p>Para quaisquer dúvidas sobre privacidade, pedidos de dados ou questões de conformidade, contacte a nossa equipa administrativa em: <b>globalmetis.contato@gmail.com</b>.</p>` 
+                        content: `<p><b>Data de Vigência:</b> Novembro de 2026<br><b>Plataforma:</b> globalmetis.com<br><b>E-mail de Contato:</b> globalmetis.contato@gmail.com</p><h4>1. Compromisso com a Privacidade</h4><p>A Global Metis respeita a sua privacidade e está totalmente empenhada em proteger os seus dados pessoais em conformidade com o Regulamento Geral sobre a Proteção de Dados (GDPR), a Lei Geral de Proteção de Dados (LGPD) e os requisitos para editores do Google AdSense.</p><h4>2. Informações Recolhidas</h4><ul><li><b>Geolocalização em Tempo Real:</b> Processamos coordenadas GPS baseadas no navegador ou estimativas de endereço IP estritamente em tempo real para apresentar as condições meteorológicas locais. Não armazenamos registos permanentes de localizações físicas nas nossas bases de dados.</li><li><b>Dados de Armazenamento Local (LocalStorage):</b> As cidades favoritas selecionadas pelo utilizador e as escolhas de consentimento são retidas localmente no seu dispositivo.</li><li><b>Registos e Dados Analíticos:</b> Registos padrão de servidor, endereços IP, tipos de navegador e carimbos de data/hora podem ser recolhidos automaticamente para fins de segurança e otimização de desempenho.</li></ul><h4>3. Publicidade de Terceiros (Google AdSense)</h4><p>Utilizamos fornecedores de publicidade terceiros, incluindo o Google, para exibir anúncios quando visita o nosso site. O Google utilizes cookies para apresentar anúncios com base em visitas anteriores. Os utilizadores podem desativar a publicidade personalizada visitando as Definições de Anúncios do Google.</p><h4>4. Fale Connosco</h4><p>Para quaisquer dúvidas sobre privacidade, pedidos de dados ou questões de conformidade, contacte a nossa equipa administrativa em: <b>globalmetis.contato@gmail.com</b>.</p>` 
                     },
                     terms: { 
                         title: "Termos de Uso e Aviso Legal", 
@@ -634,7 +636,6 @@
         atualizarRelogio();
         setInterval(atualizarRelogio, 1000);
 
-        // Verifica se é dia ou noite no fuso horário da cidade exibida
         function verificarSeEhDiaNoLocal() {
             try {
                 const horaStr = new Date().toLocaleTimeString('en-US', { timeZone: fusoHorarioAtual, hour12: false, hour: '2-digit' });
@@ -646,7 +647,6 @@
             }
         }
 
-        // Radar de Sessões das Bolsas Mundiais
         function atualizarRadarBolsas() {
             const now = new Date();
             const utcHour = now.getUTCHours() + now.getUTCMinutes() / 60;
@@ -668,7 +668,6 @@
         atualizarRadarBolsas();
         setInterval(atualizarRadarBolsas, 30000);
 
-        // Conversor de Moedas Instantâneo
         let globalRates = null;
         function converterMoedas() {
             if (!globalRates) return;
@@ -736,12 +735,25 @@
             }
         }
 
+        function removerFavorito(nome, event) {
+            event.stopPropagation(); // Evita acionar o clique do chip
+            let favs = JSON.parse(localStorage.getItem('savedFavs') || '[]');
+            favs = favs.filter(f => f.name !== nome);
+            localStorage.setItem('savedFavs', JSON.stringify(favs));
+            renderizarFavoritos();
+        }
+
         function renderizarFavoritos() {
             const bar = document.getElementById('favoritesBar');
             const favs = JSON.parse(localStorage.getItem('savedFavs') || '[]');
             if (favs.length > 0) {
                 bar.style.display = 'flex';
-                bar.innerHTML = favs.map(f => `<button class="fav-chip" onclick="carregarClima(${f.lat}, ${f.lon}, '${f.name}')">📍 ${f.name}</button>`).join('');
+                bar.innerHTML = favs.map(f => `
+                    <div class="fav-chip" onclick="carregarClima(${f.lat}, ${f.lon}, '${f.name}')">
+                        <span>📍 ${f.name}</span>
+                        <span class="fav-remove" onclick="removerFavorito('${f.name}', event)" title="Remove">&times;</span>
+                    </div>
+                `).join('');
             } else {
                 bar.style.display = 'none';
             }
