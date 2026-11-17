@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-    
+
     <!-- Home -->
     <url>
         <loc>https://globalmetis.com/index.html</loc>
@@ -9,40 +9,130 @@
     </url>
 
     <!-- Clima / Weather Hubs -->
-    <url><loc>https://globalmetis.com/clima/newyork.html</loc><priority>0.8</priority></url>
-    <url><loc>https://globalmetis.com/clima/london.html</loc><priority>0.8</priority></url>
-    <url><loc>https://globalmetis.com/clima/tokyo.html</loc><priority>0.8</priority></url>
-    <url><loc>https://globalmetis.com/clima/saopaulo.html</loc><priority>0.8</priority></url>
-    <url><loc>https://globalmetis.com/clima/frankfurt.html</loc><priority>0.8</priority></url>
-    <url><loc>https://globalmetis.com/clima/hongkong.html</loc><priority>0.8</priority></url>
-    <url><loc>https://globalmetis.com/clima/singapore.html</loc><priority>0.8</priority></url>
-    <url><loc>https://globalmetis.com/clima/paris.html</loc><priority>0.8</priority></url>
-    <url><loc>https://globalmetis.com/clima/sydney.html</loc><priority>0.8</priority></url>
-    <url><loc>https://globalmetis.com/clima/zurich.html</loc><priority>0.8</priority></url>
+    <url>
+        <loc>https://globalmetis.com/clima/newyork.html</loc>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://globalmetis.com/clima/london.html</loc>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://globalmetis.com/clima/tokyo.html</loc>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://globalmetis.com/clima/saopaulo.html</loc>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://globalmetis.com/clima/frankfurt.html</loc>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://globalmetis.com/clima/hongkong.html</loc>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://globalmetis.com/clima/singapore.html</loc>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://globalmetis.com/clima/paris.html</loc>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://globalmetis.com/clima/sydney.html</loc>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://globalmetis.com/clima/zurich.html</loc>
+        <priority>0.8</priority>
+    </url>
 
     <!-- Cambio / Currency Hubs -->
-    <url><loc>https://globalmetis.com/cambio/newyork.html</loc><priority>0.8</priority></url>
-    <url><loc>https://globalmetis.com/cambio/london.html</loc><priority>0.8</priority></url>
-    <url><loc>https://globalmetis.com/cambio/tokyo.html</loc><priority>0.8</priority></url>
-    <url><loc>https://globalmetis.com/cambio/saopaulo.html</loc><priority>0.8</priority></url>
-    <url><loc>https://globalmetis.com/cambio/frankfurt.html</loc><priority>0.8</priority></url>
-    <url><loc>https://globalmetis.com/cambio/hongkong.html</loc><priority>0.8</priority></url>
-    <url><loc>https://globalmetis.com/cambio/singapore.html</loc><priority>0.8</priority></url>
-    <url><loc>https://globalmetis.com/cambio/paris.html</loc><priority>0.8</priority></url>
-    <url><loc>https://globalmetis.com/cambio/sydney.html</loc><priority>0.8</priority></url>
-    <url><loc>https://globalmetis.com/cambio/zurich.html</loc><priority>0.8</priority></url>
+    <url>
+        <loc>https://globalmetis.com/cambio/newyork.html</loc>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://globalmetis.com/cambio/london.html</loc>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://globalmetis.com/cambio/tokyo.html</loc>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://globalmetis.com/cambio/saopaulo.html</loc>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://globalmetis.com/cambio/frankfurt.html</loc>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://globalmetis.com/cambio/hongkong.html</loc>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://globalmetis.com/cambio/singapore.html</loc>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://globalmetis.com/cambio/paris.html</loc>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://globalmetis.com/cambio/sydney.html</loc>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://globalmetis.com/cambio/zurich.html</loc>
+        <priority>0.8</priority>
+    </url>
 
     <!-- Bolsas / Stock Market Hubs -->
-    <url><loc>https://globalmetis.com/bolsas/newyork.html</loc><priority>0.8</priority></url>
-    <url><loc>https://globalmetis.com/bolsas/london.html</loc><priority>0.8</priority></url>
-    <url><loc>https://globalmetis.com/bolsas/tokyo.html</loc><priority>0.8</priority></url>
-    <url><loc>https://globalmetis.com/bolsas/saopaulo.html</loc><priority>0.8</priority></url>
-    <url><loc>https://globalmetis.com/bolsas/frankfurt.html</loc><priority>0.8</priority></url>
-    <url><loc>https://globalmetis.com/bolsas/hongkong.html</loc><priority>0.8</priority></url>
-    <url><loc>https://globalmetis.com/bolsas/singapore.html</loc><priority>0.8</priority></url>
-    <url><loc>https://globalmetis.com/bolsas/paris.html</loc><priority>0.8</priority></url>
-    <url><loc>https://globalmetis.com/bolsas/sydney.html</loc><priority>0.8</priority></url>
-    <url><loc>https://globalmetis.com/bolsas/zurich.html</loc><priority>0.8</priority></url>
+    <url>
+        <loc>https://globalmetis.com/bolsas/newyork.html</loc>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://globalmetis.com/bolsas/london.html</loc>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://globalmetis.com/bolsas/tokyo.html</loc>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://globalmetis.com/bolsas/saopaulo.html</loc>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://globalmetis.com/bolsas/frankfurt.html</loc>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://globalmetis.com/bolsas/hongkong.html</loc>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://globalmetis.com/bolsas/singapore.html</loc>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://globalmetis.com/bolsas/paris.html</loc>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://globalmetis.com/bolsas/sydney.html</loc>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://globalmetis.com/bolsas/zurich.html</loc>
+        <priority>0.8</priority>
+    </url>
 
 </urlset>
 
