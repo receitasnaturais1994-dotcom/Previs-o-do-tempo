@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <!-- Home -->
     <url>
-        <loc>https://globalmetis.com/index.html</loc>
+        <loc>https://globalmetis.com/</loc>
         <changefreq>daily</changefreq>
         <priority>1.0</priority>
     </url>
@@ -85,6 +85,13 @@
     <url>
         <loc>https://globalmetis.com/bolsas/zurich.html</loc>
         <priority>0.8</priority>
+    </url>
+
+    <!-- Editorial Guides & Articles Sections -->
+    <url>
+        <loc>https://globalmetis.com/#guidesWrapper</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
     </url>
 </urlset>
 
