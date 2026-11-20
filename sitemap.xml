@@ -1,10 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-    <!-- Home -->
+    <!-- Home & Language Versions -->
     <url>
         <loc>https://globalmetis.com/</loc>
         <changefreq>daily</changefreq>
         <priority>1.0</priority>
+    </url>
+    <url>
+        <loc>https://globalmetis.com/pt/</loc>
+        <changefreq>daily</changefreq>
+        <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>https://globalmetis.com/es/</loc>
+        <changefreq>daily</changefreq>
+        <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>https://globalmetis.com/ja/</loc>
+        <changefreq>daily</changefreq>
+        <priority>0.9</priority>
     </url>
 
     <!-- Currency Exchange Hubs -->
@@ -86,12 +101,4 @@
         <loc>https://globalmetis.com/bolsas/zurich.html</loc>
         <priority>0.8</priority>
     </url>
-
-    <!-- Editorial Guides & Articles Sections -->
-    <url>
-        <loc>https://globalmetis.com/#guidesWrapper</loc>
-        <changefreq>weekly</changefreq>
-        <priority>0.9</priority>
-    </url>
 </urlset>
-
