@@ -11,7 +11,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title id="pageTitle">Global Weather & Market Intelligence</title>
-    <meta name="description" content="Global Weather & Market Intelligence Platform in Real Time. Live forecasts, currency exchange rates, stock market sessions, and financial health guides.">
+    <meta name="description" content="Global Weather & Market Intelligence Platform in Real Time. Live forecasts, currency exchange rates, compound interest & loan calculators, stock market sessions, and financial health guides.">
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#0b192c">
     <style>
@@ -21,11 +21,13 @@
         body.rain-theme { background: linear-gradient(135deg, #2b303a, #495057); }
         
         /* Menu de Navegação Superior SEO */
-        .site-nav { width: 100%; max-width: 1100px; display: flex; justify-content: space-between; align-items: center; background: rgba(0, 0, 0, 0.35); backdrop-filter: blur(10px); padding: 12px 20px; border-radius: 16px; margin-bottom: 15px; border: 1px solid rgba(255,255,255,0.1); }
+        .site-nav { width: 100%; max-width: 1100px; display: flex; justify-content: space-between; align-items: center; background: rgba(0, 0, 0, 0.35); backdrop-filter: blur(10px); padding: 12px 20px; border-radius: 16px; margin-bottom: 15px; border: 1px solid rgba(255,255,255,0.1); gap: 12px; flex-wrap: wrap; }
         .site-logo { font-size: 16px; font-weight: bold; color: #74c0fc; text-decoration: none; }
+        .nav-right { display: flex; align-items: center; gap: 15px; flex-wrap: wrap; }
         .nav-links { display: flex; gap: 15px; font-size: 13px; }
         .nav-links a { color: rgba(255,255,255,0.85); text-decoration: none; font-weight: 500; cursor: pointer; transition: color 0.2s; }
         .nav-links a:hover { color: #74c0fc; }
+        .lang-select { padding: 5px 10px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.2); background: rgba(11, 25, 44, 0.75); color: #fff; font-size: 12px; cursor: pointer; outline: none; }
 
         /* Ticker Financeiro Dinâmico Global */
         .market-ticker { width: 100%; max-width: 1100px; background: rgba(0, 0, 0, 0.3); backdrop-filter: blur(10px); border-radius: 14px; padding: 10px 15px; margin-bottom: 15px; display: flex; gap: 20px; overflow-x: auto; white-space: nowrap; scrollbar-width: none; font-size: 13px; border: 1px solid rgba(255,255,255,0.1); }
@@ -57,8 +59,8 @@
         .mascot-svg { width: 130px; height: 130px; animation: breathe 3s ease-in-out infinite; }
         @keyframes breathe { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
         
-        .card-section { background: rgba(255, 255, 255, 0.12); margin: 10px 20px; border-radius: 20px; padding: 15px; }
-        .section-title { font-size: 14px; color: rgba(255, 255, 255, 0.8); margin-bottom: 10px; font-weight: 600; display: flex; justify-content: space-between; align-items: center; }
+        .card-section { background: rgba(255, 255, 255, 0.12); margin: 10px 20px; border-radius: 20px; padding: 16px; }
+        .section-title { font-size: 15px; color: #fff; margin-bottom: 12px; font-weight: 600; display: flex; justify-content: space-between; align-items: center; }
         
         /* Favoritos Chips com botão X para excluir */
         .favorites-bar { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 5px; margin: 0 20px 10px 20px; scrollbar-width: none; }
@@ -69,10 +71,30 @@
         .fav-remove:hover { background: rgba(255,107,107,0.3); color: #fff; }
 
         /* Conversor de Moedas */
-        .converter-box { display: flex; gap: 8px; align-items: center; margin-top: 8px; }
-        .converter-box input, .converter-box select { padding: 8px 12px; border-radius: 12px; border: none; background: rgba(255,255,255,0.2); color: #fff; font-size: 14px; outline: none; }
-        .converter-box input { width: 90px; }
-        .converter-result { font-size: 14px; font-weight: bold; color: #74c0fc; margin-top: 8px; }
+        .converter-box { display: flex; gap: 8px; align-items: center; margin-top: 8px; flex-wrap: wrap; }
+        .converter-box input, .converter-box select { padding: 9px 12px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.18); color: #fff; font-size: 14px; outline: none; }
+        .converter-box select option { background: #0f172a; color: #fff; }
+        .converter-box input { flex: 1; min-width: 110px; }
+        .converter-result { font-size: 14px; font-weight: bold; color: #74c0fc; margin-top: 10px; line-height: 1.5; }
+
+        /* Calculadoras Financeiras */
+        .calc-grid { display: grid; grid-template-columns: 1fr; gap: 10px; margin-top: 8px; }
+        .calc-field { display: flex; flex-direction: column; gap: 4px; }
+        .calc-field label { font-size: 12px; color: rgba(255, 255, 255, 0.85); font-weight: 500; }
+        .calc-field input, .calc-field select { padding: 9px 12px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.18); color: #fff; font-size: 14px; outline: none; width: 100%; }
+        .calc-field select option { background: #0f172a; color: #fff; }
+        .calc-row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .calc-btn { margin-top: 14px; width: 100%; padding: 10px 14px; border-radius: 12px; border: none; background: #4dabf7; color: #0b192c; font-weight: 700; font-size: 14px; cursor: pointer; transition: background 0.2s; }
+        .calc-btn:hover { background: #74c0fc; }
+        .calc-result-box { margin-top: 12px; background: rgba(0, 0, 0, 0.25); border: 1px solid rgba(116, 192, 252, 0.25); border-radius: 14px; padding: 12px; font-size: 13px; line-height: 1.6; }
+        .calc-result-main { font-size: 15px; font-weight: 700; color: #74c0fc; margin-bottom: 6px; }
+        .calc-result-detail { color: rgba(255, 255, 255, 0.9); }
+
+        /* Texto Informativo nas Ferramentas */
+        .tool-info { margin-top: 14px; padding-top: 12px; border-top: 1px solid rgba(255, 255, 255, 0.14); font-size: 12.5px; line-height: 1.6; color: rgba(255, 255, 255, 0.86); }
+        .tool-info p { margin-bottom: 8px; }
+        .tool-info p:last-child { margin-bottom: 0; }
+        .tool-info strong { color: #ffd43b; }
 
         /* Radar de Bolsas */
         .markets-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 8px; }
@@ -149,14 +171,14 @@
             body { padding: 30px 30px 100px 30px; justify-content: center; }
             .site-nav { max-width: 1100px; }
             .market-ticker { max-width: 1100px; }
-            .app-container { max-width: 1100px; display: grid; grid-template-columns: 1.2fr 1fr; gap: 20px; padding: 30px; border-radius: 35px; }
+            .app-container { max-width: 1100px; display: grid; grid-template-columns: 1.15fr 1fr; gap: 20px; padding: 30px; border-radius: 35px; align-items: start; }
             .search-box { grid-column: span 2; padding: 10px 0; }
             .favorites-bar { grid-column: span 2; margin: 0 0 10px 0; }
             .hero-section { grid-column: 1; padding: 10px; }
             .mascot-stage { height: 160px; }
             .mascot-svg { width: 150px; height: 150px; }
             .adsense-box { grid-column: span 2; margin: 10px 0; }
-            .card-section { grid-column: 2; margin: 0; }
+            .card-section { margin: 0; }
             .hubs-section { grid-column: span 2; margin: 10px 0; }
             .hubs-grid { grid-template-columns: repeat(2, 1fr); }
             .guides-wrapper { grid-column: span 2; margin: 10px 0; }
@@ -170,10 +192,18 @@
     <!-- Menu de Navegação Superior SEO -->
     <nav class="site-nav" aria-label="Main Navigation">
         <a href="https://globalmetis.com/" class="site-logo">🌍 Global Metis</a>
-        <div class="nav-links">
-            <a href="#guidesWrapper" id="navGuides">Guides & Articles</a>
-            <a onclick="abrirModal('about')" id="navAbout">About</a>
-            <a onclick="abrirModal('privacy')" id="navPrivacy">Privacy Policy</a>
+        <div class="nav-right">
+            <div class="nav-links">
+                <a href="#guidesWrapper" id="navGuides">Guides & Articles</a>
+                <a onclick="abrirModal('about')" id="navAbout">About</a>
+                <a onclick="abrirModal('privacy')" id="navPrivacy">Privacy Policy</a>
+            </div>
+            <select id="langSelector" class="lang-select" aria-label="Language" onchange="definirIdiomaManual(this.value)">
+                <option value="en">🇺🇸 EN</option>
+                <option value="pt">🇧🇷 PT</option>
+                <option value="ja">🇯🇵 JA</option>
+                <option value="es">🇪🇸 ES</option>
+            </select>
         </div>
     </nav>
 
@@ -216,11 +246,11 @@
             <div id="dailyContainer"></div>
         </div>
 
-        <!-- 1. Conversor de Moedas Instantâneo -->
+        <!-- 1. Conversor de Moedas Instantâneo + Texto Informativo -->
         <div class="card-section">
             <div class="section-title" id="titleConv">💱 Instant Currency Converter</div>
             <div class="converter-box">
-                <input type="number" id="convInput" value="100" oninput="converterMoedas()">
+                <input type="number" id="convInput" value="100" step="any" oninput="converterMoedas()">
                 <select id="convSelect" onchange="converterMoedas()">
                     <option value="USD">USD</option>
                     <option value="EUR">EUR</option>
@@ -228,6 +258,7 @@
                 </select>
             </div>
             <div class="converter-result" id="convResult">= $100.00 USD</div>
+            <div class="tool-info" id="convInfoBox"></div>
         </div>
 
         <!-- 2. Radar de Sessões das Bolsas Mundiais -->
@@ -241,7 +272,93 @@
             </div>
         </div>
 
-        <!-- 3. Hubs Globais SEO -->
+        <!-- 3. Calculadora de Juros Compostos + Texto Informativo -->
+        <div class="card-section">
+            <div class="section-title" id="titleCompound">📈 Compound Interest Calculator</div>
+            <div class="calc-grid">
+                <div class="calc-row-2">
+                    <div class="calc-field">
+                        <label id="lblCiInitial" for="ciInitial">Initial Amount</label>
+                        <input type="number" id="ciInitial" value="1000" min="0" step="any" oninput="calcularJurosCompostos()">
+                    </div>
+                    <div class="calc-field">
+                        <label id="lblCiMonthly" for="ciMonthly">Monthly Contribution</label>
+                        <input type="number" id="ciMonthly" value="200" min="0" step="any" oninput="calcularJurosCompostos()">
+                    </div>
+                </div>
+                <div class="calc-row-2">
+                    <div class="calc-field">
+                        <label id="lblCiRate" for="ciRate">Interest Rate (%)</label>
+                        <input type="number" id="ciRate" value="8" min="0" step="any" oninput="calcularJurosCompostos()">
+                    </div>
+                    <div class="calc-field">
+                        <label id="lblCiRateType" for="ciRateType">Rate Period</label>
+                        <select id="ciRateType" onchange="calcularJurosCompostos()">
+                            <option value="annual" id="optRateAnnual">Annual (% / yr)</option>
+                            <option value="monthly" id="optRateMonthly">Monthly (% / mo)</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="calc-row-2">
+                    <div class="calc-field">
+                        <label id="lblCiTime" for="ciTime">Time Horizon</label>
+                        <input type="number" id="ciTime" value="5" min="1" max="100" step="1" oninput="calcularJurosCompostos()">
+                    </div>
+                    <div class="calc-field">
+                        <label id="lblCiTimeUnit" for="ciTimeUnit">Unit</label>
+                        <select id="ciTimeUnit" onchange="calcularJurosCompostos()">
+                            <option value="years" id="optTimeYears">Years</option>
+                            <option value="months" id="optTimeMonths">Months</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <button type="button" class="calc-btn" id="btnCalcCompound" onclick="calcularJurosCompostos()">Calculate Growth</button>
+            <div class="calc-result-box" id="ciResultBox"></div>
+            <div class="tool-info" id="ciInfoBox"></div>
+        </div>
+
+        <!-- 4. Calculadora de Financiamento / Empréstimos + Texto Informativo -->
+        <div class="card-section">
+            <div class="section-title" id="titleLoan">🏦 Loan & Financing Calculator</div>
+            <div class="calc-grid">
+                <div class="calc-field">
+                    <label id="lblLoanAmount" for="loanAmount">Loan / Financed Amount</label>
+                    <input type="number" id="loanAmount" value="25000" min="0" step="any" oninput="calcularFinanciamento()">
+                </div>
+                <div class="calc-row-2">
+                    <div class="calc-field">
+                        <label id="lblLoanRate" for="loanRate">Interest Rate (%)</label>
+                        <input type="number" id="loanRate" value="7.5" min="0" step="any" oninput="calcularFinanciamento()">
+                    </div>
+                    <div class="calc-field">
+                        <label id="lblLoanRateType" for="loanRateType">Rate Period</label>
+                        <select id="loanRateType" onchange="calcularFinanciamento()">
+                            <option value="annual" id="optLoanAnnual">Annual (% / yr)</option>
+                            <option value="monthly" id="optLoanMonthly">Monthly (% / mo)</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="calc-row-2">
+                    <div class="calc-field">
+                        <label id="lblLoanMonths" for="loanMonths">Installments (Months)</label>
+                        <input type="number" id="loanMonths" value="36" min="1" max="480" step="1" oninput="calcularFinanciamento()">
+                    </div>
+                    <div class="calc-field">
+                        <label id="lblLoanSystem" for="loanSystem">Amortization</label>
+                        <select id="loanSystem" onchange="calcularFinanciamento()">
+                            <option value="price" id="optLoanPrice">Fixed Payment (Price)</option>
+                            <option value="sac" id="optLoanSac">Decreasing (SAC)</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <button type="button" class="calc-btn" id="btnCalcLoan" onclick="calcularFinanciamento()">Calculate Installments</button>
+            <div class="calc-result-box" id="loanResultBox"></div>
+            <div class="tool-info" id="loanInfoBox"></div>
+        </div>
+
+        <!-- 5. Hubs Globais SEO -->
         <nav class="hubs-section" aria-label="Global Financial Hubs">
             <h3 id="hubsMainTitle">🌍 Global Financial & Currency Hubs</h3>
             <div class="hubs-grid">
@@ -277,7 +394,7 @@
             </div>
         </nav>
 
-        <!-- 4. Guias Completos & Inteligência Editorial -->
+        <!-- 6. Guias Completos & Inteligência Editorial -->
         <main class="guides-wrapper" id="guidesWrapper"></main>
     </div>
 
@@ -321,10 +438,20 @@
 
     <script>
         const userLang = navigator.language || navigator.userLanguage || 'en-US';
-        let idiomaUsuario = 'en';
-        if (userLang.startsWith('pt')) idiomaUsuario = 'pt';
-        else if (userLang.startsWith('es')) idiomaUsuario = 'es';
-        else if (userLang.startsWith('ja')) idiomaUsuario = 'ja';
+
+        function detectarIdiomaInicial() {
+            const savedLang = localStorage.getItem('preferredLang');
+            if (savedLang && ['en', 'pt', 'es', 'ja'].includes(savedLang)) {
+                return savedLang;
+            }
+            const langLower = (userLang || 'en').toLowerCase();
+            if (langLower.startsWith('pt')) return 'pt';
+            if (langLower.startsWith('ja')) return 'ja';
+            if (langLower.startsWith('es')) return 'es';
+            return 'en';
+        }
+
+        let idiomaUsuario = detectarIdiomaInicial();
 
         const CONDITIONS_MAP = {
             "Clear Sky": { en: "Clear Sky", pt: "Céu Limpo", es: "Cielo Despejado", ja: "快晴" },
@@ -347,6 +474,7 @@
 
         const UI_TEXTS = {
             en: {
+                locale: "en-US",
                 searchPlace: "Enter city, country or region...",
                 navGuides: "Guides & Articles",
                 navAbout: "About",
@@ -363,7 +491,52 @@
                 hourlyTitle: "Hourly Forecast",
                 dailyTitle: "Next Days",
                 titleConv: "💱 Instant Currency Converter",
+                convInfoHtml: `
+                    <p><strong>What it is for:</strong> Quickly compare amounts across currencies for international travel, global shopping, and exchange rate tracking.</p>
+                    <p><strong>How to use:</strong> Enter the amount, choose the base currency (USD, EUR, or BRL), and view the converted equivalent immediately.</p>
+                    <p><strong>What it delivers:</strong> Live reference conversions updated periodically. Real bank spreads, card fees, and local taxes may vary.</p>
+                `,
                 titleMarketsRadar: "🌐 Global Markets Session Radar",
+                titleCompound: "📈 Compound Interest Calculator",
+                lblCiInitial: "Initial Amount",
+                lblCiMonthly: "Monthly Contribution",
+                lblCiRate: "Interest Rate (%)",
+                lblCiRateType: "Rate Period",
+                optRateAnnual: "Annual (% / yr)",
+                optRateMonthly: "Monthly (% / mo)",
+                lblCiTime: "Time Horizon",
+                lblCiTimeUnit: "Unit",
+                optTimeYears: "Years",
+                optTimeMonths: "Months",
+                btnCalcCompound: "Calculate Growth",
+                ciFinalLabel: "Estimated Final Balance",
+                ciInvestedLabel: "Total Contributed",
+                ciInterestLabel: "Total Interest Earned",
+                ciInfoHtml: `
+                    <p><strong>What it is for:</strong> Simulate how money grows over time when interest earned in each period generates additional returns.</p>
+                    <p><strong>How to use:</strong> Enter your starting balance, recurring monthly contribution, interest rate (annual or monthly), and time horizon.</p>
+                    <p><strong>What it delivers:</strong> Projected final balance, total principal contributed, and total interest gained for educational planning—not financial advice.</p>
+                `,
+                titleLoan: "🏦 Loan & Financing Calculator",
+                lblLoanAmount: "Loan / Financed Amount",
+                lblLoanRate: "Interest Rate (%)",
+                lblLoanRateType: "Rate Period",
+                optLoanAnnual: "Annual (% / yr)",
+                optLoanMonthly: "Monthly (% / mo)",
+                lblLoanMonths: "Installments (Months)",
+                lblLoanSystem: "Amortization",
+                optLoanPrice: "Fixed Payment (Price)",
+                optLoanSac: "Decreasing (SAC)",
+                btnCalcLoan: "Calculate Installments",
+                loanPaymentFixed: "Estimated Monthly Payment",
+                loanPaymentRange: "First to Last Payment",
+                loanTotalPaid: "Total Paid",
+                loanTotalInterest: "Total Interest Cost",
+                loanInfoHtml: `
+                    <p><strong>What it is for:</strong> Estimate monthly payments and total borrowing costs before taking out a loan or financing agreement.</p>
+                    <p><strong>How to use:</strong> Enter the borrowed amount, interest rate, number of monthly installments, and choose fixed payments (Price) or decreasing payments (SAC).</p>
+                    <p><strong>What it delivers:</strong> Estimated installment amount, total repayment, and total interest cost. Actual bank offers may include origination fees, insurance, or taxes.</p>
+                `,
                 hubsMainTitle: "🌍 Global Financial & Currency Hubs",
                 hubsCurrencyTitle: "💱 Currency Exchange Hubs",
                 hubsStocksTitle: "📈 Stock Market Hubs",
@@ -432,6 +605,7 @@
                 }
             },
             pt: {
+                locale: "pt-BR",
                 searchPlace: "Digite cidade, país ou região...",
                 navGuides: "Guias & Artigos",
                 navAbout: "Sobre",
@@ -448,7 +622,52 @@
                 hourlyTitle: "Previsão Hora a Hora",
                 dailyTitle: "Próximos Dias",
                 titleConv: "💱 Conversor de Moedas Instantâneo",
+                convInfoHtml: `
+                    <p><strong>Para que serve:</strong> Comparar valores entre moedas com rapidez em viagens, compras internacionais e acompanhamento cambial.</p>
+                    <p><strong>Como usar:</strong> Digite o valor, escolha a moeda de origem (USD, EUR ou BRL) e confira a conversão na hora.</p>
+                    <p><strong>O que entrega ao usuário:</strong> Valores convertidos com base em cotações de referência atualizadas periodicamente. Spread bancário, IOF e tarifas de instituições podem variar.</p>
+                `,
                 titleMarketsRadar: "🌐 Radar de Sessões das Bolsas Mundiais",
+                titleCompound: "📈 Calculadora de Juros Compostos",
+                lblCiInitial: "Valor Inicial",
+                lblCiMonthly: "Aporte Mensal",
+                lblCiRate: "Taxa de Juros (%)",
+                lblCiRateType: "Período da Taxa",
+                optRateAnnual: "Anual (% / ano)",
+                optRateMonthly: "Mensal (% / mês)",
+                lblCiTime: "Prazo",
+                lblCiTimeUnit: "Unidade",
+                optTimeYears: "Anos",
+                optTimeMonths: "Meses",
+                btnCalcCompound: "Calcular Juros Compostos",
+                ciFinalLabel: "Montante Final Estimado",
+                ciInvestedLabel: "Total Investido (Aportes)",
+                ciInterestLabel: "Total Ganho em Juros",
+                ciInfoHtml: `
+                    <p><strong>Para que serve:</strong> Simular o crescimento do dinheiro ao longo do tempo quando os juros de cada período passam a render novos juros.</p>
+                    <p><strong>Como usar:</strong> Preencha o valor inicial, o aporte mensal, a taxa de juros (mensal ou anual) e o prazo em meses ou anos.</p>
+                    <p><strong>O que entrega ao usuário:</strong> O montante final estimado, o total aportado e o rendimento em juros para fins educativos—sem recomendação de investimento.</p>
+                `,
+                titleLoan: "🏦 Calculadora de Financiamento / Empréstimos",
+                lblLoanAmount: "Valor Financiado",
+                lblLoanRate: "Taxa de Juros (%)",
+                lblLoanRateType: "Período da Taxa",
+                optLoanAnnual: "Anual (% / ano)",
+                optLoanMonthly: "Mensal (% / mês)",
+                lblLoanMonths: "Número de Parcelas (Meses)",
+                lblLoanSystem: "Sistema de Amortização",
+                optLoanPrice: "Parcelas Fixas (Tabela Price)",
+                optLoanSac: "Amortização Constante (SAC)",
+                btnCalcLoan: "Calcular Financiamento",
+                loanPaymentFixed: "Parcela Mensal Estimada",
+                loanPaymentRange: "1ª à Última Parcela",
+                loanTotalPaid: "Valor Total Pago",
+                loanTotalInterest: "Custo Total com Juros",
+                loanInfoHtml: `
+                    <p><strong>Para que serve:</strong> Estimar parcelas e o custo total de crédito antes de contratar um financiamento ou empréstimo.</p>
+                    <p><strong>Como usar:</strong> Informe o valor financiado, a taxa de juros, o número de parcelas e escolha entre parcelas fixas (Price) ou decrescentes (SAC).</p>
+                    <p><strong>O que entrega ao usuário:</strong> A simulação das parcelas, o valor total pago e o total de juros. Propostas reais de bancos podem incluir seguros, tarifas e impostos.</p>
+                `,
                 hubsMainTitle: "🌍 Hubs Globais de Câmbio e Bolsas de Valores",
                 hubsCurrencyTitle: "💱 Hubs Globais de Câmbio",
                 hubsStocksTitle: "📈 Hubs de Bolsas de Valores",
@@ -517,6 +736,7 @@
                 }
             },
             es: {
+                locale: "es-ES",
                 searchPlace: "Ingrese ciudad, país o región...",
                 navGuides: "Guías y Artículos",
                 navAbout: "Acerca de",
@@ -533,7 +753,52 @@
                 hourlyTitle: "Pronóstico Hora a Hora",
                 dailyTitle: "Próximos Días",
                 titleConv: "💱 Conversor de Monedas",
+                convInfoHtml: `
+                    <p><strong>Para qué sirve:</strong> Comparar importes entre divisas para viajes, compras internacionales y seguimiento del tipo de cambio.</p>
+                    <p><strong>Cómo usar:</strong> Indique el importe, elija la divisa base (USD, EUR o BRL) y vea el resultado al instante.</p>
+                    <p><strong>Qué entrega al usuario:</strong> Conversiones de referencia actualizadas periódicamente. Comisiones bancarias o impuestos pueden variar.</p>
+                `,
                 titleMarketsRadar: "🌐 Radar de Bolsas Globales",
+                titleCompound: "📈 Calculadora de Interés Compuesto",
+                lblCiInitial: "Capital Inicial",
+                lblCiMonthly: "Aporte Mensual",
+                lblCiRate: "Tasa de Interés (%)",
+                lblCiRateType: "Período de Tasa",
+                optRateAnnual: "Anual (% / año)",
+                optRateMonthly: "Mensual (% / mes)",
+                lblCiTime: "Plazo",
+                lblCiTimeUnit: "Unidad",
+                optTimeYears: "Años",
+                optTimeMonths: "Meses",
+                btnCalcCompound: "Calcular Interés Compuesto",
+                ciFinalLabel: "Saldo Final Estimado",
+                ciInvestedLabel: "Total Aportado",
+                ciInterestLabel: "Intereses Generados",
+                ciInfoHtml: `
+                    <p><strong>Para qué sirve:</strong> Simular el crecimiento del ahorro cuando los intereses generados en cada período producen nuevos intereses.</p>
+                    <p><strong>Cómo usar:</strong> Ingrese capital inicial, aporte mensual, tasa de interés (anual o mensual) y plazo.</p>
+                    <p><strong>Qué entrega al usuario:</strong> Saldo final estimado, total aportado e intereses acumulados con fines educativos.</p>
+                `,
+                titleLoan: "🏦 Calculadora de Préstamos y Financiación",
+                lblLoanAmount: "Monto Financiado",
+                lblLoanRate: "Tasa de Interés (%)",
+                lblLoanRateType: "Período de Tasa",
+                optLoanAnnual: "Anual (% / año)",
+                optLoanMonthly: "Mensual (% / mes)",
+                lblLoanMonths: "Cuotas (Meses)",
+                lblLoanSystem: "Sistema",
+                optLoanPrice: "Cuota Fija (Francés / Price)",
+                optLoanSac: "Amortización Constante (SAC)",
+                btnCalcLoan: "Calcular Préstamo",
+                loanPaymentFixed: "Cuota Mensual Estimada",
+                loanPaymentRange: "1.ª a Última Cuota",
+                loanTotalPaid: "Total a Pagar",
+                loanTotalInterest: "Costo Total de Intereses",
+                loanInfoHtml: `
+                    <p><strong>Para qué sirve:</strong> Estimar cuotas y costo total antes de solicitar un préstamo o financiación.</p>
+                    <p><strong>Cómo usar:</strong> Ingrese el monto, la tasa de interés, el plazo en meses y el tipo de cuota.</p>
+                    <p><strong>Qué entrega al usuario:</strong> Estimación de cuotas, total pagado e intereses totales. Las ofertas reales pueden incluir comisiones o seguros.</p>
+                `,
                 hubsMainTitle: "🌍 Centros Globales de Divisas y Bolsas",
                 hubsCurrencyTitle: "💱 Centros de Divisas",
                 hubsStocksTitle: "📈 Centros de Bolsas",
@@ -562,6 +827,7 @@
                 }
             },
             ja: {
+                locale: "ja-JP",
                 searchPlace: "都市名、国名を入力...",
                 navGuides: "ガイド＆記事",
                 navAbout: "概要",
@@ -578,7 +844,52 @@
                 hourlyTitle: "時間別予報",
                 dailyTitle: "週間予報",
                 titleConv: "💱 通貨コンバーター",
+                convInfoHtml: `
+                    <p><strong>用途：</strong>海外旅行や越境ショッピング、為替レートの確認に便利な通貨換算ツールです。</p>
+                    <p><strong>使い方：</strong>金額を入力し、基準通貨（USD・EUR・BRL）を選択すると換算結果が表示されます。</p>
+                    <p><strong>提供内容：</strong>参考為替レートに基づく換算結果を表示します。実際の金融機関の手数料やスプレッドは異なる場合があります。</p>
+                `,
                 titleMarketsRadar: "🌐 世界市場セッションレーダー",
+                titleCompound: "📈 複利計算ツール",
+                lblCiInitial: "初期投資額",
+                lblCiMonthly: "毎月の積立額",
+                lblCiRate: "金利（%）",
+                lblCiRateType: "金利期間",
+                optRateAnnual: "年利（% / 年）",
+                optRateMonthly: "月利（% / 月）",
+                lblCiTime: "運用期間",
+                lblCiTimeUnit: "単位",
+                optTimeYears: "年",
+                optTimeMonths: "ヶ月",
+                btnCalcCompound: "複利を計算する",
+                ciFinalLabel: "予想最終残高",
+                ciInvestedLabel: "元本・積立合計",
+                ciInterestLabel: "利息合計",
+                ciInfoHtml: `
+                    <p><strong>用途：</strong>利息がさらに利息を生む複利効果による資産推移をシミュレーションします。</p>
+                    <p><strong>使い方：</strong>初期投資額、毎月の積立額、金利（年利・月利）、運用期間を入力してください。</p>
+                    <p><strong>提供内容：</strong>予想残高、積立元本合計、利息合計を表示します（学習・参考目的であり投資助言ではありません）。</p>
+                `,
+                titleLoan: "🏦 ローン・融資シミュレーション",
+                lblLoanAmount: "借入・融資額",
+                lblLoanRate: "金利（%）",
+                lblLoanRateType: "金利期間",
+                optLoanAnnual: "年利（% / 年）",
+                optLoanMonthly: "月利（% / 月）",
+                lblLoanMonths: "返済回数（ヶ月）",
+                lblLoanSystem: "返済方式",
+                optLoanPrice: "元利均等返済（定額）",
+                optLoanSac: "元金均等返済（逓減）",
+                btnCalcLoan: "返済額を計算する",
+                loanPaymentFixed: "予想毎月返済額",
+                loanPaymentRange: "初回〜最終回の返済額",
+                loanTotalPaid: "総返済額",
+                loanTotalInterest: "利息総額",
+                loanInfoHtml: `
+                    <p><strong>用途：</strong>ローンや分割払いの利用前に、毎月の返済額と総コストの目安を確認できます。</p>
+                    <p><strong>使い方：</strong>借入額、金利、返済回数、返済方式を入力してください。</p>
+                    <p><strong>提供内容：</strong>返済額の目安、総返済額、利息総額を表示します。実際の契約では手数料や保険料が加わる場合があります。</p>
+                `,
                 hubsMainTitle: "🌍 グローバル金融・為替ハブ",
                 hubsCurrencyTitle: "💱 為替ハブ",
                 hubsStocksTitle: "📈 株式市場ハブ",
@@ -599,34 +910,97 @@
             }
         };
 
-        const t = UI_TEXTS[idiomaUsuario];
-        document.getElementById('searchInput').placeholder = t.searchPlace;
-        document.getElementById('navGuides').innerText = t.navGuides;
-        document.getElementById('navAbout').innerText = t.navAbout;
-        document.getElementById('navPrivacy').innerText = t.navPrivacy;
-        document.getElementById('titleHourly').innerText = t.hourlyTitle;
-        document.getElementById('titleDaily').innerText = t.dailyTitle;
-        document.getElementById('titleConv').innerText = t.titleConv;
-        document.getElementById('titleMarketsRadar').innerText = t.titleMarketsRadar;
-        document.getElementById('hubsMainTitle').innerText = t.hubsMainTitle;
-        document.getElementById('hubsCurrencyTitle').innerText = t.hubsCurrencyTitle;
-        document.getElementById('hubsStocksTitle').innerText = t.hubsStocksTitle;
-        document.getElementById('linkAbout').innerText = t.about;
-        document.getElementById('linkPrivacy').innerText = t.privacy;
-        document.getElementById('linkCookies').innerText = t.cookies;
-        document.getElementById('linkTerms').innerText = t.terms;
-        document.getElementById('btnFooterInstall').innerText = t.installBtn;
-        document.getElementById('cookieTitle').innerText = t.cookieTitle;
-        document.getElementById('cookieText').innerHTML = t.cookieMsg;
-        document.getElementById('footerCookieNotice').innerHTML = t.footerCookieHtml;
-        document.getElementById('btnReject').innerText = t.reject;
-        document.getElementById('btnAccept').innerText = t.accept;
-        document.getElementById('txtLoadingMarkets').innerText = t.loadingMarkets;
-        document.getElementById('footerCredits').innerHTML = t.credits;
-        if (t.guidesHtml) {
-            document.getElementById('guidesWrapper').innerHTML = t.guidesHtml;
+        let t = UI_TEXTS[idiomaUsuario];
+
+        function formatarNumero(valor, decimais = 2) {
+            const num = Number.isFinite(valor) ? valor : 0;
+            return num.toLocaleString(t.locale || userLang, {
+                minimumFractionDigits: decimais,
+                maximumFractionDigits: decimais
+            });
         }
-        document.getElementById('htmlRoot').setAttribute('lang', idiomaUsuario);
+
+        function aplicarIdiomaInterface() {
+            t = UI_TEXTS[idiomaUsuario] || UI_TEXTS.en;
+            document.getElementById('htmlRoot').setAttribute('lang', idiomaUsuario);
+            const langSel = document.getElementById('langSelector');
+            if (langSel) langSel.value = idiomaUsuario;
+
+            document.getElementById('searchInput').placeholder = t.searchPlace;
+            document.getElementById('navGuides').innerText = t.navGuides;
+            document.getElementById('navAbout').innerText = t.navAbout;
+            document.getElementById('navPrivacy').innerText = t.navPrivacy;
+            document.getElementById('titleHourly').innerText = t.hourlyTitle;
+            document.getElementById('titleDaily').innerText = t.dailyTitle;
+            document.getElementById('titleConv').innerText = t.titleConv;
+            document.getElementById('convInfoBox').innerHTML = t.convInfoHtml;
+            document.getElementById('titleMarketsRadar').innerText = t.titleMarketsRadar;
+
+            // Calculadora de Juros Compostos
+            document.getElementById('titleCompound').innerText = t.titleCompound;
+            document.getElementById('lblCiInitial').innerText = t.lblCiInitial;
+            document.getElementById('lblCiMonthly').innerText = t.lblCiMonthly;
+            document.getElementById('lblCiRate').innerText = t.lblCiRate;
+            document.getElementById('lblCiRateType').innerText = t.lblCiRateType;
+            document.getElementById('optRateAnnual').innerText = t.optRateAnnual;
+            document.getElementById('optRateMonthly').innerText = t.optRateMonthly;
+            document.getElementById('lblCiTime').innerText = t.lblCiTime;
+            document.getElementById('lblCiTimeUnit').innerText = t.lblCiTimeUnit;
+            document.getElementById('optTimeYears').innerText = t.optTimeYears;
+            document.getElementById('optTimeMonths').innerText = t.optTimeMonths;
+            document.getElementById('btnCalcCompound').innerText = t.btnCalcCompound;
+            document.getElementById('ciInfoBox').innerHTML = t.ciInfoHtml;
+
+            // Calculadora de Financiamento / Empréstimos
+            document.getElementById('titleLoan').innerText = t.titleLoan;
+            document.getElementById('lblLoanAmount').innerText = t.lblLoanAmount;
+            document.getElementById('lblLoanRate').innerText = t.lblLoanRate;
+            document.getElementById('lblLoanRateType').innerText = t.lblLoanRateType;
+            document.getElementById('optLoanAnnual').innerText = t.optLoanAnnual;
+            document.getElementById('optLoanMonthly').innerText = t.optLoanMonthly;
+            document.getElementById('lblLoanMonths').innerText = t.lblLoanMonths;
+            document.getElementById('lblLoanSystem').innerText = t.lblLoanSystem;
+            document.getElementById('optLoanPrice').innerText = t.optLoanPrice;
+            document.getElementById('optLoanSac').innerText = t.optLoanSac;
+            document.getElementById('btnCalcLoan').innerText = t.btnCalcLoan;
+            document.getElementById('loanInfoBox').innerHTML = t.loanInfoHtml;
+
+            // Hubs e Rodapé
+            document.getElementById('hubsMainTitle').innerText = t.hubsMainTitle;
+            document.getElementById('hubsCurrencyTitle').innerText = t.hubsCurrencyTitle;
+            document.getElementById('hubsStocksTitle').innerText = t.hubsStocksTitle;
+            document.getElementById('linkAbout').innerText = t.about;
+            document.getElementById('linkPrivacy').innerText = t.privacy;
+            document.getElementById('linkCookies').innerText = t.cookies;
+            document.getElementById('linkTerms').innerText = t.terms;
+            document.getElementById('btnFooterInstall').innerText = t.installBtn;
+            document.getElementById('cookieTitle').innerText = t.cookieTitle;
+            document.getElementById('cookieText').innerHTML = t.cookieMsg;
+            document.getElementById('footerCookieNotice').innerHTML = t.footerCookieHtml;
+            document.getElementById('btnReject').innerText = t.reject;
+            document.getElementById('btnAccept').innerText = t.accept;
+            document.getElementById('txtLoadingMarkets').innerText = t.loadingMarkets;
+            document.getElementById('footerCredits').innerHTML = t.credits;
+            if (t.guidesHtml) {
+                document.getElementById('guidesWrapper').innerHTML = t.guidesHtml;
+            }
+
+            atualizarRadarBolsas();
+            converterMoedas();
+            calcularJurosCompostos();
+            calcularFinanciamento();
+        }
+
+        function definirIdiomaManual(novoIdioma) {
+            if (!['en', 'pt', 'es', 'ja'].includes(novoIdioma)) return;
+            idiomaUsuario = novoIdioma;
+            localStorage.setItem('preferredLang', novoIdioma);
+            aplicarIdiomaInterface();
+            carregarMercados();
+            if (cidadeAtualInfo && cidadeAtualInfo.lat && cidadeAtualInfo.lon) {
+                carregarClima(cidadeAtualInfo.lat, cidadeAtualInfo.lon, cidadeAtualInfo.name);
+            }
+        }
 
         function abrirModal(tipo) {
             const modalData = t.modals[tipo];
@@ -669,7 +1043,7 @@
         let fusoHorarioAtual = Intl.DateTimeFormat().resolvedOptions().timeZone || 'America/Sao_Paulo';
         function atualizarRelogio() {
             try {
-                const agora = new Date().toLocaleTimeString(userLang, { timeZone: fusoHorarioAtual, hour: '2-digit', minute: '2-digit', second: '2-digit' });
+                const agora = new Date().toLocaleTimeString(t.locale || userLang, { timeZone: fusoHorarioAtual, hour: '2-digit', minute: '2-digit', second: '2-digit' });
                 document.getElementById('liveClock').innerText = `🕒 ${agora}`;
             } catch (e) {
                 document.getElementById('liveClock').innerText = `🕒 ${new Date().toLocaleTimeString()}`;
@@ -700,35 +1074,113 @@
             const tseOpen = isWeekday && utcHour >= 0 && utcHour < 6;
             const b3Open = isWeekday && utcHour >= 13 && utcHour < 20;
 
-            const renderBadge = (isOpen) => isOpen ? `<span class="badge-open">🟢 ${idiomaUsuario==='pt'?'Aberto':(idiomaUsuario==='es'?'Abierto':(idiomaUsuario==='ja'?'営業中':'Open'))}</span>` : `<span class="badge-closed">🔴 ${idiomaUsuario==='pt'?'Fechado':(idiomaUsuario==='es'?'Cerrado':(idiomaUsuario==='ja'?'休業中':'Closed'))}</span>`;
+            const renderBadge = (isOpen) => isOpen
+                ? `<span class="badge-open">🟢 ${idiomaUsuario==='pt'?'Aberto':(idiomaUsuario==='es'?'Abierto':(idiomaUsuario==='ja'?'営業中':'Open'))}</span>`
+                : `<span class="badge-closed">🔴 ${idiomaUsuario==='pt'?'Fechado':(idiomaUsuario==='es'?'Cerrado':(idiomaUsuario==='ja'?'休業中':'Closed'))}</span>`;
 
             document.getElementById('statusNYSE').innerHTML = renderBadge(nyseOpen);
             document.getElementById('statusLSE').innerHTML = renderBadge(lseOpen);
             document.getElementById('statusTSE').innerHTML = renderBadge(tseOpen);
             document.getElementById('statusB3').innerHTML = renderBadge(b3Open);
         }
-        atualizarRadarBolsas();
         setInterval(atualizarRadarBolsas, 30000);
 
         let globalRates = null;
         function converterMoedas() {
-            if (!globalRates) return;
             const val = parseFloat(document.getElementById('convInput').value) || 0;
             const base = document.getElementById('convSelect').value;
-            const usdToBrl = parseFloat(globalRates.USDBRL.bid);
-            const eurToBrl = parseFloat(globalRates.EURBRL.bid);
-            const btcToBrl = parseFloat(globalRates.BTCBRL.bid);
+
+            if (!globalRates || !globalRates.USDBRL || !globalRates.EURBRL || !globalRates.BTCBRL) {
+                document.getElementById('convResult').innerText = `= ${formatarNumero(val, 2)} ${base}`;
+                return;
+            }
+
+            const usdToBrl = parseFloat(globalRates.USDBRL.bid) || 5.5;
+            const eurToBrl = parseFloat(globalRates.EURBRL.bid) || 6.0;
+            const btcToBrl = parseFloat(globalRates.BTCBRL.bid) || 350000;
 
             let valInBrl = val;
             if (base === 'USD') valInBrl = val * usdToBrl;
             if (base === 'EUR') valInBrl = val * eurToBrl;
 
-            const resUSD = (valInBrl / usdToBrl).toFixed(2);
-            const resEUR = (valInBrl / eurToBrl).toFixed(2);
-            const resBRL = valInBrl.toFixed(2);
-            const resBTC = (valInBrl / btcToBrl).toFixed(6);
+            const resUSD = formatarNumero(valInBrl / usdToBrl, 2);
+            const resEUR = formatarNumero(valInBrl / eurToBrl, 2);
+            const resBRL = formatarNumero(valInBrl, 2);
+            const resBTC = formatarNumero(valInBrl / btcToBrl, 6);
 
             document.getElementById('convResult').innerText = `= $${resUSD} USD | €${resEUR} EUR | R$ ${resBRL} BRL | ₿${resBTC} BTC`;
+        }
+
+        function calcularJurosCompostos() {
+            const initial = Math.max(0, parseFloat(document.getElementById('ciInitial').value) || 0);
+            const monthly = Math.max(0, parseFloat(document.getElementById('ciMonthly').value) || 0);
+            const rateInput = Math.max(0, parseFloat(document.getElementById('ciRate').value) || 0);
+            const rateType = document.getElementById('ciRateType').value;
+            const timeInput = Math.max(1, parseInt(document.getElementById('ciTime').value, 10) || 1);
+            const timeUnit = document.getElementById('ciTimeUnit').value;
+
+            const months = timeUnit === 'years' ? timeInput * 12 : timeInput;
+            const monthlyRate = rateType === 'annual'
+                ? Math.pow(1 + rateInput / 100, 1 / 12) - 1
+                : rateInput / 100;
+
+            let balance = initial;
+            for (let i = 0; i < months; i++) {
+                balance = balance * (1 + monthlyRate) + monthly;
+            }
+
+            const totalInvested = initial + monthly * months;
+            const totalInterest = balance - totalInvested;
+
+            document.getElementById('ciResultBox').innerHTML = `
+                <div class="calc-result-main">${t.ciFinalLabel}: ${formatarNumero(balance, 2)}</div>
+                <div class="calc-result-detail">${t.ciInvestedLabel}: <b>${formatarNumero(totalInvested, 2)}</b></div>
+                <div class="calc-result-detail">${t.ciInterestLabel}: <b>${formatarNumero(totalInterest, 2)}</b></div>
+            `;
+        }
+
+        function calcularFinanciamento() {
+            const principal = Math.max(0, parseFloat(document.getElementById('loanAmount').value) || 0);
+            const rateInput = Math.max(0, parseFloat(document.getElementById('loanRate').value) || 0);
+            const rateType = document.getElementById('loanRateType').value;
+            const months = Math.max(1, parseInt(document.getElementById('loanMonths').value, 10) || 1);
+            const system = document.getElementById('loanSystem').value;
+
+            const monthlyRate = rateType === 'annual'
+                ? Math.pow(1 + rateInput / 100, 1 / 12) - 1
+                : rateInput / 100;
+
+            let paymentHtml = '';
+            let totalPaid = 0;
+            let totalInterest = 0;
+
+            if (principal === 0) {
+                paymentHtml = `<div class="calc-result-main">${t.loanPaymentFixed}: ${formatarNumero(0, 2)}</div>`;
+            } else if (monthlyRate === 0) {
+                const pmt = principal / months;
+                totalPaid = principal;
+                totalInterest = 0;
+                paymentHtml = `<div class="calc-result-main">${t.loanPaymentFixed}: ${formatarNumero(pmt, 2)}</div>`;
+            } else if (system === 'sac') {
+                const amort = principal / months;
+                const firstPmt = amort + principal * monthlyRate;
+                const lastPmt = amort + amort * monthlyRate;
+                totalPaid = (firstPmt + lastPmt) * months / 2;
+                totalInterest = totalPaid - principal;
+                paymentHtml = `<div class="calc-result-main">${t.loanPaymentRange}: ${formatarNumero(firstPmt, 2)} → ${formatarNumero(lastPmt, 2)}</div>`;
+            } else {
+                const factor = Math.pow(1 + monthlyRate, months);
+                const pmt = principal * (monthlyRate * factor) / (factor - 1);
+                totalPaid = pmt * months;
+                totalInterest = totalPaid - principal;
+                paymentHtml = `<div class="calc-result-main">${t.loanPaymentFixed}: ${formatarNumero(pmt, 2)}</div>`;
+            }
+
+            document.getElementById('loanResultBox').innerHTML = `
+                ${paymentHtml}
+                <div class="calc-result-detail">${t.loanTotalPaid}: <b>${formatarNumero(totalPaid, 2)}</b></div>
+                <div class="calc-result-detail">${t.loanTotalInterest}: <b>${formatarNumero(totalInterest, 2)}</b></div>
+            `;
         }
 
         async function carregarMercados() {
@@ -903,7 +1355,7 @@
                 for (let i = 0; i < 12 && i < timeseries.length; i++) {
                     const step = timeseries[i];
                     const stepDate = new Date(step.time);
-                    const horaStr = stepDate.toLocaleTimeString(userLang, { timeZone: fusoHorarioAtual, hour: '2-digit', minute: '2-digit' });
+                    const horaStr = stepDate.toLocaleTimeString(t.locale || userLang, { timeZone: fusoHorarioAtual, hour: '2-digit', minute: '2-digit' });
                     const horaNum = parseInt(stepDate.toLocaleTimeString('en-US', { timeZone: fusoHorarioAtual, hour12: false, hour: '2-digit' }), 10);
                     const stepIsDay = horaNum >= 6 && horaNum < 18;
 
@@ -931,7 +1383,7 @@
                     const dSym = dData.symbols[Math.floor(dData.symbols.length / 2)] || 'clearsky_day';
                     const dInfo = interpretarClimaMET(dSym, true);
                     const dataObj = new Date(dKey + 'T12:00:00');
-                    const diaNome = dataObj.toLocaleDateString(userLang, { weekday: 'short' });
+                    const diaNome = dataObj.toLocaleDateString(t.locale || userLang, { weekday: 'short' });
 
                     dailyContainer.innerHTML += `
                         <div class="daily-row">
@@ -950,7 +1402,8 @@
             const q = document.getElementById('searchInput').value;
             if (!q) return;
             try {
-                const res = await fetch(`https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(q)}&count=5&language=en&format=json`);
+                const langParam = ['en', 'pt', 'es', 'ja'].includes(idiomaUsuario) ? idiomaUsuario : 'en';
+                const res = await fetch(`https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(q)}&count=5&language=${langParam}&format=json`);
                 const data = await res.json();
                 if (data.results && data.results.length > 0) {
                     const c = data.results[0];
@@ -1030,8 +1483,8 @@
             }
         }
 
+        aplicarIdiomaInterface();
         detectarLocalizacaoAutomatica();
     </script>
 </body>
 </html>
-
