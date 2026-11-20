@@ -7,7 +7,12 @@
 
     <link rel="canonical" href="https://globalmetis.com/">
     <link rel="icon" type="image/png" href="https://globalmetis.com/favicon.png" sizes="512x512">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://globalmetis.com/favicon.png">
     <link rel="apple-touch-icon" href="https://globalmetis.com/favicon.png">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Global Metis">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title id="pageTitle">Global Weather & Market Intelligence</title>
@@ -16,7 +21,7 @@
     <meta name="theme-color" content="#0b192c">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
-        body { background: linear-gradient(135deg, #0b192c, #1e3e62); color: #fff; min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 15px 15px 90px 15px; transition: background 0.8s ease; }
+        body { background: linear-gradient(135deg, #0b192c, #1e3e62); color: #fff; min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 15px 15px 90px 15px; transition: background 0.8s ease; overflow-x: hidden; }
         body.day-theme { background: linear-gradient(135deg, #1c7ed6, #4dabf7); }
         body.rain-theme { background: linear-gradient(135deg, #2b303a, #495057); }
         
@@ -38,6 +43,7 @@
 
         /* Container Principal */
         .app-container { width: 100%; max-width: 480px; background: rgba(11, 25, 44, 0.45); backdrop-filter: blur(20px); border-radius: 30px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.4); display: flex; flex-direction: column; position: relative; padding-bottom: 20px; }
+        .app-container > *, .card-section, .calc-grid, .calc-row-2, .calc-field, .markets-grid, .market-status-card { min-width: 0; }
         
         .search-box { padding: 20px 20px 10px 20px; display: flex; gap: 8px; z-index: 10; align-items: center; }
         .search-box input { flex: 1; padding: 12px 16px; border-radius: 20px; border: none; background: rgba(255, 255, 255, 0.2); color: #fff; font-size: 15px; outline: none; min-width: 0; }
@@ -59,7 +65,7 @@
         .mascot-svg { width: 130px; height: 130px; animation: breathe 3s ease-in-out infinite; }
         @keyframes breathe { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
         
-        .card-section { background: rgba(255, 255, 255, 0.12); margin: 10px 20px; border-radius: 20px; padding: 16px; }
+        .card-section { background: rgba(255, 255, 255, 0.12); margin: 10px 20px; border-radius: 20px; padding: 16px; overflow-wrap: break-word; }
         .section-title { font-size: 15px; color: #fff; margin-bottom: 12px; font-weight: 600; display: flex; justify-content: space-between; align-items: center; }
         
         /* Favoritos Chips com botão X para excluir */
@@ -72,18 +78,18 @@
 
         /* Conversor de Moedas */
         .converter-box { display: flex; gap: 8px; align-items: center; margin-top: 8px; flex-wrap: wrap; }
-        .converter-box input, .converter-box select { padding: 9px 12px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.18); color: #fff; font-size: 14px; outline: none; }
+        .converter-box input, .converter-box select { padding: 9px 12px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.18); color: #fff; font-size: 14px; outline: none; max-width: 100%; }
         .converter-box select option { background: #0f172a; color: #fff; }
         .converter-box input { flex: 1; min-width: 110px; }
         .converter-result { font-size: 14px; font-weight: bold; color: #74c0fc; margin-top: 10px; line-height: 1.5; }
 
         /* Calculadoras Financeiras */
-        .calc-grid { display: grid; grid-template-columns: 1fr; gap: 10px; margin-top: 8px; }
+        .calc-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 10px; margin-top: 8px; }
         .calc-field { display: flex; flex-direction: column; gap: 4px; }
         .calc-field label { font-size: 12px; color: rgba(255, 255, 255, 0.85); font-weight: 500; }
-        .calc-field input, .calc-field select { padding: 9px 12px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.18); color: #fff; font-size: 14px; outline: none; width: 100%; }
+        .calc-field input, .calc-field select { padding: 9px 12px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.18); color: #fff; font-size: 14px; outline: none; width: 100%; max-width: 100%; min-width: 0; }
         .calc-field select option { background: #0f172a; color: #fff; }
-        .calc-row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .calc-row-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
         .calc-btn { margin-top: 14px; width: 100%; padding: 10px 14px; border-radius: 12px; border: none; background: #4dabf7; color: #0b192c; font-weight: 700; font-size: 14px; cursor: pointer; transition: background 0.2s; }
         .calc-btn:hover { background: #74c0fc; }
         .calc-result-box { margin-top: 12px; background: rgba(0, 0, 0, 0.25); border: 1px solid rgba(116, 192, 252, 0.25); border-radius: 14px; padding: 12px; font-size: 13px; line-height: 1.6; }
@@ -97,10 +103,10 @@
         .tool-info strong { color: #ffd43b; }
 
         /* Radar de Bolsas */
-        .markets-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 8px; }
-        .market-status-card { background: rgba(0,0,0,0.2); padding: 8px 10px; border-radius: 10px; font-size: 12px; display: flex; justify-content: space-between; align-items: center; }
-        .badge-open { color: #51cf66; font-weight: bold; }
-        .badge-closed { color: #ff6b6b; font-weight: bold; }
+        .markets-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin-top: 8px; }
+        .market-status-card { background: rgba(0,0,0,0.2); padding: 8px 10px; border-radius: 10px; font-size: 12px; display: flex; justify-content: space-between; align-items: center; gap: 6px; flex-wrap: wrap; }
+        .badge-open { color: #51cf66; font-weight: bold; white-space: nowrap; }
+        .badge-closed { color: #ff6b6b; font-weight: bold; white-space: nowrap; }
 
         .hourly-scroll { display: flex; overflow-x: auto; gap: 15px; padding-bottom: 5px; scrollbar-width: none; }
         .hourly-scroll::-webkit-scrollbar { display: none; }
@@ -112,7 +118,7 @@
         /* Hubs Globais SEO */
         .hubs-section { background: rgba(255, 255, 255, 0.08); margin: 15px 20px; border-radius: 20px; padding: 20px; }
         .hubs-section h3 { font-size: 16px; color: #74c0fc; margin-bottom: 14px; }
-        .hubs-grid { display: grid; grid-template-columns: 1fr; gap: 16px; }
+        .hubs-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 16px; }
         .hub-group h4 { font-size: 13px; color: rgba(255,255,255,0.75); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px; }
         .hub-links { display: flex; flex-wrap: wrap; gap: 6px; }
         .hub-links a { background: rgba(0, 0, 0, 0.25); border: 1px solid rgba(255, 255, 255, 0.12); color: #e7f5ff; text-decoration: none; font-size: 12px; padding: 6px 11px; border-radius: 10px; transition: all 0.2s; }
@@ -171,7 +177,7 @@
             body { padding: 30px 30px 100px 30px; justify-content: center; }
             .site-nav { max-width: 1100px; }
             .market-ticker { max-width: 1100px; }
-            .app-container { max-width: 1100px; display: grid; grid-template-columns: 1.15fr 1fr; gap: 20px; padding: 30px; border-radius: 35px; align-items: start; }
+            .app-container { max-width: 1100px; display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(340px, 1fr); gap: 20px; padding: 30px; border-radius: 35px; align-items: start; }
             .search-box { grid-column: span 2; padding: 10px 0; }
             .favorites-bar { grid-column: span 2; margin: 0 0 10px 0; }
             .hero-section { grid-column: 1; padding: 10px; }
@@ -180,7 +186,7 @@
             .adsense-box { grid-column: span 2; margin: 10px 0; }
             .card-section { margin: 0; }
             .hubs-section { grid-column: span 2; margin: 10px 0; }
-            .hubs-grid { grid-template-columns: repeat(2, 1fr); }
+            .hubs-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
             .guides-wrapper { grid-column: span 2; margin: 10px 0; }
             footer { max-width: 1100px; grid-column: span 2; }
             #cookieBanner { flex-direction: row; align-items: center; justify-content: space-between; }
@@ -481,6 +487,8 @@
                 navPrivacy: "Privacy Policy",
                 about: "About", privacy: "Privacy Policy", cookies: "Cookie Policy", terms: "Terms of Use",
                 installBtn: "📱 Install App",
+                iosInstallTitle: "Install on iPhone / iPad",
+                iosInstallHtml: "<p>In Safari, tap the <b>Share</b> button (square with arrow), scroll down, and tap <b>Add to Home Screen</b>.</p>",
                 cookieTitle: "🍪 We Value Your Privacy & Transparency",
                 cookieMsg: "We use cookies and geolocation data to personalize forecasts, adjust local timezones, and serve relevant ads in compliance with GDPR & LGPD. Read our <a onclick=\"abrirModal('cookies')\">Cookie Policy</a>.",
                 footerCookieHtml: "🍪 <b>Cookie Notice:</b> This portal uses cookies to personalize forecasts and ads in compliance with GDPR & LGPD. View our <a onclick=\"abrirModal('cookies')\">Cookie Policy</a> or <a onclick=\"reabrirBannerCookies()\">Manage Preferences</a>.",
@@ -612,6 +620,8 @@
                 navPrivacy: "Política de Privacidade",
                 about: "Sobre", privacy: "Política de Privacidade", cookies: "Política de Cookies", terms: "Termos de Uso",
                 installBtn: "📱 Instalar App",
+                iosInstallTitle: "Instalar no iPhone / iPad",
+                iosInstallHtml: "<p>No Safari, toque no botão <b>Compartilhar</b> (quadrado com seta para cima), role para baixo e toque em <b>Adicionar à Tela de Início</b>.</p>",
                 cookieTitle: "🍪 Valorizamos a sua Privacidade e Transparência",
                 cookieMsg: "Utilizamos cookies e dados de geolocalização para personalizar previsões do tempo, ajustar o fuso horário local e exibir anúncios relevantes em conformidade com a LGPD e GDPR. Saiba mais em nossa <a onclick=\"abrirModal('cookies')\">Política de Cookies</a>.",
                 footerCookieHtml: "🍪 <b>Aviso de Cookies:</b> Este portal utiliza cookies próprios e de terceiros (incluindo Google AdSense) para personalizar previsões climáticas, ajustar fusos horários locais e exibir anúncios relevantes em conformidade com a LGPD e GDPR. Consulte nossa <a onclick=\"abrirModal('cookies')\">Política de Cookies</a> ou clique em <a onclick=\"reabrirBannerCookies()\">Gerenciar Preferências</a>.",
@@ -743,6 +753,8 @@
                 navPrivacy: "Política de Privacidad",
                 about: "Acerca de", privacy: "Política de Privacidad", cookies: "Política de Cookies", terms: "Términos de Uso",
                 installBtn: "📱 Instalar App",
+                iosInstallTitle: "Instalar en iPhone / iPad",
+                iosInstallHtml: "<p>En Safari, toca el botón <b>Compartir</b> (cuadro con flecha), desliza hacia abajo y toca <b>Agregar a pantalla de inicio</b>.</p>",
                 cookieTitle: "🍪 Valoramos su Privacidad y Transparencia",
                 cookieMsg: "Utilizamos cookies y geolocalización. Lea nuestra <a onclick=\"abrirModal('cookies')\">Política de Cookies</a>.",
                 footerCookieHtml: "🍪 <b>Aviso de Cookies:</b> Consulte nuestra <a onclick=\"abrirModal('cookies')\">Política de Cookies</a> o <a onclick=\"reabrirBannerCookies()\">Gestionar Preferencias</a>.",
@@ -834,6 +846,8 @@
                 navPrivacy: "プライバシーポリシー",
                 about: "概要", privacy: "プライバシーポリシー", cookies: "Cookieポリシー", terms: "利用規約",
                 installBtn: "📱 アプリをインストール",
+                iosInstallTitle: "iPhone / iPad にインストール",
+                iosInstallHtml: "<p>Safariで<b>共有</b>ボタンをタップし、<b>ホーム画面に追加</b>を選択してください。</p>",
                 cookieTitle: "🍪 プライバシーとCookieの使用について",
                 cookieMsg: "Cookieを使用します。<a onclick=\"abrirModal('cookies')\">Cookieポリシー</a>",
                 footerCookieHtml: "🍪 <b>Cookie通知：</b> <a onclick=\"abrirModal('cookies')\">Cookieポリシー</a>",
@@ -1023,6 +1037,14 @@
         if (localStorage.getItem('cookieConsent')) { document.getElementById('cookieBanner').style.display = 'none'; }
 
         let deferredPrompt;
+        const isIosDevice = /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+        const isStandaloneApp = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
+
+        if (isIosDevice && !isStandaloneApp) {
+            const btnInstall = document.getElementById('btnFooterInstall');
+            if (btnInstall) btnInstall.style.display = 'inline-block';
+        }
+
         window.addEventListener('beforeinstallprompt', (e) => {
             e.preventDefault();
             deferredPrompt = e;
@@ -1037,6 +1059,10 @@
                     if (choiceResult.outcome === 'accepted') document.getElementById('btnFooterInstall').style.display = 'none';
                     deferredPrompt = null;
                 });
+            } else if (isIosDevice && !isStandaloneApp) {
+                document.getElementById('modalTitle').innerText = t.iosInstallTitle || 'Install on iPhone';
+                document.getElementById('modalBody').innerHTML = t.iosInstallHtml || '<p>Tap Share and then Add to Home Screen.</p>';
+                document.getElementById('infoModal').style.display = 'flex';
             }
         }
 
