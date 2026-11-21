@@ -20,8 +20,8 @@
     <meta name="apple-mobile-web-app-title" content="Global Metis">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="pageTitle">Clima Global e Inteligencia de Mercado</title>
-    <meta name="description" content="Plataforma de Clima Global e Inteligencia de Mercado en Tiempo Real. Pronósticos en vivo, divisas, calculadoras de interés compuesto y préstamos, sesiones bursátiles y salud financiera.">
+    <title id="pageTitle">Inteligencia Climática y de Mercados Global</title>
+    <meta name="description" content="Plataforma Global de Inteligencia Climática y de Mercados en Tiempo Real. Pronósticos en vivo, tipos de cambio, calculadoras de interés compuesto y préstamos, bolsas mundiales y guías de salud financiera.">
     <link rel="manifest" href="/manifest.json">
     <meta name="theme-color" content="#0b192c">
     <style>
@@ -210,10 +210,10 @@
                 <a onclick="abrirModal('privacy')" id="navPrivacy">Política de Privacidad</a>
             </div>
             <select id="langSelector" class="lang-select" aria-label="Idioma" onchange="definirIdiomaManual(this.value)">
-                <option value="es">🇪🇸 ES</option>
                 <option value="en">🇺🇸 EN</option>
                 <option value="pt">🇧🇷 PT</option>
                 <option value="ja">🇯🇵 JA</option>
+                <option value="es">🇪🇸 ES</option>
             </select>
         </div>
     </nav>
@@ -228,20 +228,20 @@
 
     <div class="app-container">
         <div class="search-box">
-            <input type="text" id="searchInput" placeholder="Ingrese ciudad, país o región..." onkeypress="if(event.key==='Enter') buscarCidade()">
+            <input type="text" id="searchInput" placeholder="Ingresa ciudad, país o región..." onkeypress="if(event.key==='Enter') buscarCidade()">
             <button onclick="buscarCidade()" title="Buscar">🔍</button>
-            <button class="btn-gps" onclick="usarLocalizacaoGPS()" title="Usar Ubicación Exacta 🎯">🎯</button>
+            <button class="btn-gps" onclick="usarLocalizacaoGPS()" title="Usar Mi Ubicación Exacta 🎯">🎯</button>
             <button class="btn-fav" onclick="salvarCidadeAtual()" title="Guardar Ciudad ⭐">⭐</button>
         </div>
         <div class="hero-section">
             <div class="location-header">
-                <div class="location-name" id="locationName">📍 Madrid</div>
+                <div class="location-name" id="locationName">📍 Nueva York, NY</div>
                 <div class="live-clock" id="liveClock">🕒 --:--:--</div>
             </div>
-            <div class="temp-main" id="tempMain">17°</div>
+            <div class="temp-main" id="tempMain">20°</div>
             <div class="condition-text" id="conditionText">Cielo Despejado</div>
-            <div class="temp-min-max" id="tempMinMax">↑ 20° / ↓ 9°</div>
-            <div class="feels-like" id="feelsLike">Sensación térmica de 17°</div>
+            <div class="temp-min-max" id="tempMinMax">↑ 24° / ↓ 15°</div>
+            <div class="feels-like" id="feelsLike">Sensación térmica 21°</div>
             <div class="summary-box" id="summaryBox">Sincronizando pronóstico local...</div>
             <div class="mascot-stage" id="mascotStage"></div>
         </div>
@@ -249,7 +249,7 @@
         <div class="adsense-box" id="adsenseBox"></div>
         
         <div class="card-section">
-            <div class="section-title" id="titleHourly">Pronóstico Hora a Hora</div>
+            <div class="section-title" id="titleHourly">Pronóstico por Hora</div>
             <div class="hourly-scroll" id="hourlyScroll"></div>
         </div>
         <div class="card-section">
@@ -259,27 +259,27 @@
 
         <!-- 1. Conversor de Moedas Instantâneo + Texto Informativo -->
         <div class="card-section">
-            <div class="section-title" id="titleConv">💱 Conversor de Monedas</div>
+            <div class="section-title" id="titleConv">💱 Conversor de Divisas Instantáneo</div>
             <div class="converter-box">
                 <input type="number" id="convInput" value="100" step="any" oninput="converterMoedas()">
                 <select id="convSelect" onchange="converterMoedas()">
-                    <option value="EUR">EUR</option>
                     <option value="USD">USD</option>
+                    <option value="EUR">EUR</option>
                     <option value="BRL">BRL</option>
                 </select>
             </div>
-            <div class="converter-result" id="convResult">= €100,00 EUR</div>
+            <div class="converter-result" id="convResult">= $100.00 USD</div>
             <div class="tool-info" id="convInfoBox"></div>
         </div>
 
         <!-- 2. Radar de Sessões das Bolsas Mundiais -->
         <div class="card-section">
-            <div class="section-title" id="titleMarketsRadar">🌐 Radar de Bolsas Globales</div>
+            <div class="section-title" id="titleMarketsRadar">🌐 Radar de Sesiones de Mercados Globales</div>
             <div class="markets-grid" id="marketsGrid">
-                <div class="market-status-card"><span>NYSE (Nueva York)</span><span id="statusNYSE">🟢 Abierto</span></div>
-                <div class="market-status-card"><span>LSE (Londres)</span><span id="statusLSE">🟢 Abierto</span></div>
-                <div class="market-status-card"><span>TSE (Tokio)</span><span id="statusTSE">🔴 Cerrado</span></div>
-                <div class="market-status-card"><span>B3 (São Paulo)</span><span id="statusB3">🟢 Abierto</span></div>
+                <div class="market-status-card"><span id="txtNyse">NYSE (Nueva York)</span><span id="statusNYSE">🟢 Abierta</span></div>
+                <div class="market-status-card"><span id="txtLse">LSE (Londres)</span><span id="statusLSE">🟢 Abierta</span></div>
+                <div class="market-status-card"><span id="txtTse">TSE (Tokio)</span><span id="statusTSE">🔴 Cerrada</span></div>
+                <div class="market-status-card"><span id="txtB3">B3 (São Paulo)</span><span id="statusB3">🟢 Abierta</span></div>
             </div>
         </div>
 
@@ -289,7 +289,7 @@
             <div class="calc-grid">
                 <div class="calc-row-2">
                     <div class="calc-field">
-                        <label id="lblCiInitial" for="ciInitial">Capital Inicial</label>
+                        <label id="lblCiInitial" for="ciInitial">Monto Inicial</label>
                         <input type="number" id="ciInitial" value="1000" min="0" step="any" oninput="calcularJurosCompostos()">
                     </div>
                     <div class="calc-field">
@@ -303,7 +303,7 @@
                         <input type="number" id="ciRate" value="8" min="0" step="any" oninput="calcularJurosCompostos()">
                     </div>
                     <div class="calc-field">
-                        <label id="lblCiRateType" for="ciRateType">Período de Tasa</label>
+                        <label id="lblCiRateType" for="ciRateType">Período de la Tasa</label>
                         <select id="ciRateType" onchange="calcularJurosCompostos()">
                             <option value="annual" id="optRateAnnual">Anual (% / año)</option>
                             <option value="monthly" id="optRateMonthly">Mensual (% / mes)</option>
@@ -324,7 +324,7 @@
                     </div>
                 </div>
             </div>
-            <button type="button" class="calc-btn" id="btnCalcCompound" onclick="calcularJurosCompostos()">Calcular Interés Compuesto</button>
+            <button type="button" class="calc-btn" id="btnCalcCompound" onclick="calcularJurosCompostos()">Calcular Crecimiento</button>
             <div class="calc-result-box" id="ciResultBox"></div>
             <div class="tool-info" id="ciInfoBox"></div>
         </div>
@@ -334,7 +334,7 @@
             <div class="section-title" id="titleLoan">🏦 Calculadora de Préstamos y Financiación</div>
             <div class="calc-grid">
                 <div class="calc-field">
-                    <label id="lblLoanAmount" for="loanAmount">Monto Financiado</label>
+                    <label id="lblLoanAmount" for="loanAmount">Monto Prestado / Financiado</label>
                     <input type="number" id="loanAmount" value="25000" min="0" step="any" oninput="calcularFinanciamento()">
                 </div>
                 <div class="calc-row-2">
@@ -343,7 +343,7 @@
                         <input type="number" id="loanRate" value="7.5" min="0" step="any" oninput="calcularFinanciamento()">
                     </div>
                     <div class="calc-field">
-                        <label id="lblLoanRateType" for="loanRateType">Período de Tasa</label>
+                        <label id="lblLoanRateType" for="loanRateType">Período de la Tasa</label>
                         <select id="loanRateType" onchange="calcularFinanciamento()">
                             <option value="annual" id="optLoanAnnual">Anual (% / año)</option>
                             <option value="monthly" id="optLoanMonthly">Mensual (% / mes)</option>
@@ -356,87 +356,57 @@
                         <input type="number" id="loanMonths" value="36" min="1" max="480" step="1" oninput="calcularFinanciamento()">
                     </div>
                     <div class="calc-field">
-                        <label id="lblLoanSystem" for="loanSystem">Sistema</label>
+                        <label id="lblLoanSystem" for="loanSystem">Amortización</label>
                         <select id="loanSystem" onchange="calcularFinanciamento()">
-                            <option value="price" id="optLoanPrice">Cuota Fija (Francés / Price)</option>
-                            <option value="sac" id="optLoanSac">Amortización Constante (SAC)</option>
+                            <option value="price" id="optLoanPrice">Cuota Fija (Price)</option>
+                            <option value="sac" id="optLoanSac">Decreciente (SAC)</option>
                         </select>
                     </div>
                 </div>
             </div>
-            <button type="button" class="calc-btn" id="btnCalcLoan" onclick="calcularFinanciamento()">Calcular Préstamo</button>
+            <button type="button" class="calc-btn" id="btnCalcLoan" onclick="calcularFinanciamento()">Calcular Cuotas</button>
             <div class="calc-result-box" id="loanResultBox"></div>
             <div class="tool-info" id="loanInfoBox"></div>
         </div>
 
         <!-- 5. Hubs Globais SEO -->
-        <nav class="hubs-section" aria-label="Centros Globales de Divisas y Bolsas">
-            <h3 id="hubsMainTitle">🌍 Centros Globales de Divisas y Bolsas</h3>
+        <nav class="hubs-section" aria-label="Centros Financieros Globales">
+            <h3 id="hubsMainTitle">🌍 Centros Globales de Divisas y Mercados</h3>
             <div class="hubs-grid">
                 <div class="hub-group">
-                    <h4 id="hubsCurrencyTitle">💱 Centros de Divisas</h4>
+                    <h4 id="hubsCurrencyTitle">💱 Centros de Cambio de Divisas</h4>
                     <div class="hub-links">
-                        <a href="/cambio/newyork.html">New York</a>
-                        <a href="/cambio/london.html">London</a>
-                        <a href="/cambio/tokyo.html">Tokyo</a>
+                        <a href="/cambio/newyork.html">Nueva York</a>
+                        <a href="/cambio/london.html">Londres</a>
+                        <a href="/cambio/tokyo.html">Tokio</a>
                         <a href="/cambio/saopaulo.html">São Paulo</a>
-                        <a href="/cambio/frankfurt.html">Frankfurt</a>
+                        <a href="/cambio/frankfurt.html">Fráncfort</a>
                         <a href="/cambio/hongkong.html">Hong Kong</a>
-                        <a href="/cambio/singapore.html">Singapore</a>
-                        <a href="/cambio/paris.html">Paris</a>
-                        <a href="/cambio/sydney.html">Sydney</a>
+                        <a href="/cambio/singapore.html">Singapur</a>
+                        <a href="/cambio/paris.html">París</a>
+                        <a href="/cambio/sydney.html">Sídney</a>
                     </div>
                 </div>
                 <div class="hub-group">
-                    <h4 id="hubsStocksTitle">📈 Centros de Bolsas</h4>
+                    <h4 id="hubsStocksTitle">📈 Centros Bursátiles Globales</h4>
                     <div class="hub-links">
-                        <a href="/bolsas/newyork.html">New York</a>
-                        <a href="/bolsas/london.html">London</a>
-                        <a href="/bolsas/tokyo.html">Tokyo</a>
+                        <a href="/bolsas/newyork.html">Nueva York</a>
+                        <a href="/bolsas/london.html">Londres</a>
+                        <a href="/bolsas/tokyo.html">Tokio</a>
                         <a href="/bolsas/saopaulo.html">São Paulo</a>
-                        <a href="/bolsas/frankfurt.html">Frankfurt</a>
+                        <a href="/bolsas/frankfurt.html">Fráncfort</a>
                         <a href="/bolsas/hongkong.html">Hong Kong</a>
-                        <a href="/bolsas/singapore.html">Singapore</a>
-                        <a href="/bolsas/paris.html">Paris</a>
-                        <a href="/bolsas/sydney.html">Sydney</a>
-                        <a href="/bolsas/zurich.html">Zurich</a>
+                        <a href="/bolsas/singapore.html">Singapur</a>
+                        <a href="/bolsas/paris.html">París</a>
+                        <a href="/bolsas/sydney.html">Sídney</a>
+                        <a href="/bolsas/zurich.html">Zúrich</a>
                     </div>
                 </div>
             </div>
         </nav>
 
         <!-- 6. Guias Completos & Inteligência Editorial -->
-        <main class="guides-wrapper" id="guidesWrapper">
-            <article class="guide-article">
-                <h2>📈 Guía Completa de Bolsas Mundiales y Sesiones de Mercado</h2>
-                <p>Comprender cómo operan las bolsas internacionales en distintas zonas horarias es fundamental para inversores, operadores y empresas que siguen los flujos de capital globales. Los mercados financieros siguen un ciclo continuo de 24 horas durante los días hábiles, trasladando la liquidez desde Asia-Pacífico hacia Europa y finalmente hacia América.</p>
-                <h3>Principales Centros Financieros Globales</h3>
-                <ul>
-                    <li><strong>NYSE y NASDAQ (Nueva York):</strong> Los mayores mercados bursátiles del mundo por capitalización, referentes para tecnología, industria y grandes corporaciones.</li>
-                    <li><strong>Bolsa de Londres (LSE):</strong> El principal centro de liquidez europeo, conectando el cierre asiático con la apertura norteamericana.</li>
-                    <li><strong>Bolsa de Tokio (TSE):</strong> Referente clave de la renta variable asiática, influenciada por empresas exportadoras, la política del Banco de Japón y el par USD/JPY.</li>
-                    <li><strong>B3 (São Paulo):</strong> Bolsa líder en América Latina, reflejando ciclos de materias primas, flujos de capital y diferenciales de tasas.</li>
-                </ul>
-                <div class="guide-highlight">
-                    <strong>Superposición de Mercados:</strong> El mayor volumen y volatilidad diaria suelen concentrarse cuando coinciden las sesiones de Londres y Nueva York (13:30 a 16:30 UTC).
-                </div>
-            </article>
-            <article class="guide-article">
-                <h2>💱 Dinámica de Divisas (Forex) y Salud Financiera</h2>
-                <p>El mercado de divisas es el mayor y más líquido del mundo, operando de forma descentralizada a través de redes bancarias globales. Los tipos de cambio responden a las decisiones de tasas de interés de los bancos centrales, la inflación y la balanza comercial.</p>
-                <h3>Pilares de la Salud Financiera Personal</h3>
-                <ul>
-                    <li><strong>1. Fondo de Emergencia Líquido:</strong> Mantenga entre 6 y 12 meses de gastos esenciales en instrumentos líquidos y de bajo riesgo.</li>
-                    <li><strong>2. Presupuesto Equilibrado:</strong> Distribuya sus ingresos entre necesidades esenciales, estilo de vida y ahorro o inversión constante.</li>
-                    <li><strong>3. Protección Frente a la Inflación:</strong> Evite que el efectivo pierda poder adquisitivo con el tiempo mediante una diversificación acorde a su perfil.</li>
-                    <li><strong>4. Gestión de Riesgos:</strong> Controle el endeudamiento de alto costo y no exponga su reserva de emergencia a activos de alta volatilidad.</li>
-                </ul>
-            </article>
-            <article class="guide-article">
-                <h2>🌦️ Meteorología de Precisión e Impacto Económico</h2>
-                <p>Global Metis integra modelos numéricos atmosféricos proporcionados por el <strong>Instituto Meteorológico de Noruega (MET Norway)</strong>. Las variaciones térmicas y de precipitaciones influyen en el consumo energético, la logística y las cosechas agrícolas globales.</p>
-            </article>
-        </main>
+        <main class="guides-wrapper" id="guidesWrapper"></main>
     </div>
 
     <footer>
@@ -448,10 +418,10 @@
             <button id="btnFooterInstall" class="btn-footer-install" onclick="instalarAppPWA()">📱 Instalar App</button>
         </div>
         <div class="footer-cookie-notice" id="footerCookieNotice">
-            🍪 <b>Aviso de Cookies:</b> Este portal utiliza cookies para personalizar pronósticos y anuncios en cumplimiento con el RGPD y la LGPD. Consulte nuestra <a onclick="abrirModal('cookies')">Política de Cookies</a> o <a onclick="reabrirBannerCookies()">Gestionar Preferencias</a>.
+            🍪 <b>Aviso de Cookies:</b> Este portal utiliza cookies y analítica para personalizar pronósticos meteorológicos, zonas horarias y anuncios en cumplimiento con el RGPD y la LGPD. Consulta nuestra <a onclick="abrirModal('cookies')">Política de Cookies</a> o <a onclick="reabrirBannerCookies()">Gestionar Preferencias</a>.
         </div>
-        <p>&copy; 2026 Global Weather & Markets. All rights reserved.</p>
-        <p class="footer-credits" id="footerCredits">Datos meteorológicos proporcionados por el <a href="https://www.met.no/" target="_blank" rel="noopener" style="color:inherit; text-decoration:underline;">Instituto Meteorológico de Noruega (MET Norway)</a> bajo CC BY 4.0</p>
+        <p>&copy; 2026 Global Weather & Markets. Todos los derechos reservados.</p>
+        <p class="footer-credits" id="footerCredits">Datos meteorológicos proporcionados por el <a href="https://www.met.no/" target="_blank" rel="noopener" style="color:inherit; text-decoration:underline;">Instituto Meteorológico de Noruega (MET Norway)</a> bajo licencia CC BY 4.0</p>
     </footer>
 
     <!-- Janela Modal Dinâmica -->
@@ -468,12 +438,12 @@
     <!-- Banner de Cookies -->
     <div id="cookieBanner">
         <div class="cookie-text-group">
-            <div class="cookie-header-title" id="cookieTitle">🍪 Valoramos su Privacidad y Transparencia</div>
-            <p id="cookieText">Utilizamos cookies y datos de geolocalización para personalizar pronósticos, ajustar zonas horarias y mostrar anuncios relevantes en cumplimiento con el RGPD y la LGPD. Lea nuestra <a onclick="abrirModal('cookies')">Política de Cookies</a>.</p>
+            <div class="cookie-header-title" id="cookieTitle">🍪 Valoramos Tu Privacidad y Transparencia</div>
+            <p id="cookieText">Utilizamos cookies y datos de geolocalización para personalizar pronósticos, ajustar zonas horarias locales y mostrar anuncios relevantes conforme al RGPD y la LGPD. Lee nuestra <a onclick="abrirModal('cookies')">Política de Cookies</a>.</p>
         </div>
         <div class="cookie-actions">
             <button class="btn-reject" id="btnReject" onclick="salvarPreferenciaCookies('essential')">Solo Esenciales</button>
-            <button class="btn-accept" id="btnAccept" onclick="salvarPreferenciaCookies('all')">Aceptar Todos</button>
+            <button class="btn-accept" id="btnAccept" onclick="salvarPreferenciaCookies('all')">Aceptar Todo</button>
         </div>
     </div>
 
@@ -488,69 +458,239 @@
         let idiomaUsuario = detectarIdiomaInicial();
 
         const CONDITIONS_MAP = {
-            "Clear Sky": "Cielo Despejado",
-            "Clear Night": "Noche Despejada",
-            "Partly Cloudy": "Parcialmente Nublado",
-            "Cloudy": "Nublado",
-            "Rain Showers": "Chubascos",
-            "Rain": "Lluvia",
-            "Thunderstorm": "Tormenta",
-            "Snow": "Nieve",
-            "Fog": "Niebla"
+            "Clear Sky": { en: "Clear Sky", pt: "Céu Limpo", es: "Cielo Despejado", ja: "快晴" },
+            "Clear Night": { en: "Clear Night", pt: "Noite Limpa", es: "Noche Despejada", ja: "晴れ（夜）" },
+            "Partly Cloudy": { en: "Partly Cloudy", pt: "Parcialmente Nublado", es: "Parcialmente Nublado", ja: "部分的に曇り" },
+            "Cloudy": { en: "Cloudy", pt: "Nublado", es: "Nublado", ja: "曇り" },
+            "Rain Showers": { en: "Rain Showers", pt: "Pancadas de Chuva", es: "Chubascos", ja: "にわか雨" },
+            "Rain": { en: "Rain", pt: "Chuva", es: "Lluvia", ja: "雨" },
+            "Thunderstorm": { en: "Thunderstorm", pt: "Tempestade", es: "Tormenta", ja: "雷雨" },
+            "Snow": { en: "Snow", pt: "Neve", es: "Nieve", ja: "雪" },
+            "Fog": { en: "Fog", pt: "Neblina", es: "Niebla", ja: "霧" }
         };
 
         function traduzirCondicao(textEn) {
-            return CONDITIONS_MAP[textEn] || textEn;
+            if (CONDITIONS_MAP[textEn] && CONDITIONS_MAP[textEn][idiomaUsuario]) {
+                return CONDITIONS_MAP[textEn][idiomaUsuario];
+            }
+            return textEn;
         }
 
-        const t = {
-            locale: "es-ES",
-            feelsLike: "Sensación térmica de",
-            ciFinalLabel: "Saldo Final Estimado",
-            ciInvestedLabel: "Total Aportado",
-            ciInterestLabel: "Intereses Generados",
-            loanPaymentFixed: "Cuota Mensual Estimada",
-            loanPaymentRange: "1.ª a Última Cuota",
-            loanTotalPaid: "Total a Pagar",
-            loanTotalInterest: "Costo Total de Intereses",
-            loadingMarkets: "📈 Mercados Financieros Globales en Vivo",
-            locatingText: "📍 Buscando GPS...",
-            gpsDenied: "Active el permiso de ubicación en su navegador o busque su ciudad manualmente.",
-            iosInstallTitle: "Instalar en iPhone / iPad",
-            iosInstallHtml: "<p>En Safari, toca el botón <b>Compartir</b> (cuadro con flecha), desliza hacia abajo y toca <b>Agregar a pantalla de inicio</b>.</p>",
-            convInfoHtml: `
-                <p><strong>Para qué sirve:</strong> Comparar importes entre divisas para viajes, compras internacionales y seguimiento del tipo de cambio.</p>
-                <p><strong>Cómo usar:</strong> Indique el importe, elija la divisa base (EUR, USD o BRL) y vea el resultado al instante.</p>
-                <p><strong>Qué entrega al usuario:</strong> Conversiones de referencia actualizadas periódicamente. Comisiones bancarias o impuestos pueden variar.</p>
-            `,
-            ciInfoHtml: `
-                <p><strong>Para qué sirve:</strong> Simular el crecimiento del ahorro cuando los intereses generados en cada período producen nuevos intereses.</p>
-                <p><strong>Cómo usar:</strong> Ingrese capital inicial, aporte mensual, tasa de interés (anual o mensual) y plazo.</p>
-                <p><strong>Qué entrega al usuario:</strong> Saldo final estimado, total aportado e intereses acumulados con fines educativos.</p>
-            `,
-            loanInfoHtml: `
-                <p><strong>Para qué sirve:</strong> Estimar cuotas y costo total antes de solicitar un préstamo o financiación.</p>
-                <p><strong>Cómo usar:</strong> Ingrese el monto, la tasa de interés, el plazo en meses y el tipo de cuota.</p>
-                <p><strong>Qué entrega al usuario:</strong> Estimación de cuotas, total pagado e intereses totales. Las ofertas reales pueden incluir comisiones o seguros.</p>
-            `,
-            modals: {
-                about: { title: "Acerca de Global Weather & Markets", content: "<p>Plataforma de meteorología y mercados en tiempo real. Datos de MET Norway (CC BY 4.0). Contacto: <b>globalmetis.contato@gmail.com</b>.</p>" },
-                cookies: { title: "Política de Cookies", content: "<p>Utilizamos cookies esenciales, funcionales y de publicidad (Google AdSense).</p><button class=\"btn-reopen-cookie\" onclick=\"fecharModal(); reabrirBannerCookies();\">⚙️ Gestionar Preferencias</button>" },
-                privacy: { title: "Política de Privacidad", content: "<p>Cumplimiento con RGPD y LGPD. Contacto: <b>globalmetis.contato@gmail.com</b>.</p>" },
-                terms: { title: "Términos de Uso", content: "<p>Uso informativo y educativo de la plataforma globalmetis.com.</p>" }
+        const UI_TEXTS = {
+            es: {
+                locale: "es-ES",
+                searchPlace: "Ingresa ciudad, país o región...",
+                navGuides: "Guías y Artículos",
+                navAbout: "Acerca de",
+                navPrivacy: "Política de Privacidad",
+                about: "Acerca de", privacy: "Política de Privacidad", cookies: "Política de Cookies", terms: "Términos de Uso",
+                installBtn: "📱 Instalar App",
+                iosInstallTitle: "Instalar en iPhone / iPad",
+                iosInstallHtml: "<p>En Safari, toca el botón <b>Compartir</b> (cuadrado con flecha), desplázate hacia abajo y toca <b>Añadir a pantalla de inicio</b>.</p>",
+                cookieTitle: "🍪 Valoramos Tu Privacidad y Transparencia",
+                cookieMsg: "Utilizamos cookies y datos de geolocalización para personalizar pronósticos, ajustar zonas horarias locales y mostrar anuncios relevantes conforme al RGPD y la LGPD. Lee nuestra <a onclick=\"abrirModal('cookies')\">Política de Cookies</a>.",
+                footerCookieHtml: "🍪 <b>Aviso de Cookies:</b> Este portal utiliza cookies para personalizar pronósticos y anuncios conforme al RGPD y la LGPD. Consulta nuestra <a onclick=\"abrirModal('cookies')\">Política de Cookies</a> o <a onclick=\"reabrirBannerCookies()\">Gestionar Preferencias</a>.",
+                reject: "Solo Esenciales", accept: "Aceptar Todo",
+                loadingMarkets: "📈 Mercados Financieros Globales en Vivo",
+                feelsLike: "Sensación térmica",
+                credits: "Datos meteorológicos proporcionados por el <a href=\"https://www.met.no/\" target=\"_blank\" rel=\"noopener\" style=\"color:inherit; text-decoration:underline;\">Instituto Meteorológico de Noruega (MET Norway)</a> bajo licencia CC BY 4.0",
+                hourlyTitle: "Pronóstico por Hora",
+                dailyTitle: "Próximos Días",
+                titleConv: "💱 Conversor de Divisas Instantáneo",
+                convInfoHtml: `
+                    <p><strong>Para qué sirve:</strong> Comparar montos rápidamente entre divisas para viajes internacionales, compras en el exterior y seguimiento del tipo de cambio.</p>
+                    <p><strong>Cómo usarlo:</strong> Escribe el importe, selecciona la moneda base (USD, EUR o BRL) y consulta la equivalencia convertida al instante.</p>
+                    <p><strong>Qué ofrece:</strong> Cotizaciones de referencia actualizadas periódicamente. Los márgenes bancarios, comisiones de tarjeta e impuestos locales pueden variar.</p>
+                `,
+                titleMarketsRadar: "🌐 Radar de Sesiones de Mercados Globales",
+                titleCompound: "📈 Calculadora de Interés Compuesto",
+                lblCiInitial: "Monto Inicial",
+                lblCiMonthly: "Aporte Mensual",
+                lblCiRate: "Tasa de Interés (%)",
+                lblCiRateType: "Período de la Tasa",
+                optRateAnnual: "Anual (% / año)",
+                optRateMonthly: "Mensual (% / mes)",
+                lblCiTime: "Plazo",
+                lblCiTimeUnit: "Unidad",
+                optTimeYears: "Años",
+                optTimeMonths: "Meses",
+                btnCalcCompound: "Calcular Crecimiento",
+                ciFinalLabel: "Saldo Final Estimado",
+                ciInvestedLabel: "Total Aportado",
+                ciInterestLabel: "Total de Intereses Ganados",
+                ciInfoHtml: `
+                    <p><strong>Para qué sirve:</strong> Simular cómo crece el capital con el tiempo cuando los intereses generados en cada período producen nuevos rendimientos.</p>
+                    <p><strong>Cómo usarlo:</strong> Indica el saldo inicial, el aporte mensual recurrente, la tasa de interés (anual o mensual) y el horizonte temporal.</p>
+                    <p><strong>Qué ofrece:</strong> Proyección del saldo final, capital aportado e intereses acumulados con fines educativos — no constituye asesoramiento financiero.</p>
+                `,
+                titleLoan: "🏦 Calculadora de Préstamos y Financiación",
+                lblLoanAmount: "Monto Prestado / Financiado",
+                lblLoanRate: "Tasa de Interés (%)",
+                lblLoanRateType: "Período de la Tasa",
+                optLoanAnnual: "Anual (% / año)",
+                optLoanMonthly: "Mensual (% / mes)",
+                lblLoanMonths: "Cuotas (Meses)",
+                lblLoanSystem: "Amortización",
+                optLoanPrice: "Cuota Fija (Price)",
+                optLoanSac: "Decreciente (SAC)",
+                btnCalcLoan: "Calcular Cuotas",
+                loanPaymentFixed: "Cuota Mensual Estimada",
+                loanPaymentRange: "Primera a Última Cuota",
+                loanTotalPaid: "Total Pagado",
+                loanTotalInterest: "Costo Total de Intereses",
+                loanInfoHtml: `
+                    <p><strong>Para qué sirve:</strong> Estimar cuotas mensuales y el costo total de financiación antes de solicitar un crédito o préstamo.</p>
+                    <p><strong>Cómo usarlo:</strong> Introduce el monto del préstamo, la tasa de interés, el número de cuotas mensuales y elige entre cuota fija (Price) o decreciente (SAC).</p>
+                    <p><strong>Qué ofrece:</strong> Cálculo estimado de cuotas, monto total a pagar e intereses acumulados. Las ofertas bancarias reales pueden incluir comisiones, seguros o impuestos.</p>
+                `,
+                hubsMainTitle: "🌍 Centros Globales de Divisas y Mercados",
+                hubsCurrencyTitle: "💱 Centros de Cambio de Divisas",
+                hubsStocksTitle: "📈 Centros Bursátiles Globales",
+                locatingText: "📍 Localizando GPS...",
+                gpsDenied: "Permite el acceso a la ubicación en la configuración del navegador o busca tu ciudad manualmente.",
+                guidesHtml: `
+                    <article class="guide-article">
+                        <h2>📈 Guía Completa de Bolsas Globales y Sesiones de Mercado</h2>
+                        <p>Comprender cómo operan las bolsas internacionales en distintos husos horarios es fundamental para inversores, operadores y empresas que siguen los flujos globales de capital. Los mercados financieros siguen un ciclo continuo en días hábiles, trasladando liquidez desde Asia-Pacífico hacia Europa y luego hacia América.</p>
+                        <h3>Principales Centros Financieros Globales</h3>
+                        <ul>
+                            <li><strong>Bolsa de Nueva York (NYSE) y NASDAQ:</strong> Los mayores mercados bursátiles del mundo por capitalización, referentes globales para valuaciones tecnológicas, industriales y de gran liquidez.</li>
+                            <li><strong>Bolsa de Londres (LSE):</strong> El principal centro de liquidez europeo, conectando el cierre asiático con la sesión matinal norteamericana y generando altos volúmenes diarios.</li>
+                            <li><strong>Bolsa de Tokio (TSE):</strong> El motor bursátil asiático, influido por conglomerados exportadores, la política monetaria del Banco de Japón y los movimientos del par USD/JPY.</li>
+                            <li><strong>B3 (Brasil, Bolsa, Balcão — São Paulo):</strong> La principal bolsa de América Latina, sensible a los ciclos de materias primas, flujos hacia mercados emergentes y diferenciales de tasas.</li>
+                        </ul>
+                        <div class="guide-highlight">
+                            <strong>Solapamiento de Mercados:</strong> La mayor liquidez y volatilidad diaria suele presentarse durante el solapamiento entre Londres y Nueva York (13:30 a 16:30 UTC), cuando mesas institucionales a ambos lados del Atlántico ajustan carteras relevantes.
+                        </div>
+                    </article>
+                    <article class="guide-article">
+                        <h2>💱 Mercado de Divisas (Forex) y Dinámica Internacional de Monedas</h2>
+                        <p>El mercado de divisas es el mercado financiero más grande y líquido del planeta, con volúmenes diarios que superan billones de dólares. A diferencia de las bolsas centralizadas, la negociación de monedas ocurre en mercados extrabursátiles (OTC) a través de redes bancarias globales.</p>
+                        <h3>Factores Clave del Tipo de Cambio</h3>
+                        <ul>
+                            <li><strong>Tasas de Interés de los Bancos Centrales:</strong> Las decisiones de la Reserva Federal (Fed), el Banco Central Europeo (BCE), el Banco de Japón (BoJ) y el Banco Central de Brasil (BCB) influyen directamente en los diferenciales de rendimiento y el flujo de capitales.</li>
+                            <li><strong>Inflación y Poder Adquisitivo:</strong> Los índices de precios al consumidor determinan los rendimientos reales; las monedas con inflación controlada suelen conservar mejor su valor a largo plazo.</li>
+                            <li><strong>Balanza Comercial y Materias Primas:</strong> Los países exportadores de materias primas (como Brasil y Australia) tienden a ver fortalecida su moneda cuando aumenta la demanda global de energía, metales y productos agrícolas.</li>
+                        </ul>
+                        <p>Usar conversores de divisas en tiempo real facilita que viajeros, profesionales remotos, importadores e inversores vigilen variaciones cambiarias y planifiquen transferencias internacionales.</p>
+                    </article>
+                    <article class="guide-article">
+                        <h2>💰 Salud Financiera Personal y Resiliencia Macroeconómica</h2>
+                        <p>Construir una salud financiera sólida exige proteger el presupuesto personal frente a la inflación, las fluctuaciones cambiarias y los ciclos económicos adversos. Tanto en grandes plazas financieras como en economías emergentes, los hábitos ordenados aportan estabilidad a largo plazo.</p>
+                        <h3>4 Pilares de una Salud Financiera Sólida</h3>
+                        <ul>
+                            <li><strong>1. Reserva de Emergencia y Diversificación Cambial:</strong> Mantén entre 6 y 12 meses de gastos esenciales en instrumentos líquidos y de bajo riesgo. Diversificar una parte en divisas de reserva (como USD, EUR o CHF) aporta resguardo ante devaluaciones locales.</li>
+                            <li><strong>2. Asignación Inteligente del Presupuesto:</strong> Aplica una estructura clara, como 50% para necesidades básicas, 30% para estilo de vida y formación personal, y al menos 20% destinado a reducir deudas y acumular patrimonio.</li>
+                            <li><strong>3. Protección Contra la Inflación:</strong> Mantener efectivo sin rendimiento erosiona el poder adquisitivo con el paso del tiempo. Prioriza bonos ligados a la inflación, acciones con dividendos o fondos indexados diversificados acordes a tu perfil.</li>
+                            <li><strong>4. Gestión Continua del Riesgo:</strong> Evita deudas de consumo con tasas elevadas y nunca destines fondos de emergencia de corto plazo a activos de alta volatilidad, como criptomonedas o derivados apalancados.</li>
+                        </ul>
+                    </article>
+                    <article class="guide-article">
+                        <h2>🌦️ Meteorología de Alta Resolución e Impacto Económico</h2>
+                        <p>Global Metis integra modelos numéricos atmosféricos proporcionados por el <strong>Instituto Meteorológico de Noruega (MET Norway)</strong>. Además de su utilidad cotidiana, el pronóstico meteorológico influye en las cadenas de suministro, el consumo energético, la logística aérea y los precios de commodities agrícolas.</p>
+                        <p>Las anomalías térmicas impactan la demanda de gas natural y electricidad en Norteamérica y Europa, mientras que los patrones de lluvia en Sudamérica condicionan cosechas clave de soja, café y azúcar, vinculando la meteorología en tiempo real con los mercados financieros.</p>
+                    </article>
+                `,
+                modals: {
+                    about: { 
+                        title: "Acerca de Global Weather & Markets Intelligence", 
+                        content: `<p><b>Global Weather & Market Intelligence (globalmetis.com)</b> es una plataforma digital independiente dedicada a ofrecer pronósticos meteorológicos en tiempo real e inteligencia de mercados financieros a nivel global.</p><h4>Nuestra Misión Técnica</h4><p>Procesamos datos para mostrar indicadores ambientales y económicos de forma ágil y clara. Nuestra arquitectura está pensada con enfoque móvil para brindar fluidez, baja latencia y una lectura limpia en distintos dispositivos.</p><h4>Fuentes Oficiales de Datos y Estándares Abiertos</h4><ul><li><b>Modelos Meteorológicos:</b> Integración directa con pronósticos numéricos atmosféricos del <i>Instituto Meteorológico de Noruega (MET Norway)</i> bajo licencia Creative Commons Attribution 4.0 International (CC BY 4.0).</li><li><b>Cotizaciones y Mercados Financieros:</b> Fuentes de tipos de cambio y referencias de mercado consultadas a lo largo de las sesiones globales.</li></ul><h4>Accesibilidad Global y Cumplimiento</h4><p>Diseñado para audiencias internacionales, Global Metis adapta zonas horarias, coordenadas e idiomas siguiendo principios de privacidad y transparencia.</p>` 
+                    },
+                    cookies: { 
+                        title: "Política de Cookies y Tecnologías de Seguimiento", 
+                        content: `<p>Esta Política de Cookies explica cómo <b>globalmetis.com</b> ("nosotros" o "nuestro") utiliza cookies y tecnologías similares cuando visitas nuestro portal web y Progressive Web Application (PWA).</p><h4>1. ¿Qué Son las Cookies?</h4><p>Las cookies son pequeños archivos de texto que el navegador guarda en tu dispositivo. Se emplean para que el sitio funcione correctamente, mejorar la experiencia de usuario y generar métricas operativas.</p><h4>2. Categorías de Cookies que Utilizamos</h4><ul><li><b>Cookies Esenciales:</b> Necesarias para funciones básicas, seguridad, gestión de sesión y conservación de tus preferencias de consentimiento.</li><li><b>Cookies de Funcionalidad:</b> Utilizadas para recordar tus ciudades favoritas guardadas (mediante LocalStorage) y configuraciones regionales.</li><li><b>Cookies de Publicidad y Analítica de Terceros:</b> Colaboramos con redes publicitarias, incluido Google AdSense, que emplean cookies (como la cookie DART) para mostrar anuncios según tus visitas a este y otros sitios web.</li></ul><h4>3. Gestión de Preferencias</h4><p>Puedes administrar o bloquear cookies desde la configuración de tu navegador. También puedes actualizar tu elección en cualquier momento mediante el botón siguiente.</p><button class="btn-reopen-cookie" onclick="fecharModal(); reabrirBannerCookies();">⚙️ Gestionar Preferencias de Cookies</button>` 
+                    },
+                    privacy: { 
+                        title: "Política de Privacidad (Cumplimiento RGPD, LGPD y AdSense)", 
+                        content: `<p><b>Fecha de Vigencia:</b> Noviembre de 2026<br><b>Plataforma:</b> globalmetis.com<br><b>Correo de Contacto:</b> globalmetis.contato@gmail.com</p><h4>1. Compromiso con la Privacidad</h4><p>Global Metis respeta tu privacidad y procura proteger los datos personales conforme al Reglamento General de Protección de Datos (RGPD), la Ley General de Protección de Datos (LGPD) y los requisitos para editores de Google AdSense.</p><h4>2. Información que Recopilamos</h4><ul><li><b>Geolocalización en Tiempo Real:</b> Procesamos coordenadas del navegador o estimaciones por IP únicamente en tiempo real para mostrar el pronóstico local. No almacenamos registros permanentes de tu ubicación física exacta en bases de datos.</li><li><b>Datos en Almacenamiento Local:</b> Las ciudades favoritas guardadas por el usuario y sus preferencias de consentimiento permanecen en el navegador mediante LocalStorage.</li><li><b>Registros de Acceso y Rendimiento:</b> Pueden recopilarse registros técnicos estándar, tipo de navegador y marcas de tiempo para seguridad y optimización del servicio.</li></ul><h4>3. Publicidad de Terceros (Google AdSense)</h4><p>Utilizamos proveedores publicitarios de terceros, incluido Google, para publicar anuncios en el sitio. Google emplea cookies para mostrar anuncios basados en visitas anteriores. Puedes administrar tus opciones de anuncios en la Configuración de Anuncios de Google.</p><h4>4. Contacto</h4><p>Para consultas sobre privacidad, solicitudes de datos o cumplimiento, escríbenos a: <b>globalmetis.contato@gmail.com</b>.</p>` 
+                    },
+                    terms: {
+                        title: "Términos de Uso y Acuerdo de la Plataforma",
+                        content: `<p><b>Fecha de Vigencia:</b> Noviembre de 2026<br><b>Plataforma:</b> globalmetis.com</p><h4>1. Aceptación de los Términos</h4><p>Al acceder y utilizar <b>globalmetis.com</b>, aceptas cumplir estos Términos de Uso. Si no estás de acuerdo con ellos, por favor no utilices la plataforma.</p><h4>2. Propiedad Intelectual y Licencia de Datos</h4><p>Los datos meteorológicos se integran bajo licencia Creative Commons Attribution 4.0 International (CC BY 4.0) del Instituto Meteorológico de Noruega (MET Norway). Los datos financieros y elementos de diseño pertenecen a Global Metis.</p><h4>3. Limitación de Responsabilidad</h4><p>Global Metis ofrece información en tiempo real con fines informativos y educativos. No garantizamos disponibilidad ininterrumpida de fuentes externas ni asumimos responsabilidad por decisiones financieras basadas en las simulaciones o cotizaciones mostradas.</p>`
+                    }
+                }
             }
         };
 
-        document.getElementById('convInfoBox').innerHTML = t.convInfoHtml;
-        document.getElementById('ciInfoBox').innerHTML = t.ciInfoHtml;
-        document.getElementById('loanInfoBox').innerHTML = t.loanInfoHtml;
+        let t = UI_TEXTS[idiomaUsuario] || UI_TEXTS.es;
 
         function formatarNumero(valor, decimais = 2) {
             const num = Number.isFinite(valor) ? valor : 0;
-            return num.toLocaleString(t.locale, {
+            return num.toLocaleString(t.locale || userLang, {
                 minimumFractionDigits: decimais,
                 maximumFractionDigits: decimais
             });
+        }
+
+        function aplicarIdiomaInterface() {
+            t = UI_TEXTS[idiomaUsuario] || UI_TEXTS.es;
+            document.getElementById('htmlRoot').setAttribute('lang', idiomaUsuario);
+            const langSel = document.getElementById('langSelector');
+            if (langSel) langSel.value = idiomaUsuario;
+
+            document.getElementById('searchInput').placeholder = t.searchPlace;
+            document.getElementById('navGuides').innerText = t.navGuides;
+            document.getElementById('navAbout').innerText = t.navAbout;
+            document.getElementById('navPrivacy').innerText = t.navPrivacy;
+            document.getElementById('titleHourly').innerText = t.hourlyTitle;
+            document.getElementById('titleDaily').innerText = t.dailyTitle;
+            document.getElementById('titleConv').innerText = t.titleConv;
+            document.getElementById('convInfoBox').innerHTML = t.convInfoHtml;
+            document.getElementById('titleMarketsRadar').innerText = t.titleMarketsRadar;
+
+            // Calculadora de Juros Compostos
+            document.getElementById('titleCompound').innerText = t.titleCompound;
+            document.getElementById('lblCiInitial').innerText = t.lblCiInitial;
+            document.getElementById('lblCiMonthly').innerText = t.lblCiMonthly;
+            document.getElementById('lblCiRate').innerText = t.lblCiRate;
+            document.getElementById('lblCiRateType').innerText = t.lblCiRateType;
+            document.getElementById('optRateAnnual').innerText = t.optRateAnnual;
+            document.getElementById('optRateMonthly').innerText = t.optRateMonthly;
+            document.getElementById('lblCiTime').innerText = t.lblCiTime;
+            document.getElementById('lblCiTimeUnit').innerText = t.lblCiTimeUnit;
+            document.getElementById('optTimeYears').innerText = t.optTimeYears;
+            document.getElementById('optTimeMonths').innerText = t.optTimeMonths;
+            document.getElementById('btnCalcCompound').innerText = t.btnCalcCompound;
+            document.getElementById('ciInfoBox').innerHTML = t.ciInfoHtml;
+
+            // Calculadora de Financiamento / Empréstimos
+            document.getElementById('titleLoan').innerText = t.titleLoan;
+            document.getElementById('lblLoanAmount').innerText = t.lblLoanAmount;
+            document.getElementById('lblLoanRate').innerText = t.lblLoanRate;
+            document.getElementById('lblLoanRateType').innerText = t.lblLoanRateType;
+            document.getElementById('optLoanAnnual').innerText = t.optLoanAnnual;
+            document.getElementById('optLoanMonthly').innerText = t.optLoanMonthly;
+            document.getElementById('lblLoanMonths').innerText = t.lblLoanMonths;
+            document.getElementById('lblLoanSystem').innerText = t.lblLoanSystem;
+            document.getElementById('optLoanPrice').innerText = t.optLoanPrice;
+            document.getElementById('optLoanSac').innerText = t.optLoanSac;
+            document.getElementById('btnCalcLoan').innerText = t.btnCalcLoan;
+            document.getElementById('loanInfoBox').innerHTML = t.loanInfoHtml;
+
+            // Hubs e Rodapé
+            document.getElementById('hubsMainTitle').innerText = t.hubsMainTitle;
+            document.getElementById('hubsCurrencyTitle').innerText = t.hubsCurrencyTitle;
+            document.getElementById('hubsStocksTitle').innerText = t.hubsStocksTitle;
+            document.getElementById('linkAbout').innerText = t.about;
+            document.getElementById('linkPrivacy').innerText = t.privacy;
+            document.getElementById('linkCookies').innerText = t.cookies;
+            document.getElementById('linkTerms').innerText = t.terms;
+            document.getElementById('btnFooterInstall').innerText = t.installBtn;
+            document.getElementById('cookieTitle').innerText = t.cookieTitle;
+            document.getElementById('cookieText').innerHTML = t.cookieMsg;
+            document.getElementById('footerCookieNotice').innerHTML = t.footerCookieHtml;
+            document.getElementById('btnReject').innerText = t.reject;
+            document.getElementById('btnAccept').innerText = t.accept;
+            document.getElementById('txtLoadingMarkets').innerText = t.loadingMarkets;
+            document.getElementById('footerCredits').innerHTML = t.credits;
+            if (t.guidesHtml) {
+                document.getElementById('guidesWrapper').innerHTML = t.guidesHtml;
+            }
+
+            atualizarRadarBolsas();
+            converterMoedas();
+            calcularJurosCompostos();
+            calcularFinanciamento();
         }
 
         function definirIdiomaManual(novoIdioma) {
@@ -614,8 +754,8 @@
                     deferredPrompt = null;
                 });
             } else if (isIosDevice && !isStandaloneApp) {
-                document.getElementById('modalTitle').innerText = t.iosInstallTitle;
-                document.getElementById('modalBody').innerHTML = t.iosInstallHtml;
+                document.getElementById('modalTitle').innerText = t.iosInstallTitle || 'Instalar en iPhone';
+                document.getElementById('modalBody').innerHTML = t.iosInstallHtml || '<p>Toca Compartir y luego Añadir a pantalla de inicio.</p>';
                 document.getElementById('infoModal').style.display = 'flex';
             }
         }
@@ -623,7 +763,7 @@
         let fusoHorarioAtual = Intl.DateTimeFormat().resolvedOptions().timeZone || 'Europe/Madrid';
         function atualizarRelogio() {
             try {
-                const agora = new Date().toLocaleTimeString(t.locale, { timeZone: fusoHorarioAtual, hour: '2-digit', minute: '2-digit', second: '2-digit' });
+                const agora = new Date().toLocaleTimeString(t.locale || userLang, { timeZone: fusoHorarioAtual, hour: '2-digit', minute: '2-digit', second: '2-digit' });
                 document.getElementById('liveClock').innerText = `🕒 ${agora}`;
             } catch (e) {
                 document.getElementById('liveClock').innerText = `🕒 ${new Date().toLocaleTimeString()}`;
@@ -655,15 +795,14 @@
             const b3Open = isWeekday && utcHour >= 13 && utcHour < 20;
 
             const renderBadge = (isOpen) => isOpen
-                ? `<span class="badge-open">🟢 Abierto</span>`
-                : `<span class="badge-closed">🔴 Cerrado</span>`;
+                ? `<span class="badge-open">🟢 Abierta</span>`
+                : `<span class="badge-closed">🔴 Cerrada</span>`;
 
             document.getElementById('statusNYSE').innerHTML = renderBadge(nyseOpen);
             document.getElementById('statusLSE').innerHTML = renderBadge(lseOpen);
             document.getElementById('statusTSE').innerHTML = renderBadge(tseOpen);
             document.getElementById('statusB3').innerHTML = renderBadge(b3Open);
         }
-        atualizarRadarBolsas();
         setInterval(atualizarRadarBolsas, 30000);
 
         let globalRates = null;
@@ -764,10 +903,6 @@
             `;
         }
 
-        calcularJurosCompostos();
-        calcularFinanciamento();
-        converterMoedas();
-
         async function carregarMercados() {
             try {
                 const res = await fetch('https://economia.awesomeapi.com.br/json/last/USD-BRL,EUR-BRL,BTC-BRL,USD-JPY,EUR-USD');
@@ -782,13 +917,13 @@
                     <div class="market-item">₿ Bitcoin: <b>$${parseFloat(data.BTCBRL.bid / data.USDBRL.bid).toLocaleString('en-US', {maximumFractionDigits:0})}</b></div>
                 `;
             } catch (e) {
-                document.getElementById('marketTicker').innerHTML = `<div class="market-item">${t.loadingMarkets}</div>`;
+                document.getElementById('marketTicker').innerHTML = `<div class="market-item">📈 ${t.loadingMarkets}</div>`;
             }
         }
         carregarMercados();
         setInterval(carregarMercados, 60000);
 
-        let cidadeAtualInfo = { name: "Madrid", lat: 40.4168, lon: -3.7038 };
+        let cidadeAtualInfo = { name: "Madrid, Comunidad de Madrid", lat: 40.4168, lon: -3.7038 };
 
         function salvarCidadeAtual() {
             let favs = JSON.parse(localStorage.getItem('savedFavs') || '[]');
@@ -926,7 +1061,7 @@
                 for (let i = 0; i < 12 && i < timeseries.length; i++) {
                     const step = timeseries[i];
                     const stepDate = new Date(step.time);
-                    const horaStr = stepDate.toLocaleTimeString(t.locale, { timeZone: fusoHorarioAtual, hour: '2-digit', minute: '2-digit' });
+                    const horaStr = stepDate.toLocaleTimeString(t.locale || userLang, { timeZone: fusoHorarioAtual, hour: '2-digit', minute: '2-digit' });
                     const horaNum = parseInt(stepDate.toLocaleTimeString('en-US', { timeZone: fusoHorarioAtual, hour12: false, hour: '2-digit' }), 10);
                     const stepIsDay = horaNum >= 6 && horaNum < 18;
 
@@ -954,7 +1089,7 @@
                     const dSym = dData.symbols[Math.floor(dData.symbols.length / 2)] || 'clearsky_day';
                     const dInfo = interpretarClimaMET(dSym, true);
                     const dataObj = new Date(dKey + 'T12:00:00');
-                    const diaNome = dataObj.toLocaleDateString(t.locale, { weekday: 'short' });
+                    const diaNome = dataObj.toLocaleDateString(t.locale || userLang, { weekday: 'short' });
 
                     dailyContainer.innerHTML += `
                         <div class="daily-row">
@@ -973,7 +1108,8 @@
             const q = document.getElementById('searchInput').value;
             if (!q) return;
             try {
-                const res = await fetch(`https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(q)}&count=5&language=es&format=json`);
+                const langParam = ['en', 'pt', 'es', 'ja'].includes(idiomaUsuario) ? idiomaUsuario : 'es';
+                const res = await fetch(`https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(q)}&count=5&language=${langParam}&format=json`);
                 const data = await res.json();
                 if (data.results && data.results.length > 0) {
                     const c = data.results[0];
@@ -986,7 +1122,7 @@
                     alert("Ubicación no encontrada.");
                 }
             } catch (e) {
-                alert("Error al buscar ubicación.");
+                alert("Error al buscar la ubicación.");
             }
         }
 
@@ -994,7 +1130,7 @@
             try {
                 fusoHorarioAtual = Intl.DateTimeFormat().resolvedOptions().timeZone || fusoHorarioAtual;
                 atualizarRelogio();
-                const res = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}&accept-language=es`);
+                const res = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}&accept-language=${idiomaUsuario}`);
                 const data = await res.json();
                 const addr = data.address || {};
                 const cidade = addr.city || addr.town || addr.village || addr.municipality || "Región Local";
@@ -1034,10 +1170,10 @@
                     const localIp = ipData.region ? `${ipData.city}, ${ipData.region}` : `${ipData.city}, ${ipData.country}`;
                     carregarClima(parseFloat(ipData.latitude), parseFloat(ipData.longitude), localIp);
                 } else {
-                    carregarClima(40.4168, -3.7038, "Madrid");
+                    carregarClima(40.4168, -3.7038, "Madrid, Comunidad de Madrid");
                 }
             } catch (e) {
-                carregarClima(40.4168, -3.7038, "Madrid");
+                carregarClima(40.4168, -3.7038, "Madrid, Comunidad de Madrid");
             }
         }
 
@@ -1053,6 +1189,7 @@
             }
         }
 
+        aplicarIdiomaInterface();
         detectarLocalizacaoAutomatica();
     </script>
 </body>
