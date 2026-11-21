@@ -20,12 +20,12 @@
     <meta name="apple-mobile-web-app-title" content="Global Metis">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="pageTitle">世界の天気とマーケットインテリジェンス</title>
-    <meta name="description" content="リアルタイム世界の天気・金融マーケット情報プラットフォーム。最新の天気予報、為替換算、複利・ローン計算ツール、世界市場セッションレーダー、資産管理ガイドを提供。">
+    <title id="pageTitle">グローバル気象・マーケットインテリジェンス</title>
+    <meta name="description" content="リアルタイムのグローバル気象・金融マーケット情報プラットフォーム。最新の天気予報、為替レート、複利・ローン計算機、世界の取引所セッション、家計・金融ガイドを提供します。">
     <link rel="manifest" href="/manifest.json">
     <meta name="theme-color" content="#0b192c">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
         body { background: linear-gradient(135deg, #0b192c, #1e3e62); color: #fff; min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 15px 15px 90px 15px; transition: background 0.8s ease; overflow-x: hidden; }
         body.day-theme { background: linear-gradient(135deg, #1c7ed6, #4dabf7); }
         body.rain-theme { background: linear-gradient(135deg, #2b303a, #495057); }
@@ -205,14 +205,14 @@
         <a href="https://globalmetis.com/ja/" class="site-logo">🌍 Global Metis</a>
         <div class="nav-right">
             <div class="nav-links">
-                <a href="#guidesWrapper" id="navGuides">ガイド＆記事</a>
-                <a onclick="abrirModal('about')" id="navAbout">概要</a>
+                <a href="#guidesWrapper" id="navGuides">ガイド・記事</a>
+                <a onclick="abrirModal('about')" id="navAbout">運営情報</a>
                 <a onclick="abrirModal('privacy')" id="navPrivacy">プライバシーポリシー</a>
             </div>
             <select id="langSelector" class="lang-select" aria-label="言語" onchange="definirIdiomaManual(this.value)">
-                <option value="ja">🇯🇵 JA</option>
                 <option value="en">🇺🇸 EN</option>
                 <option value="pt">🇧🇷 PT</option>
+                <option value="ja">🇯🇵 JA</option>
                 <option value="es">🇪🇸 ES</option>
             </select>
         </div>
@@ -220,7 +220,7 @@
 
     <!-- Ticker Financeiro Dinâmico Global -->
     <div class="market-ticker" id="marketTicker">
-        <div class="market-item" id="txtLoadingMarkets">📈 グローバル金融市場ライブ</div>
+        <div class="market-item" id="txtLoadingMarkets">📈 世界の金融マーケット情報（ライブ）</div>
     </div>
 
     <!-- Barra de Cidades Favoritas -->
@@ -228,38 +228,38 @@
 
     <div class="app-container">
         <div class="search-box">
-            <input type="text" id="searchInput" placeholder="都市名、国名を入力..." onkeypress="if(event.key==='Enter') buscarCidade()">
+            <input type="text" id="searchInput" placeholder="都市、国、または地域を入力..." onkeypress="if(event.key==='Enter') buscarCidade()">
             <button onclick="buscarCidade()" title="検索">🔍</button>
             <button class="btn-gps" onclick="usarLocalizacaoGPS()" title="現在地を取得 🎯">🎯</button>
-            <button class="btn-fav" onclick="salvarCidadeAtual()" title="お気に入りに保存 ⭐">⭐</button>
+            <button class="btn-fav" onclick="salvarCidadeAtual()" title="都市を保存 ⭐">⭐</button>
         </div>
         <div class="hero-section">
             <div class="location-header">
                 <div class="location-name" id="locationName">📍 東京</div>
                 <div class="live-clock" id="liveClock">🕒 --:--:--</div>
             </div>
-            <div class="temp-main" id="tempMain">18°</div>
+            <div class="temp-main" id="tempMain">20°</div>
             <div class="condition-text" id="conditionText">快晴</div>
-            <div class="temp-min-max" id="tempMinMax">↑ 21° / ↓ 12°</div>
-            <div class="feels-like" id="feelsLike">体感温度 18°</div>
-            <div class="summary-box" id="summaryBox">最新の天気予報を同期中...</div>
+            <div class="temp-min-max" id="tempMinMax">↑ 24° / ↓ 15°</div>
+            <div class="feels-like" id="feelsLike">体感温度 21°</div>
+            <div class="summary-box" id="summaryBox">現地の予報を同期中...</div>
             <div class="mascot-stage" id="mascotStage"></div>
         </div>
         
         <div class="adsense-box" id="adsenseBox"></div>
         
         <div class="card-section">
-            <div class="section-title" id="titleHourly">時間別予報</div>
+            <div class="section-title" id="titleHourly">時間ごとの予報</div>
             <div class="hourly-scroll" id="hourlyScroll"></div>
         </div>
         <div class="card-section">
-            <div class="section-title" id="titleDaily">週間予報</div>
+            <div class="section-title" id="titleDaily">数日間の予報</div>
             <div id="dailyContainer"></div>
         </div>
 
         <!-- 1. Conversor de Moedas Instantâneo + Texto Informativo -->
         <div class="card-section">
-            <div class="section-title" id="titleConv">💱 通貨コンバーター</div>
+            <div class="section-title" id="titleConv">💱 通貨換算ツール</div>
             <div class="converter-box">
                 <input type="number" id="convInput" value="100" step="any" oninput="converterMoedas()">
                 <select id="convSelect" onchange="converterMoedas()">
@@ -274,18 +274,18 @@
 
         <!-- 2. Radar de Sessões das Bolsas Mundiais -->
         <div class="card-section">
-            <div class="section-title" id="titleMarketsRadar">🌐 世界市場セッションレーダー</div>
+            <div class="section-title" id="titleMarketsRadar">🌐 世界の市場セッションレーダー</div>
             <div class="markets-grid" id="marketsGrid">
-                <div class="market-status-card"><span>NYSE (ニューヨーク)</span><span id="statusNYSE">🟢 営業中</span></div>
-                <div class="market-status-card"><span>LSE (ロンドン)</span><span id="statusLSE">🟢 営業中</span></div>
-                <div class="market-status-card"><span>TSE (東京)</span><span id="statusTSE">🔴 休業中</span></div>
-                <div class="market-status-card"><span>B3 (サンパウロ)</span><span id="statusB3">🟢 営業中</span></div>
+                <div class="market-status-card"><span id="txtNyse">NYSE（ニューヨーク）</span><span id="statusNYSE">🟢 取引中</span></div>
+                <div class="market-status-card"><span id="txtLse">LSE（ロンドン）</span><span id="statusLSE">🟢 取引中</span></div>
+                <div class="market-status-card"><span id="txtTse">TSE（東京）</span><span id="statusTSE">🔴 時間外</span></div>
+                <div class="market-status-card"><span id="txtB3">B3（サンパウロ）</span><span id="statusB3">🟢 取引中</span></div>
             </div>
         </div>
 
         <!-- 3. Calculadora de Juros Compostos + Texto Informativo -->
         <div class="card-section">
-            <div class="section-title" id="titleCompound">📈 複利計算ツール</div>
+            <div class="section-title" id="titleCompound">📈 複利計算シミュレーション</div>
             <div class="calc-grid">
                 <div class="calc-row-2">
                     <div class="calc-field">
@@ -319,22 +319,22 @@
                         <label id="lblCiTimeUnit" for="ciTimeUnit">単位</label>
                         <select id="ciTimeUnit" onchange="calcularJurosCompostos()">
                             <option value="years" id="optTimeYears">年</option>
-                            <option value="months" id="optTimeMonths">ヶ月</option>
+                            <option value="months" id="optTimeMonths">月</option>
                         </select>
                     </div>
                 </div>
             </div>
-            <button type="button" class="calc-btn" id="btnCalcCompound" onclick="calcularJurosCompostos()">複利を計算する</button>
+            <button type="button" class="calc-btn" id="btnCalcCompound" onclick="calcularJurosCompostos()">資産推移を計算</button>
             <div class="calc-result-box" id="ciResultBox"></div>
             <div class="tool-info" id="ciInfoBox"></div>
         </div>
 
         <!-- 4. Calculadora de Financiamento / Empréstimos + Texto Informativo -->
         <div class="card-section">
-            <div class="section-title" id="titleLoan">🏦 ローン・融資シミュレーション</div>
+            <div class="section-title" id="titleLoan">🏦 ローン・返済シミュレーション</div>
             <div class="calc-grid">
                 <div class="calc-field">
-                    <label id="lblLoanAmount" for="loanAmount">借入・融資額</label>
+                    <label id="lblLoanAmount" for="loanAmount">借入・融資金額</label>
                     <input type="number" id="loanAmount" value="25000" min="0" step="any" oninput="calcularFinanciamento()">
                 </div>
                 <div class="calc-row-2">
@@ -352,7 +352,7 @@
                 </div>
                 <div class="calc-row-2">
                     <div class="calc-field">
-                        <label id="lblLoanMonths" for="loanMonths">返済回数（ヶ月）</label>
+                        <label id="lblLoanMonths" for="loanMonths">返済回数（月）</label>
                         <input type="number" id="loanMonths" value="36" min="1" max="480" step="1" oninput="calcularFinanciamento()">
                     </div>
                     <div class="calc-field">
@@ -364,103 +364,64 @@
                     </div>
                 </div>
             </div>
-            <button type="button" class="calc-btn" id="btnCalcLoan" onclick="calcularFinanciamento()">返済額を計算する</button>
+            <button type="button" class="calc-btn" id="btnCalcLoan" onclick="calcularFinanciamento()">返済額を計算</button>
             <div class="calc-result-box" id="loanResultBox"></div>
             <div class="tool-info" id="loanInfoBox"></div>
         </div>
 
         <!-- 5. Hubs Globais SEO -->
-        <nav class="hubs-section" aria-label="グローバル金融・為替ハブ">
-            <h3 id="hubsMainTitle">🌍 グローバル金融・為替ハブ</h3>
+        <nav class="hubs-section" aria-label="世界の金融・為替ハブ">
+            <h3 id="hubsMainTitle">🌍 世界の金融・為替ハブ</h3>
             <div class="hubs-grid">
                 <div class="hub-group">
-                    <h4 id="hubsCurrencyTitle">💱 為替ハブ</h4>
+                    <h4 id="hubsCurrencyTitle">💱 為替マーケットハブ</h4>
                     <div class="hub-links">
-                        <a href="/cambio/newyork.html">New York</a>
-                        <a href="/cambio/london.html">London</a>
-                        <a href="/cambio/tokyo.html">Tokyo</a>
-                        <a href="/cambio/saopaulo.html">São Paulo</a>
-                        <a href="/cambio/frankfurt.html">Frankfurt</a>
-                        <a href="/cambio/hongkong.html">Hong Kong</a>
-                        <a href="/cambio/singapore.html">Singapore</a>
-                        <a href="/cambio/paris.html">Paris</a>
-                        <a href="/cambio/sydney.html">Sydney</a>
+                        <a href="/cambio/newyork.html">ニューヨーク</a>
+                        <a href="/cambio/london.html">ロンドン</a>
+                        <a href="/cambio/tokyo.html">東京</a>
+                        <a href="/cambio/saopaulo.html">サンパウロ</a>
+                        <a href="/cambio/frankfurt.html">フランクフルト</a>
+                        <a href="/cambio/hongkong.html">香港</a>
+                        <a href="/cambio/singapore.html">シンガポール</a>
+                        <a href="/cambio/paris.html">パリ</a>
+                        <a href="/cambio/sydney.html">シドニー</a>
                     </div>
                 </div>
                 <div class="hub-group">
                     <h4 id="hubsStocksTitle">📈 株式市場ハブ</h4>
                     <div class="hub-links">
-                        <a href="/bolsas/newyork.html">New York</a>
-                        <a href="/bolsas/london.html">London</a>
-                        <a href="/bolsas/tokyo.html">Tokyo</a>
-                        <a href="/bolsas/saopaulo.html">São Paulo</a>
-                        <a href="/bolsas/frankfurt.html">Frankfurt</a>
-                        <a href="/bolsas/hongkong.html">Hong Kong</a>
-                        <a href="/bolsas/singapore.html">Singapore</a>
-                        <a href="/bolsas/paris.html">Paris</a>
-                        <a href="/bolsas/sydney.html">Sydney</a>
-                        <a href="/bolsas/zurich.html">Zurich</a>
+                        <a href="/bolsas/newyork.html">ニューヨーク</a>
+                        <a href="/bolsas/london.html">ロンドン</a>
+                        <a href="/bolsas/tokyo.html">東京</a>
+                        <a href="/bolsas/saopaulo.html">サンパウロ</a>
+                        <a href="/bolsas/frankfurt.html">フランクフルト</a>
+                        <a href="/bolsas/hongkong.html">香港</a>
+                        <a href="/bolsas/singapore.html">シンガポール</a>
+                        <a href="/bolsas/paris.html">パリ</a>
+                        <a href="/bolsas/sydney.html">シドニー</a>
+                        <a href="/bolsas/zurich.html">チューリッヒ</a>
                     </div>
                 </div>
             </div>
         </nav>
 
         <!-- 6. Guias Completos & Inteligência Editorial -->
-        <main class="guides-wrapper" id="guidesWrapper">
-            <article class="guide-article">
-                <h2>📈 世界株式市場と取引セッションガイド</h2>
-                <p>異なるタイムゾーンで稼働する世界の証券取引所の仕組みを理解することは、グローバルな資金フローを追う投資家や企業にとって重要です。金融市場は平日に24時間サイクルで連動し、流動性がアジア太平洋から欧州、そして米州へと移り変わります。</p>
-                <h3>主な国際金融センター</h3>
-                <ul>
-                    <li><strong>ニューヨーク証券取引所（NYSE）＆ NASDAQ：</strong> 時価総額世界最大の株式市場であり、テクノロジー株や大型株の基準となります。</li>
-                    <li><strong>ロンドン証券取引所（LSE）：</strong> 欧州の主要な流動性ハブであり、アジア市場の引けと米国市場の寄り付きをつなぎます。</li>
-                    <li><strong>東京証券取引所（TSE）：</strong> アジアを代表する株式市場で、輸出関連企業や日本銀行の金融政策、USD/JPYの動向の影響を受けます。</li>
-                    <li><strong>B3（サンパウロ証券取引所）：</strong> 中南米を代表する取引所で、コモディティ市況や新興国への資金流入、金利差を反映します。</li>
-                </ul>
-                <div class="guide-highlight">
-                    <strong>流動性のポイント：</strong> ロンドン市場とニューヨーク市場の取引時間が重なる時間帯（13:30〜16:30 UTC）は、機関投資家の取引が増え、流動性と値動きが大きくなりやすい傾向があります。
-                </div>
-            </article>
-            <article class="guide-article">
-                <h2>💱 外国為替（Forex）と通貨変動の要因</h2>
-                <p>外国為替市場は世界最大かつ最も流動性の高い金融市場であり、銀行ネットワークを通じて相対取引（OTC）で行われます。</p>
-                <h3>為替レートを動かす主な要因</h3>
-                <ul>
-                    <li><strong>中央銀行の金利政策：</strong> FRB、ECB、日銀、ブラジル中央銀行などの金利判断は金利差を生み、資金の流れに影響します。</li>
-                    <li><strong>インフレ率と購買力：</strong> 物価指標は実質金利や通貨価値の維持に関わります。</li>
-                    <li><strong>貿易収支と資源・農産物：</strong> 資源や農産物の輸出国は、世界的な需要の高まりに応じて通貨が買われやすくなります。</li>
-                </ul>
-            </article>
-            <article class="guide-article">
-                <h2>💰 健全な家計管理と資産形成の基本</h2>
-                <p>インフレや為替変動、予期せぬ支出に備えるには、計画的な資金配分とリスク管理が欠かせません。</p>
-                <ul>
-                    <li><strong>1. 緊急資金の確保：</strong> 生活費の数ヶ月分から1年分を目安に、流動性の高い安全な資産を確保します。</li>
-                    <li><strong>2. 予算のバランス配分：</strong> 必須支出、自己投資や生活費、貯蓄・投資の比率を明確にします。</li>
-                    <li><strong>3. インフレへの備え：</strong> 長期的な購買力維持のため、自身の許容リスクに合った分散運用を検討します。</li>
-                    <li><strong>4. リスク管理：</strong> 高金利の借入を避け、短期の生活防衛資金を高変動性資産に回さないようにします。</li>
-                </ul>
-            </article>
-            <article class="guide-article">
-                <h2>🌦️ 気象データと経済活動への影響</h2>
-                <p>Global Metisは<strong>ノルウェー気象研究所（MET Norway）</strong>の数値気象モデルを活用しています。気温や降水量の変化は、エネルギー需要や物流、農産物の生育・価格にもつながります。</p>
-            </article>
-        </main>
+        <main class="guides-wrapper" id="guidesWrapper"></main>
     </div>
 
     <footer>
         <div class="footer-links">
-            <a id="linkAbout" onclick="abrirModal('about')">概要</a>
+            <a id="linkAbout" onclick="abrirModal('about')">運営情報</a>
             <a id="linkPrivacy" onclick="abrirModal('privacy')">プライバシーポリシー</a>
-            <a id="linkCookies" onclick="abrirModal('cookies')">Cookieポリシー</a>
+            <a id="linkCookies" onclick="abrirModal('cookies')">クッキーポリシー</a>
             <a id="linkTerms" onclick="abrirModal('terms')">利用規約</a>
             <button id="btnFooterInstall" class="btn-footer-install" onclick="instalarAppPWA()">📱 アプリをインストール</button>
         </div>
         <div class="footer-cookie-notice" id="footerCookieNotice">
-            🍪 <b>Cookie通知：</b> 当サイトはGDPRおよびLGPDに準拠し、天気予報や広告表示の最適化のためにCookieを使用します。<a onclick="abrirModal('cookies')">Cookieポリシー</a> または <a onclick="reabrirBannerCookies()">設定を変更</a>。
+            🍪 <b>クッキーに関するお知らせ:</b> 当サイトはGDPRおよびLGPDに準拠し、天気予報や時間帯の最適化、広告配信のためにクッキーとアクセス解析を利用しています。<a onclick="abrirModal('cookies')">クッキーポリシー</a>または<a onclick="reabrirBannerCookies()">設定管理</a>をご確認ください。
         </div>
         <p>&copy; 2026 Global Weather & Markets. All rights reserved.</p>
-        <p class="footer-credits" id="footerCredits">気象データ提供：<a href="https://www.met.no/" target="_blank" rel="noopener" style="color:inherit; text-decoration:underline;">ノルウェー気象研究所 (MET Norway)</a> CC BY 4.0</p>
+        <p class="footer-credits" id="footerCredits">気象データは <a href="https://www.met.no/" target="_blank" rel="noopener" style="color:inherit; text-decoration:underline;">ノルウェー気象研究所（MET Norway）</a> より CC BY 4.0 ライセンスで提供されています</p>
     </footer>
 
     <!-- Janela Modal Dinâmica -->
@@ -477,8 +438,8 @@
     <!-- Banner de Cookies -->
     <div id="cookieBanner">
         <div class="cookie-text-group">
-            <div class="cookie-header-title" id="cookieTitle">🍪 プライバシーとCookieの使用について</div>
-            <p id="cookieText">GDPRおよびLGPDに準拠し、天気予報やタイムゾーンの調整、関連広告の配信のためにCookieと位置情報データを使用します。詳細は<a onclick="abrirModal('cookies')">Cookieポリシー</a>をご確認ください。</p>
+            <div class="cookie-header-title" id="cookieTitle">🍪 プライバシーと透明性への取り組み</div>
+            <p id="cookieText">GDPRおよびLGPDに準拠し、天気予報の個別最適化、現地タイムゾーンの調整、関連性の高い広告表示のためにクッキーと位置情報を利用します。詳細は<a onclick="abrirModal('cookies')">クッキーポリシー</a>をご覧ください。</p>
         </div>
         <div class="cookie-actions">
             <button class="btn-reject" id="btnReject" onclick="salvarPreferenciaCookies('essential')">必須のみ</button>
@@ -497,69 +458,239 @@
         let idiomaUsuario = detectarIdiomaInicial();
 
         const CONDITIONS_MAP = {
-            "Clear Sky": "快晴",
-            "Clear Night": "晴れ（夜）",
-            "Partly Cloudy": "部分的に曇り",
-            "Cloudy": "曇り",
-            "Rain Showers": "にわか雨",
-            "Rain": "雨",
-            "Thunderstorm": "雷雨",
-            "Snow": "雪",
-            "Fog": "霧"
+            "Clear Sky": { en: "Clear Sky", pt: "Céu Limpo", es: "Cielo Despejado", ja: "快晴" },
+            "Clear Night": { en: "Clear Night", pt: "Noite Limpa", es: "Noche Despejada", ja: "晴れ（夜）" },
+            "Partly Cloudy": { en: "Partly Cloudy", pt: "Parcialmente Nublado", es: "Parcialmente Nublado", ja: "部分的に曇り" },
+            "Cloudy": { en: "Cloudy", pt: "Nublado", es: "Nublado", ja: "曇り" },
+            "Rain Showers": { en: "Rain Showers", pt: "Pancadas de Chuva", es: "Chubascos", ja: "にわか雨" },
+            "Rain": { en: "Rain", pt: "Chuva", es: "Lluvia", ja: "雨" },
+            "Thunderstorm": { en: "Thunderstorm", pt: "Tempestade", es: "Tormenta", ja: "雷雨" },
+            "Snow": { en: "Snow", pt: "Neve", es: "Nieve", ja: "雪" },
+            "Fog": { en: "Fog", pt: "Neblina", es: "Niebla", ja: "霧" }
         };
 
         function traduzirCondicao(textEn) {
-            return CONDITIONS_MAP[textEn] || textEn;
+            if (CONDITIONS_MAP[textEn] && CONDITIONS_MAP[textEn][idiomaUsuario]) {
+                return CONDITIONS_MAP[textEn][idiomaUsuario];
+            }
+            return textEn;
         }
 
-        const t = {
-            locale: "ja-JP",
-            feelsLike: "体感温度",
-            ciFinalLabel: "予想最終残高",
-            ciInvestedLabel: "元本・積立合計",
-            ciInterestLabel: "利息合計",
-            loanPaymentFixed: "予想毎月返済額",
-            loanPaymentRange: "初回〜最終回の返済額",
-            loanTotalPaid: "総返済額",
-            loanTotalInterest: "利息総額",
-            loadingMarkets: "📈 グローバル金融市場ライブ",
-            locatingText: "📍 GPS取得中...",
-            gpsDenied: "ブラウザの位置情報許可を有効にするか、都市名を入力してください。",
-            iosInstallTitle: "iPhone / iPad にインストール",
-            iosInstallHtml: "<p>Safariで<b>共有</b>ボタンをタップし、<b>ホーム画面に追加</b>を選択してください。</p>",
-            convInfoHtml: `
-                <p><strong>用途：</strong>海外旅行や越境ショッピング、為替レートの確認に便利な通貨換算ツールです。</p>
-                <p><strong>使い方：</strong>金額を入力し、基準通貨（USD・EUR・BRL）を選択すると換算結果が表示されます。</p>
-                <p><strong>提供内容：</strong>参考為替レートに基づく換算結果を表示します。実際の金融機関の手数料やスプレッドは異なる場合があります。</p>
-            `,
-            ciInfoHtml: `
-                <p><strong>用途：</strong>利息がさらに利息を生む複利効果による資産推移をシミュレーションします。</p>
-                <p><strong>使い方：</strong>初期投資額、毎月の積立額、金利（年利・月利）、運用期間を入力してください。</p>
-                <p><strong>提供内容：</strong>予想残高、積立元本合計、利息合計を表示します（学習・参考目的であり投資助言ではありません）。</p>
-            `,
-            loanInfoHtml: `
-                <p><strong>用途：</strong>ローンや分割払いの利用前に、毎月の返済額と総コストの目安を確認できます。</p>
-                <p><strong>使い方：</strong>借入額、金利、返済回数、返済方式を入力してください。</p>
-                <p><strong>提供内容：</strong>返済額の目安、総返済額、利息総額を表示します。実際の契約では手数料や保険料が加わる場合があります。</p>
-            `,
-            modals: {
-                about: { title: "概要", content: "<p>気象データ提供：ノルウェー気象研究所 (MET Norway) CC BY 4.0。連絡先: <b>globalmetis.contato@gmail.com</b></p>" },
-                cookies: { title: "Cookieポリシー", content: "<p>当サイト（globalmetis.com）は、機能向上およびGoogle AdSenseなどの広告配信のためにCookieを使用します。</p><button class=\"btn-reopen-cookie\" onclick=\"fecharModal(); reabrirBannerCookies();\">⚙️ 設定変更</button>" },
-                privacy: { title: "プライバシーポリシー", content: "<p>GDPRおよびLGPDに準拠しています。連絡先: <b>globalmetis.contato@gmail.com</b></p>" },
-                terms: { title: "利用規約", content: "<p>globalmetis.com の情報は参考および学習目的で提供されます。</p>" }
+        const UI_TEXTS = {
+            ja: {
+                locale: "ja-JP",
+                searchPlace: "都市、国、または地域を入力...",
+                navGuides: "ガイド・記事",
+                navAbout: "運営情報",
+                navPrivacy: "プライバシーポリシー",
+                about: "運営情報", privacy: "プライバシーポリシー", cookies: "クッキーポリシー", terms: "利用規約",
+                installBtn: "📱 アプリをインストール",
+                iosInstallTitle: "iPhone / iPad へのインストール方法",
+                iosInstallHtml: "<p>Safariで<b>共有</b>ボタン（上矢印の四角いアイコン）をタップし、下にスクロールして<b>ホーム画面に追加</b>をタップしてください。</p>",
+                cookieTitle: "🍪 プライバシーと透明性への取り組み",
+                cookieMsg: "GDPRおよびLGPDに準拠し、天気予報の個別最適化、現地タイムゾーンの調整、関連性の高い広告表示のためにクッキーと位置情報を利用します。詳細は<a onclick=\"abrirModal('cookies')\">クッキーポリシー</a>をご覧ください。",
+                footerCookieHtml: "🍪 <b>クッキーに関するお知らせ:</b> 当サイトはGDPRおよびLGPDに準拠し、予報や広告の最適化のためにクッキーを利用しています。<a onclick=\"abrirModal('cookies')\">クッキーポリシー</a>または<a onclick=\"reabrirBannerCookies()\">設定管理</a>をご確認ください。",
+                reject: "必須のみ", accept: "すべて同意",
+                loadingMarkets: "📈 世界の金融マーケット情報（ライブ）",
+                feelsLike: "体感温度",
+                credits: "気象データは <a href=\"https://www.met.no/\" target=\"_blank\" rel=\"noopener\" style=\"color:inherit; text-decoration:underline;\">ノルウェー気象研究所（MET Norway）</a> より CC BY 4.0 ライセンスで提供されています",
+                hourlyTitle: "時間ごとの予報",
+                dailyTitle: "数日間の予報",
+                titleConv: "💱 通貨換算ツール",
+                convInfoHtml: `
+                    <p><strong>用途:</strong> 海外旅行、海外ショッピング、為替レートの確認時に通貨間の金額を素早く比較できます。</p>
+                    <p><strong>使い方:</strong> 金額を入力し、基準通貨（USD、EUR、またはBRL）を選択すると換算結果がすぐに表示されます。</p>
+                    <p><strong>表示内容:</strong> 定期的に更新される参考レートに基づく換算値です。実際の銀行スプレッド、カード手数料、税金などは異なる場合があります。</p>
+                `,
+                titleMarketsRadar: "🌐 世界の市場セッションレーダー",
+                titleCompound: "📈 複利計算シミュレーション",
+                lblCiInitial: "初期投資額",
+                lblCiMonthly: "毎月の積立額",
+                lblCiRate: "金利（%）",
+                lblCiRateType: "金利期間",
+                optRateAnnual: "年利（% / 年）",
+                optRateMonthly: "月利（% / 月）",
+                lblCiTime: "運用期間",
+                lblCiTimeUnit: "単位",
+                optTimeYears: "年",
+                optTimeMonths: "月",
+                btnCalcCompound: "資産推移を計算",
+                ciFinalLabel: "予想最終残高",
+                ciInvestedLabel: "投資元本合計",
+                ciInterestLabel: "累計利息額",
+                ciInfoHtml: `
+                    <p><strong>用途:</strong> 各期間で得た利息がさらに利息を生む複利効果によって、資産が時間とともにどのように増えるかをシミュレーションします。</p>
+                    <p><strong>使い方:</strong> 初期投資額、毎月の積立額、金利（年利または月利）、運用期間を入力してください。</p>
+                    <p><strong>表示内容:</strong> 予想最終残高、積立元本合計、累計利息を表示します。学習・計画用の参考値であり、投資助言ではありません。</p>
+                `,
+                titleLoan: "🏦 ローン・返済シミュレーション",
+                lblLoanAmount: "借入・融資金額",
+                lblLoanRate: "金利（%）",
+                lblLoanRateType: "金利期間",
+                optLoanAnnual: "年利（% / 年）",
+                optLoanMonthly: "月利（% / 月）",
+                lblLoanMonths: "返済回数（月）",
+                lblLoanSystem: "返済方式",
+                optLoanPrice: "元利均等返済（定額）",
+                optLoanSac: "元金均等返済（逓減）",
+                btnCalcLoan: "返済額を計算",
+                loanPaymentFixed: "予想毎月返済額",
+                loanPaymentRange: "初回〜最終返済額",
+                loanTotalPaid: "総返済額",
+                loanTotalInterest: "利息合計コスト",
+                loanInfoHtml: `
+                    <p><strong>用途:</strong> ローンや融資を利用する前に、毎月の返済額と総利息コストの目安を確認できます。</p>
+                    <p><strong>使い方:</strong> 借入金額、金利、返済回数を入力し、元利均等返済（定額）または元金均等返済（逓減）を選択してください。</p>
+                    <p><strong>表示内容:</strong> 推定返済額、総返済額、利息合計を算出します。実際の金融機関の条件には手数料、保険料、諸税が含まれる場合があります。</p>
+                `,
+                hubsMainTitle: "🌍 世界の金融・為替ハブ",
+                hubsCurrencyTitle: "💱 為替マーケットハブ",
+                hubsStocksTitle: "📈 株式市場ハブ",
+                locatingText: "📍 GPSで現在地を取得中...",
+                gpsDenied: "ブラウザの設定で位置情報の利用を許可するか、都市名を手動で検索してください。",
+                guidesHtml: `
+                    <article class="guide-article">
+                        <h2>📈 世界の株式市場と取引セッション完全ガイド</h2>
+                        <p>異なるタイムゾーンで稼働する世界の株式市場の仕組みを理解することは、国際的な資金フローを追う投資家や企業にとって重要です。金融市場は平日に連続的なサイクルを描き、アジア太平洋から欧州、そして米州へと流動性が移り変わります。</p>
+                        <h3>主要なグローバル金融センター</h3>
+                        <ul>
+                            <li><strong>ニューヨーク証券取引所（NYSE）とNASDAQ:</strong> 時価総額で世界最大級の株式市場であり、テクノロジー、産業、大型株の評価基準となります。</li>
+                            <li><strong>ロンドン証券取引所（LSE）:</strong> 欧州の主要な流動性ハブであり、アジア市場の引けと米国市場の寄り付きをつなぎ、活発な取引量を生み出します。</li>
+                            <li><strong>東京証券取引所（TSE）:</strong> アジアを代表する株式市場の一つであり、輸出関連企業、日本銀行の金融政策、USD/JPYの為替動向の影響を大きく受けます。</li>
+                            <li><strong>B3（サンパウロ証券取引所）:</strong> 中南米を代表する取引所であり、コモディティサイクル、新興国への資金流入、金利差などを反映します。</li>
+                        </ul>
+                        <div class="guide-highlight">
+                            <strong>取引時間の重複（オーバーラップ）:</strong> 1日のうち流動性や値動きが高まりやすいのは、ロンドンとニューヨークの取引時間が重なる時間帯（13:30〜16:30 UTC）で、両地域の機関投資家によるポートフォリオ調整が活発化します。
+                        </div>
+                    </article>
+                    <article class="guide-article">
+                        <h2>💱 外国為替市場（FX）と国際通貨の動向</h2>
+                        <p>外国為替市場は1日の取引高が数兆ドル規模に達する世界最大かつ最も流動性の高い金融市場です。中央集権的な取引所だけでなく、世界中の銀行ネットワークを通じた相対取引（OTC）を中心に行われます。</p>
+                        <h3>為替レートを動かす主な要因</h3>
+                        <ul>
+                            <li><strong>中央銀行の金利政策:</strong> 米連邦準備制度理事会（FRB）、欧州中央銀行（ECB）、日本銀行（BoJ）、ブラジル中央銀行（BCB）などの政策金利は、金利差や資金移動に直接影響します。</li>
+                            <li><strong>インフレ率と購買力:</strong> 消費者物価指数（CPI）は実質利回りを左右し、物価の安定が保たれる通貨は長期的な購買力を維持しやすくなります。</li>
+                            <li><strong>貿易収支とコモディティ:</strong> 資源や農産物を輸出する国（ブラジルやオーストラリアなど）では、原材料やエネルギー、食料への世界的な需要が高まる際に通貨高要因となり得ます。</li>
+                        </ul>
+                        <p>リアルタイムの通貨換算ツールを活用することで、旅行者、リモートワーカー、輸入業者、投資家がレート変動を把握し、外貨両替や国際送金のタイミングを検討しやすくなります。</p>
+                    </article>
+                    <article class="guide-article">
+                        <h2>💰 個人の金融健全性とマクロ経済への備え</h2>
+                        <p>健全な家計と資産形成を維持するには、インフレや為替変動、景気後退局面への備えが欠かせません。主要金融都市であっても新興国であっても、計画的な習慣が長期的な安定につながります。</p>
+                        <h3>金融健全性を支える4つの柱</h3>
+                        <ul>
+                            <li><strong>1. 生活防衛資金と通貨分散:</strong> 流動性が高くリスクを抑えた形で、生活費の6〜12か月分を目安に備えることが重要です。一部を主要通貨（USD、EUR、CHFなど）に分散することで、自国通貨の下落リスクを緩和できます。</li>
+                            <li><strong>2. 計画的な予算配分:</strong> 基礎的な生活費に50%、自己投資やライフスタイルに30%、借入返済や資産形成に20%以上を充てるなど、無理のない枠組みを持つことが役立ちます。</li>
+                            <li><strong>3. インフレへの対策:</strong> 利息やリターンを生まない現金のまま放置すると、物価上昇によって実質的な購買力が目減りします。リスク許容度に合わせ、インフレ連動債や配当株、分散型インデックスファンドなどを検討します。</li>
+                            <li><strong>4. 継続的なリスク管理:</strong> 高金利の消費者ローンを避け、短期の生活防衛資金を暗号資産やレバレッジ取引など価格変動の大きい資産に投じないことが基本です。</li>
+                        </ul>
+                    </article>
+                    <article class="guide-article">
+                        <h2>🌦️ 高精度気象モデルと経済への影響</h2>
+                        <p>Global Metis は、<strong>ノルウェー気象研究所（MET Norway）</strong>が提供する数値気象予報モデルを組み込んでいます。日々の外出や予定だけでなく、気象情報はサプライチェーン、エネルギー需要、航空物流、農産物価格などとも深く関わっています。</p>
+                        <p>北米や欧州における気温変動は天然ガスや電力の需要に影響し、南米の降水パターンは大豆・コーヒー・砂糖などの収穫見通しに影響を与えるため、リアルタイムの気象情報がマーケット分析の参考にもなります。</p>
+                    </article>
+                `,
+                modals: {
+                    about: { 
+                        title: "Global Weather & Markets Intelligence について", 
+                        content: `<p><b>Global Weather & Market Intelligence（globalmetis.com）</b>は、リアルタイムの気象予報と世界の金融マーケット情報を提供する独立系Webプラットフォームです。</p><h4>技術面の取り組み</h4><p>環境データと経済指標をわかりやすく表示するため、モバイル利用を重視した設計を採用し、表示速度や閲覧性の向上に取り組んでいます。</p><h4>公式データソースとライセンス</h4><ul><li><b>気象モデル:</b> <i>ノルウェー気象研究所（MET Norway）</i> が提供する数値予報データを Creative Commons Attribution 4.0 International（CC BY 4.0）ライセンスに基づき連携しています。</li><li><b>為替・マーケット情報:</b> 世界の市場時間帯に応じた為替レートや指標情報を掲載しています。</li></ul><h4>グローバル対応とコンプライアンス</h4><p>世界中の利用者が使いやすいよう、タイムゾーンや地域設定、多言語表示に対応し、プライバシー保護と透明性の確保に努めています。</p>` 
+                    },
+                    cookies: { 
+                        title: "クッキーポリシーとトラッキング技術", 
+                        content: `<p>本クッキーポリシーでは、<b>globalmetis.com</b>（以下「当サイト」）がWebサイトおよびプログレッシブウェブアプリ（PWA）の提供にあたってクッキー（Cookie）および類似技術を利用する方法について説明します。</p><h4>1. クッキーとは</h4><p>クッキーとは、Webサイトにアクセスした際にお使いのブラウザを通じて端末に保存される小さなテキストファイルです。機能の維持、利便性向上、利用状況の把握などに用いられます。</p><h4>2. 利用するクッキーの種類</h4><ul><li><b>必須クッキー:</b> セキュリティ維持、基本機能の提供、クッキー同意設定の保存に必要なクッキーです。</li><li><b>機能性クッキー:</b> 保存されたお気に入り都市（LocalStorage）や地域設定を記憶するために利用されます。</li><li><b>第三者配信の広告・解析クッキー:</b> Google AdSense などの広告配信ネットワークと連携しており、当サイトや他サイトへのアクセス履歴に基づく広告配信のためにクッキー（DARTクッキー等）が使用される場合があります。</li></ul><h4>3. 設定の変更方法</h4><p>ブラウザの設定からクッキーを管理・ブロックできます。また、以下のボタンからいつでも同意設定を確認・変更できます。</p><button class="btn-reopen-cookie" onclick="fecharModal(); reabrirBannerCookies();">⚙️ クッキー設定を管理</button>` 
+                    },
+                    privacy: { 
+                        title: "プライバシーポリシー（GDPR・LGPD・AdSense準拠）", 
+                        content: `<p><b>施行日:</b> 2026年11月<br><b>プラットフォーム:</b> globalmetis.com<br><b>連絡先メール:</b> globalmetis.contato@gmail.com</p><h4>1. プライバシー保護への取り組み</h4><p>Global Metis は利用者のプライバシーを尊重し、EU一般データ保護規則（GDPR）、ブラジル一般データ保護法（LGPD）、および Google AdSense のパブリッシャー要件に配慮して情報を取り扱います。</p><h4>2. 取得する情報</h4><ul><li><b>リアルタイム位置情報:</b> 現地の天気を表示する目的で、ブラウザの位置情報またはIPアドレスに基づく推定位置をリアルタイムに処理します。正確な物理的位置の履歴を永続的にデータベースへ保存することはありません。</li><li><b>ローカルストレージデータ:</b> お気に入り登録した都市やクッキー同意の選択内容は、利用者の端末内（LocalStorage）に保存されます。</li><li><b>アクセスログ・運用データ:</b> セキュリティ確保や品質向上のため、一般的な接続ログ、ブラウザ情報、アクセス日時が処理される場合があります。</li></ul><h4>3. 第三者による広告配信（Google AdSense）</h4><p>当サイトでは Google を含む第三者配信事業者がクッキーを使用して、過去のアクセス情報に基づいた広告を配信します。利用者は Google の広告設定ページからパーソナライズ広告の設定を確認できます。</p><h4>4. お問い合わせ</h4><p>プライバシーに関するご質問やご要望は、以下の連絡先までお問い合わせください: <b>globalmetis.contato@gmail.com</b>。</p>` 
+                    },
+                    terms: {
+                        title: "利用規約",
+                        content: `<p><b>施行日:</b> 2026年11月<br><b>プラットフォーム:</b> globalmetis.com</p><h4>1. 利用規約への同意</h4><p><b>globalmetis.com</b> にアクセスまたは利用することで、本利用規約に同意したものとみなされます。同意されない場合は当サイトのご利用をお控えください。</p><h4>2. 知的財産権とデータライセンス</h4><p>気象データはノルウェー気象研究所（MET Norway）の Creative Commons Attribution 4.0 International（CC BY 4.0）ライセンスに基づき提供されています。金融データフィードやサイトデザインの要素は Global Metis に帰属します。</p><h4>3. 免責事項</h4><p>当サイトは情報提供および学習・参考を目的としてリアルタイム情報を提供します。外部データの常時稼働を保証するものではなく、表示される数値や計算結果に基づく投資・契約等の判断については利用者ご自身の責任で行ってください。</p>`
+                    }
+                }
             }
         };
 
-        document.getElementById('convInfoBox').innerHTML = t.convInfoHtml;
-        document.getElementById('ciInfoBox').innerHTML = t.ciInfoHtml;
-        document.getElementById('loanInfoBox').innerHTML = t.loanInfoHtml;
+        let t = UI_TEXTS[idiomaUsuario] || UI_TEXTS.ja;
 
         function formatarNumero(valor, decimais = 2) {
             const num = Number.isFinite(valor) ? valor : 0;
-            return num.toLocaleString(t.locale, {
+            return num.toLocaleString(t.locale || userLang, {
                 minimumFractionDigits: decimais,
                 maximumFractionDigits: decimais
             });
+        }
+
+        function aplicarIdiomaInterface() {
+            t = UI_TEXTS[idiomaUsuario] || UI_TEXTS.ja;
+            document.getElementById('htmlRoot').setAttribute('lang', idiomaUsuario);
+            const langSel = document.getElementById('langSelector');
+            if (langSel) langSel.value = idiomaUsuario;
+
+            document.getElementById('searchInput').placeholder = t.searchPlace;
+            document.getElementById('navGuides').innerText = t.navGuides;
+            document.getElementById('navAbout').innerText = t.navAbout;
+            document.getElementById('navPrivacy').innerText = t.navPrivacy;
+            document.getElementById('titleHourly').innerText = t.hourlyTitle;
+            document.getElementById('titleDaily').innerText = t.dailyTitle;
+            document.getElementById('titleConv').innerText = t.titleConv;
+            document.getElementById('convInfoBox').innerHTML = t.convInfoHtml;
+            document.getElementById('titleMarketsRadar').innerText = t.titleMarketsRadar;
+
+            // Calculadora de Juros Compostos
+            document.getElementById('titleCompound').innerText = t.titleCompound;
+            document.getElementById('lblCiInitial').innerText = t.lblCiInitial;
+            document.getElementById('lblCiMonthly').innerText = t.lblCiMonthly;
+            document.getElementById('lblCiRate').innerText = t.lblCiRate;
+            document.getElementById('lblCiRateType').innerText = t.lblCiRateType;
+            document.getElementById('optRateAnnual').innerText = t.optRateAnnual;
+            document.getElementById('optRateMonthly').innerText = t.optRateMonthly;
+            document.getElementById('lblCiTime').innerText = t.lblCiTime;
+            document.getElementById('lblCiTimeUnit').innerText = t.lblCiTimeUnit;
+            document.getElementById('optTimeYears').innerText = t.optTimeYears;
+            document.getElementById('optTimeMonths').innerText = t.optTimeMonths;
+            document.getElementById('btnCalcCompound').innerText = t.btnCalcCompound;
+            document.getElementById('ciInfoBox').innerHTML = t.ciInfoHtml;
+
+            // Calculadora de Financiamento / Empréstimos
+            document.getElementById('titleLoan').innerText = t.titleLoan;
+            document.getElementById('lblLoanAmount').innerText = t.lblLoanAmount;
+            document.getElementById('lblLoanRate').innerText = t.lblLoanRate;
+            document.getElementById('lblLoanRateType').innerText = t.lblLoanRateType;
+            document.getElementById('optLoanAnnual').innerText = t.optLoanAnnual;
+            document.getElementById('optLoanMonthly').innerText = t.optLoanMonthly;
+            document.getElementById('lblLoanMonths').innerText = t.lblLoanMonths;
+            document.getElementById('lblLoanSystem').innerText = t.lblLoanSystem;
+            document.getElementById('optLoanPrice').innerText = t.optLoanPrice;
+            document.getElementById('optLoanSac').innerText = t.optLoanSac;
+            document.getElementById('btnCalcLoan').innerText = t.btnCalcLoan;
+            document.getElementById('loanInfoBox').innerHTML = t.loanInfoHtml;
+
+            // Hubs e Rodapé
+            document.getElementById('hubsMainTitle').innerText = t.hubsMainTitle;
+            document.getElementById('hubsCurrencyTitle').innerText = t.hubsCurrencyTitle;
+            document.getElementById('hubsStocksTitle').innerText = t.hubsStocksTitle;
+            document.getElementById('linkAbout').innerText = t.about;
+            document.getElementById('linkPrivacy').innerText = t.privacy;
+            document.getElementById('linkCookies').innerText = t.cookies;
+            document.getElementById('linkTerms').innerText = t.terms;
+            document.getElementById('btnFooterInstall').innerText = t.installBtn;
+            document.getElementById('cookieTitle').innerText = t.cookieTitle;
+            document.getElementById('cookieText').innerHTML = t.cookieMsg;
+            document.getElementById('footerCookieNotice').innerHTML = t.footerCookieHtml;
+            document.getElementById('btnReject').innerText = t.reject;
+            document.getElementById('btnAccept').innerText = t.accept;
+            document.getElementById('txtLoadingMarkets').innerText = t.loadingMarkets;
+            document.getElementById('footerCredits').innerHTML = t.credits;
+            if (t.guidesHtml) {
+                document.getElementById('guidesWrapper').innerHTML = t.guidesHtml;
+            }
+
+            atualizarRadarBolsas();
+            converterMoedas();
+            calcularJurosCompostos();
+            calcularFinanciamento();
         }
 
         function definirIdiomaManual(novoIdioma) {
@@ -623,8 +754,8 @@
                     deferredPrompt = null;
                 });
             } else if (isIosDevice && !isStandaloneApp) {
-                document.getElementById('modalTitle').innerText = t.iosInstallTitle;
-                document.getElementById('modalBody').innerHTML = t.iosInstallHtml;
+                document.getElementById('modalTitle').innerText = t.iosInstallTitle || 'iPhone / iPad へのインストール';
+                document.getElementById('modalBody').innerHTML = t.iosInstallHtml || '<p>共有ボタンからホーム画面に追加してください。</p>';
                 document.getElementById('infoModal').style.display = 'flex';
             }
         }
@@ -632,7 +763,7 @@
         let fusoHorarioAtual = Intl.DateTimeFormat().resolvedOptions().timeZone || 'Asia/Tokyo';
         function atualizarRelogio() {
             try {
-                const agora = new Date().toLocaleTimeString(t.locale, { timeZone: fusoHorarioAtual, hour: '2-digit', minute: '2-digit', second: '2-digit' });
+                const agora = new Date().toLocaleTimeString(t.locale || userLang, { timeZone: fusoHorarioAtual, hour: '2-digit', minute: '2-digit', second: '2-digit' });
                 document.getElementById('liveClock').innerText = `🕒 ${agora}`;
             } catch (e) {
                 document.getElementById('liveClock').innerText = `🕒 ${new Date().toLocaleTimeString()}`;
@@ -664,15 +795,14 @@
             const b3Open = isWeekday && utcHour >= 13 && utcHour < 20;
 
             const renderBadge = (isOpen) => isOpen
-                ? `<span class="badge-open">🟢 営業中</span>`
-                : `<span class="badge-closed">🔴 休業中</span>`;
+                ? `<span class="badge-open">🟢 取引中</span>`
+                : `<span class="badge-closed">🔴 時間外</span>`;
 
             document.getElementById('statusNYSE').innerHTML = renderBadge(nyseOpen);
             document.getElementById('statusLSE').innerHTML = renderBadge(lseOpen);
             document.getElementById('statusTSE').innerHTML = renderBadge(tseOpen);
             document.getElementById('statusB3').innerHTML = renderBadge(b3Open);
         }
-        atualizarRadarBolsas();
         setInterval(atualizarRadarBolsas, 30000);
 
         let globalRates = null;
@@ -773,10 +903,6 @@
             `;
         }
 
-        calcularJurosCompostos();
-        calcularFinanciamento();
-        converterMoedas();
-
         async function carregarMercados() {
             try {
                 const res = await fetch('https://economia.awesomeapi.com.br/json/last/USD-BRL,EUR-BRL,BTC-BRL,USD-JPY,EUR-USD');
@@ -786,12 +912,12 @@
 
                 const ticker = document.getElementById('marketTicker');
                 ticker.innerHTML = `
-                    <div class="market-item">💵 USD/JPY: <b>¥${parseFloat(data.USDJPY.bid).toFixed(2)}</b> <span class="${data.USDJPY.varBid >= 0 ? 'up':'down'}">${data.USDJPY.varBid >= 0 ? '▲':'▼'} ${data.USDJPY.pctChange}%</span></div>
+                    <div class="market-item">💵 USD/BRL: <b>R$ ${parseFloat(data.USDBRL.bid).toFixed(2)}</b></div>
                     <div class="market-item">💶 EUR/USD: <b>$${parseFloat(data.EURUSD.bid).toFixed(4)}</b></div>
                     <div class="market-item">₿ Bitcoin: <b>$${parseFloat(data.BTCBRL.bid / data.USDBRL.bid).toLocaleString('en-US', {maximumFractionDigits:0})}</b></div>
                 `;
             } catch (e) {
-                document.getElementById('marketTicker').innerHTML = `<div class="market-item">${t.loadingMarkets}</div>`;
+                document.getElementById('marketTicker').innerHTML = `<div class="market-item">📈 ${t.loadingMarkets}</div>`;
             }
         }
         carregarMercados();
@@ -925,7 +1051,7 @@
                     const maxT = Math.round(Math.max(...hojeData.temps));
                     const minT = Math.round(Math.min(...hojeData.temps));
                     document.getElementById('tempMinMax').innerText = `↑ ${maxT}° / ↓ ${minT}°`;
-                    document.getElementById('summaryBox').innerText = `${infoClima.texto} - ${nomeLocal}。最低 ${minT}°C / 最高 ${maxT}°C。`;
+                    document.getElementById('summaryBox').innerText = `${infoClima.texto} - ${nomeLocal}. 最低 ${minT}°C / 最高 ${maxT}°C.`;
                 }
 
                 renderMascot(currentSymbol, infoClima.isDay);
@@ -935,7 +1061,7 @@
                 for (let i = 0; i < 12 && i < timeseries.length; i++) {
                     const step = timeseries[i];
                     const stepDate = new Date(step.time);
-                    const horaStr = stepDate.toLocaleTimeString(t.locale, { timeZone: fusoHorarioAtual, hour: '2-digit', minute: '2-digit' });
+                    const horaStr = stepDate.toLocaleTimeString(t.locale || userLang, { timeZone: fusoHorarioAtual, hour: '2-digit', minute: '2-digit' });
                     const horaNum = parseInt(stepDate.toLocaleTimeString('en-US', { timeZone: fusoHorarioAtual, hour12: false, hour: '2-digit' }), 10);
                     const stepIsDay = horaNum >= 6 && horaNum < 18;
 
@@ -963,11 +1089,11 @@
                     const dSym = dData.symbols[Math.floor(dData.symbols.length / 2)] || 'clearsky_day';
                     const dInfo = interpretarClimaMET(dSym, true);
                     const dataObj = new Date(dKey + 'T12:00:00');
-                    const diaNome = dataObj.toLocaleDateString(t.locale, { weekday: 'short' });
+                    const diaNome = dataObj.toLocaleDateString(t.locale || userLang, { weekday: 'short' });
 
                     dailyContainer.innerHTML += `
                         <div class="daily-row">
-                            <span translate="no">${diaNome}</span>
+                            <span translate="no" style="text-transform:capitalize;">${diaNome}</span>
                             <span>${dInfo.icone}</span>
                             <span>↑ ${dMax}° / ↓ ${dMin}°</span>
                         </div>`;
@@ -982,7 +1108,8 @@
             const q = document.getElementById('searchInput').value;
             if (!q) return;
             try {
-                const res = await fetch(`https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(q)}&count=5&language=ja&format=json`);
+                const langParam = ['en', 'pt', 'es', 'ja'].includes(idiomaUsuario) ? idiomaUsuario : 'ja';
+                const res = await fetch(`https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(q)}&count=5&language=${langParam}&format=json`);
                 const data = await res.json();
                 if (data.results && data.results.length > 0) {
                     const c = data.results[0];
@@ -992,10 +1119,10 @@
                     }
                     carregarClima(c.latitude, c.longitude, `${c.name}, ${c.admin1 || c.country}`);
                 } else {
-                    alert("場所が見つかりませんでした。");
+                    alert("該当する場所が見つかりませんでした。");
                 }
             } catch (e) {
-                alert("検索中にエラーが発生しました。");
+                alert("場所の検索中にエラーが発生しました。");
             }
         }
 
@@ -1003,7 +1130,7 @@
             try {
                 fusoHorarioAtual = Intl.DateTimeFormat().resolvedOptions().timeZone || fusoHorarioAtual;
                 atualizarRelogio();
-                const res = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}&accept-language=ja`);
+                const res = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}&accept-language=${idiomaUsuario}`);
                 const data = await res.json();
                 const addr = data.address || {};
                 const cidade = addr.city || addr.town || addr.village || addr.municipality || "現在地周辺";
@@ -1062,6 +1189,7 @@
             }
         }
 
+        aplicarIdiomaInterface();
         detectarLocalizacaoAutomatica();
     </script>
 </body>
