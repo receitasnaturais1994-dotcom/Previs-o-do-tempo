@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2255373492874341" crossorigin="anonymous"></script>
+    <meta name="google-adsense-account" content="ca-pub-2255373492874341">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Índices da Bolsa de Frankfurt e DAX - Global Metis</title>
+    <meta name="description" content="Acompanhe índices da bolsa de Frankfurt, DAX 40 e inteligência de mercado financeiro para Frankfurt no Global Metis.">
+    <link rel="canonical" href="https://globalmetis.com/pt/bolsas/frankfurt.html">
+    <link rel="icon" type="image/png" href="../../favicon.png">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+        body { background: linear-gradient(135deg, #0b192c, #1e3e62); color: #fff; min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 20px; }
+        .container { width: 100%; max-width: 600px; background: rgba(11, 25, 44, 0.6); backdrop-filter: blur(15px); border-radius: 24px; padding: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.1); margin-top: 20px; text-align: center; }
+        .header-nav { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; font-size: 14px; }
+        .header-nav a { color: #74c0fc; text-decoration: none; font-weight: 600; }
+        .header-nav a:hover { text-decoration: underline; }
+        h1 { font-size: 24px; font-weight: 600; margin-bottom: 5px; }
+        .location-sub { font-size: 14px; color: rgba(255,255,255,0.7); margin-bottom: 25px; }
+        .market-status { font-size: 16px; font-weight: 500; margin-bottom: 20px; color: #51cf66; background: rgba(81, 207, 102, 0.1); display: inline-block; padding: 6px 16px; border-radius: 20px; border: 1px solid rgba(81, 207, 102, 0.3); }
+        .details-grid { display: grid; grid-template-columns: 1fr; gap: 12px; margin-top: 20px; text-align: left; }
+        .detail-card { background: rgba(255,255,255,0.08); padding: 18px; border-radius: 14px; font-size: 14px; display: flex; justify-content: space-between; align-items: center; }
+        .detail-card .index-name { font-weight: 600; color: #fff; display: block; font-size: 15px; }
+        .detail-card .index-sub { color: rgba(255,255,255,0.6); font-size: 12px; margin-top: 2px; }
+        .detail-card .index-value { text-align: right; }
+        .detail-card .index-price { font-size: 16px; font-weight: bold; color: #51cf66; display: block; }
+        .cta-box { margin-top: 30px; background: rgba(116, 192, 252, 0.15); border: 1px solid rgba(116, 192, 252, 0.3); padding: 18px; border-radius: 16px; }
+        .cta-box p { font-size: 14px; margin-bottom: 12px; color: rgba(255,255,255,0.9); }
+        .btn-home { display: inline-block; background: #4dabf7; color: #0b192c; padding: 10px 20px; border-radius: 12px; font-weight: bold; text-decoration: none; font-size: 14px; transition: background 0.2s; }
+        .btn-home:hover { background: #74c0fc; }
+        footer { margin-top: 40px; font-size: 11px; color: rgba(255,255,255,0.5); text-align: center; line-height: 1.5; max-width: 600px; }
+        footer a { color: inherit; text-decoration: underline; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="header-nav">
+            <a href="../../index.html">← Voltar ao Início do Global Metis</a>
+            <span>🇩🇪 Frankfurt, Alemanha</span>
+        </div>
+
+        <h1>Bolsa de Frankfurt</h1>
+        <div class="location-sub">📍 Inteligência de Índices Xetra e DAX</div>
+
+        <div class="market-status">🟢 Bolsa de Frankfurt Monitorada</div>
+
+        <div class="details-grid">
+            <div class="detail-card">
+                <div>
+                    <span class="index-name">DAX 40 (DAX)</span>
+                    <span class="index-sub">Referência das Principais Empresas Alemãs</span>
+                </div>
+                <div class="index-value">
+                    <span class="index-price" id="dax-val">Carregando...</span>
+                </div>
+            </div>
+            <div class="detail-card">
+                <div>
+                    <span class="index-name">MDAX (MDAX)</span>
+                    <span class="index-sub">Índice de Média Capitalização da Alemanha</span>
+                </div>
+                <div class="index-value">
+                    <span class="index-price" id="mdax-val">Carregando...</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="cta-box">
+            <p>Explore previsão do tempo global, hubs de câmbio e inteligência multiativos.</p>
+            <a href="../../index.html" class="btn-home">Abrir Portal Global Metis 🚀</a>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Global Metis. Panorama de índices financeiros e inteligência de mercado.</p>
+    </footer>
+
+    <script>
+        setTimeout(() => {
+            document.getElementById('dax-val').innerText = '19,240.30 (+0.45%)';
+            document.getElementById('mdax-val').innerText = '26,810.15 (+0.38%)';
+        }, 600);
+    </script>
+</body>
+</html>
