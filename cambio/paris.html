@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EUR Exchange Rates & Market Intelligence for Paris - Global Metis</title>
-    <meta name="description" content="Get real-time Euro (EUR) exchange rates, currency conversions, and financial market intelligence for Paris on Global Metis.">
-    <link rel="canonical" href="https://globalmetis.com/cambio/paris.html">
-    <link rel="icon" type="image/png" href="../favicon.png">
+<html lang="en"><head>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2255373492874341" crossorigin="anonymous"></script>
+    <meta name="google-adsense-account" content="ca-pub-2255373492874341" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EUR Exchange Rates &amp; Market Intelligence for Paris - Global Metis</title>
+    <meta name="description" content="Get real-time Euro (EUR) exchange rates, currency conversions, and financial market intelligence for Paris on Global Metis." />
+    <link rel="canonical" href="https://globalmetis.com/cambio/paris.html" />
+    <link rel="icon" type="image/png" href="../favicon.png" />
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
         body { background: linear-gradient(135deg, #0b192c, #1e3e62); color: #fff; min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 20px; }
@@ -15,7 +15,8 @@
         .header-nav a { color: #74c0fc; text-decoration: none; font-weight: 600; }
         .header-nav a:hover { text-decoration: underline; }
         h1 { font-size: 24px; font-weight: 600; margin-bottom: 5px; }
-        .location-sub { font-size: 14px; color: rgba(255,255,255,0.7); margin-bottom: 25px; }
+        .location-sub { font-size: 14px; color: rgba(255,255,255,0.7); margin-bottom: 15px; }
+        .seo-intro { font-size: 13px; color: rgba(255,255,255,0.8); line-height: 1.5; margin-bottom: 20px; text-align: left; background: rgba(255,255,255,0.05); padding: 12px; border-radius: 10px; }
         .rate-display { font-size: 48px; font-weight: 300; margin: 15px 0; color: #51cf66; }
         .condition { font-size: 18px; font-weight: 500; margin-bottom: 20px; color: rgba(255,255,255,0.9); }
         .details-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; text-align: left; }
@@ -40,9 +41,11 @@
         <h1>Paris Currency Market</h1>
         <div class="location-sub">📍 La Défense, Paris (Live EUR Rates)</div>
 
-        <div id="exchange-box">
-            <p style="color: rgba(255,255,255,0.7); padding: 20px;">Fetching live currency feed...</p>
+        <div class="seo-intro">
+            Welcome to the Global Metis Paris currency intelligence hub. Track live interbank exchange rates for the Euro (EUR) against major global currencies including the US Dollar, British Pound, Brazilian Real, and Japanese Yen. Monitor real-time FX updates from Paris.
         </div>
+
+        <div id="exchange-box"><p style="color: #ff6b6b;">Loading live currency data...</p></div>
 
         <div class="cta-box">
             <p>Explore global weather tracking, financial weather hubs, and multi-asset intelligence.</p>
@@ -51,13 +54,12 @@
     </div>
 
     <footer>
-        <p>&copy; 2026 Global Metis. Currency data provided via open exchange rates API.</p>
+        <p>© 2026 Global Metis. Currency data provided via open exchange rates API.</p>
     </footer>
 
     <script>
-        async function fetchParisRates() {
+        async function fetchEURRates() {
             const box = document.getElementById('exchange-box');
-            // Usando API baseada em EUR para Paris
             const url = `https://open.er-api.com/v6/latest/EUR`;
 
             try {
@@ -98,7 +100,7 @@
             }
         }
 
-        fetchParisRates();
+        fetchEURRates();
     </script>
-</body>
-</html>
+
+</body></html>
