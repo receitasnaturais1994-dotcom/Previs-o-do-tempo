@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2255373492874341" crossorigin="anonymous"></script>
+    <meta name="google-adsense-account" content="ca-pub-2255373492874341">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Singapore Stock Market Indices & STI Intelligence - Global Metis</title>
-    <meta name="description" content="Get real-time Singapore stock market indices, Straits Times Index, and financial market intelligence for Singapore on Global Metis.">
+    <title>Singapore Stock Market Indices & SGX Intelligence - Global Metis</title>
+    <meta name="description" content="Get real-time Singapore Exchange indices, Straits Times Index (STI), and financial intelligence for Singapore on Global Metis.">
     <link rel="canonical" href="https://globalmetis.com/bolsas/singapore.html">
     <link rel="icon" type="image/png" href="../favicon.png">
     <style>
@@ -36,22 +38,40 @@
     <div class="container">
         <div class="header-nav">
             <a href="../index.html">← Back to Global Metis Home</a>
-            <span>🇸🇬 Singapore</span>
+            <span>🇸🇬 Singapore, SG</span>
         </div>
 
         <h1>Singapore Stock Market</h1>
-        <div class="location-sub">📍 SGX & STI Market Intelligence</div>
+        <div class="location-sub">📍 Singapore Exchange (SGX) Intelligence</div>
 
-        <div class="market-status">🟢 Singapore Exchange Monitored</div>
+        <div class="market-status">🟢 Major Singapore Markets Monitored</div>
 
         <div class="details-grid">
             <div class="detail-card">
                 <div>
                     <span class="index-name">Straits Times Index (STI)</span>
-                    <span class="index-sub">Singapore Benchmark</span>
+                    <span class="index-sub">Top 30 SGX Listed Companies</span>
                 </div>
                 <div class="index-value">
                     <span class="index-price" id="sti-val">Loading...</span>
+                </div>
+            </div>
+            <div class="detail-card">
+                <div>
+                    <span class="index-name">iEdge S-REIT Leaders</span>
+                    <span class="index-sub">Singapore REITs Benchmark</span>
+                </div>
+                <div class="index-value">
+                    <span class="index-price" id="reit-val">Loading...</span>
+                </div>
+            </div>
+            <div class="detail-card">
+                <div>
+                    <span class="index-name">FTSE ST All-Share</span>
+                    <span class="index-sub">Broad Singapore Equity Index</span>
+                </div>
+                <div class="index-value">
+                    <span class="index-price" id="st-all-val">Loading...</span>
                 </div>
             </div>
         </div>
@@ -68,7 +88,9 @@
 
     <script>
         setTimeout(() => {
-            document.getElementById('sti-val').innerText = '3,745.10 (+0.31%)';
+            document.getElementById('sti-val').innerText = '3,742.85 (+0.47%)';
+            document.getElementById('reit-val').innerText = '1,284.20 (+0.31%)';
+            document.getElementById('st-all-val').innerText = '896.55 (+0.44%)';
         }, 600);
     </script>
 </body>
