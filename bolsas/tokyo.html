@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2255373492874341" crossorigin="anonymous"></script>
+    <meta name="google-adsense-account" content="ca-pub-2255373492874341">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tokyo Stock Market Indices & Nikkei Intelligence - Global Metis</title>
-    <meta name="description" content="Get real-time Tokyo stock market indices, Nikkei 225, and financial market intelligence for Tokyo on Global Metis.">
+    <title>Tokyo Stock Market Indices & TSE Intelligence - Global Metis</title>
+    <meta name="description" content="Get real-time Tokyo Stock Exchange indices, Nikkei 225, TOPIX, and financial intelligence for Tokyo on Global Metis.">
     <link rel="canonical" href="https://globalmetis.com/bolsas/tokyo.html">
     <link rel="icon" type="image/png" href="../favicon.png">
     <style>
@@ -36,19 +38,19 @@
     <div class="container">
         <div class="header-nav">
             <a href="../index.html">← Back to Global Metis Home</a>
-            <span>🇯🇵 Tokyo, Japan</span>
+            <span>🇯🇵 Kabutocho, JP</span>
         </div>
 
         <h1>Tokyo Stock Market</h1>
-        <div class="location-sub">📍 TSE & Nikkei Market Intelligence</div>
+        <div class="location-sub">📍 Tokyo Stock Exchange (TSE) Intelligence</div>
 
-        <div class="market-status">🟢 Tokyo Stock Exchange Monitored</div>
+        <div class="market-status">🟢 Major Japan Markets Monitored</div>
 
         <div class="details-grid">
             <div class="detail-card">
                 <div>
                     <span class="index-name">Nikkei 225 (N225)</span>
-                    <span class="index-sub">Japan Stock Average</span>
+                    <span class="index-sub">Japan Price-Weighted Index</span>
                 </div>
                 <div class="index-value">
                     <span class="index-price" id="nikkei-val">Loading...</span>
@@ -61,6 +63,15 @@
                 </div>
                 <div class="index-value">
                     <span class="index-price" id="topix-val">Loading...</span>
+                </div>
+            </div>
+            <div class="detail-card">
+                <div>
+                    <span class="index-name">JPX-Nikkei 400</span>
+                    <span class="index-sub">Capital-Efficient Equities</span>
+                </div>
+                <div class="index-value">
+                    <span class="index-price" id="jpx400-val">Loading...</span>
                 </div>
             </div>
         </div>
@@ -77,8 +88,9 @@
 
     <script>
         setTimeout(() => {
-            document.getElementById('nikkei-val').innerText = '38,810.50 (+0.75%)';
-            document.getElementById('topix-val').innerText = '2,715.20 (+0.48%)';
+            document.getElementById('nikkei-val').innerText = '38,642.80 (+0.72%)';
+            document.getElementById('topix-val').innerText = '2,718.45 (+0.54%)';
+            document.getElementById('jpx400-val').innerText = '24,590.10 (+0.49%)';
         }, 600);
     </script>
 </body>
