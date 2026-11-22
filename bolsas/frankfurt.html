@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2255373492874341" crossorigin="anonymous"></script>
+    <meta name="google-adsense-account" content="ca-pub-2255373492874341">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Frankfurt Stock Market Indices & DAX Intelligence - Global Metis</title>
-    <meta name="description" content="Get real-time Frankfurt stock market indices, DAX 40, and financial market intelligence for Frankfurt on Global Metis.">
+    <meta name="description" content="Get real-time Frankfurt Stock Exchange indices, DAX 40, MDAX, and financial intelligence for Frankfurt on Global Metis.">
     <link rel="canonical" href="https://globalmetis.com/bolsas/frankfurt.html">
     <link rel="icon" type="image/png" href="../favicon.png">
     <style>
@@ -36,18 +38,18 @@
     <div class="container">
         <div class="header-nav">
             <a href="../index.html">← Back to Global Metis Home</a>
-            <span>🇩🇪 Frankfurt, Germany</span>
+            <span>🇩🇪 Frankfurt, DE</span>
         </div>
 
         <h1>Frankfurt Stock Market</h1>
-        <div class="location-sub">📍 Xetra & DAX Indices Intelligence</div>
+        <div class="location-sub">📍 Frankfurt Stock Exchange (FWB) Intelligence</div>
 
-        <div class="market-status">🟢 Frankfurt Stock Exchange Monitored</div>
+        <div class="market-status">🟢 Major Germany Markets Monitored</div>
 
         <div class="details-grid">
             <div class="detail-card">
                 <div>
-                    <span class="index-name">DAX 40 (DAX)</span>
+                    <span class="index-name">DAX 40 (GDAXI)</span>
                     <span class="index-sub">German Blue-Chip Benchmark</span>
                 </div>
                 <div class="index-value">
@@ -56,11 +58,20 @@
             </div>
             <div class="detail-card">
                 <div>
-                    <span class="index-name">MDAX (MDAX)</span>
-                    <span class="index-sub">German Mid-Cap Index</span>
+                    <span class="index-name">MDAX (MDAXI)</span>
+                    <span class="index-sub">German Mid-Cap Equities</span>
                 </div>
                 <div class="index-value">
                     <span class="index-price" id="mdax-val">Loading...</span>
+                </div>
+            </div>
+            <div class="detail-card">
+                <div>
+                    <span class="index-name">TecDAX (TDXP)</span>
+                    <span class="index-sub">German Technology Index</span>
+                </div>
+                <div class="index-value">
+                    <span class="index-price" id="tecdax-val">Loading...</span>
                 </div>
             </div>
         </div>
@@ -77,8 +88,9 @@
 
     <script>
         setTimeout(() => {
-            document.getElementById('dax-val').innerText = '19,240.30 (+0.45%)';
-            document.getElementById('mdax-val').innerText = '26,810.15 (+0.38%)';
+            document.getElementById('dax-val').innerText = '19,215.70 (+0.67%)';
+            document.getElementById('mdax-val').innerText = '26,480.30 (+0.45%)';
+            document.getElementById('tecdax-val').innerText = '3,385.90 (+0.78%)';
         }, 600);
     </script>
 </body>
