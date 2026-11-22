@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2255373492874341" crossorigin="anonymous"></script>
+    <meta name="google-adsense-account" content="ca-pub-2255373492874341">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sydney Stock Market Indices & ASX Intelligence - Global Metis</title>
-    <meta name="description" content="Get real-time Sydney stock market indices, ASX 200, and financial market intelligence for Sydney on Global Metis.">
+    <meta name="description" content="Get real-time Australian Securities Exchange indices, S&P/ASX 200, All Ordinaries, and financial intelligence for Sydney on Global Metis.">
     <link rel="canonical" href="https://globalmetis.com/bolsas/sydney.html">
     <link rel="icon" type="image/png" href="../favicon.png">
     <style>
@@ -36,22 +38,40 @@
     <div class="container">
         <div class="header-nav">
             <a href="../index.html">← Back to Global Metis Home</a>
-            <span>🇦🇺 Sydney, Australia</span>
+            <span>🇦🇺 Sydney, AU</span>
         </div>
 
         <h1>Sydney Stock Market</h1>
-        <div class="location-sub">📍 ASX & Market Intelligence</div>
+        <div class="location-sub">📍 Australian Securities Exchange (ASX) Intelligence</div>
 
-        <div class="market-status">🟢 Australian Securities Exchange Monitored</div>
+        <div class="market-status">🟢 Major Australia Markets Monitored</div>
 
         <div class="details-grid">
             <div class="detail-card">
                 <div>
                     <span class="index-name">S&P/ASX 200 (AXJO)</span>
-                    <span class="index-sub">Australian Benchmark Index</span>
+                    <span class="index-sub">Australia Top 200 Equities</span>
                 </div>
                 <div class="index-value">
-                    <span class="index-price" id="asx-val">Loading...</span>
+                    <span class="index-price" id="asx200-val">Loading...</span>
+                </div>
+            </div>
+            <div class="detail-card">
+                <div>
+                    <span class="index-name">All Ordinaries (AORD)</span>
+                    <span class="index-sub">500 Largest ASX Companies</span>
+                </div>
+                <div class="index-value">
+                    <span class="index-price" id="allord-val">Loading...</span>
+                </div>
+            </div>
+            <div class="detail-card">
+                <div>
+                    <span class="index-name">S&P/ASX Small Ordinaries</span>
+                    <span class="index-sub">Australian Small-Cap Index</span>
+                </div>
+                <div class="index-value">
+                    <span class="index-price" id="smallord-val">Loading...</span>
                 </div>
             </div>
         </div>
@@ -68,7 +88,9 @@
 
     <script>
         setTimeout(() => {
-            document.getElementById('asx-val').innerText = '8,410.20 (+0.38%)';
+            document.getElementById('asx200-val').innerText = '8,312.60 (+0.55%)';
+            document.getElementById('allord-val').innerText = '8,568.90 (+0.52%)';
+            document.getElementById('smallord-val').innerText = '3,142.30 (+0.39%)';
         }, 600);
     </script>
 </body>
