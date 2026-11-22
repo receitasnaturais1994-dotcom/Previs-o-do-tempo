@@ -415,6 +415,7 @@
             <a id="linkPrivacy" onclick="abrirModal('privacy')">Privacy Policy</a>
             <a id="linkCookies" onclick="abrirModal('cookies')">Cookie Policy</a>
             <a id="linkTerms" onclick="abrirModal('terms')">Terms of Use</a>
+            <a id="linkDisclaimer" onclick="abrirModal('disclaimer')">Disclaimer</a>
             <button id="btnFooterInstall" class="btn-footer-install" onclick="instalarAppPWA()">📱 Install App</button>
         </div>
         <div class="footer-cookie-notice" id="footerCookieNotice">
@@ -483,7 +484,7 @@
                 navGuides: "Guides & Articles",
                 navAbout: "About",
                 navPrivacy: "Privacy Policy",
-                about: "About", privacy: "Privacy Policy", cookies: "Cookie Policy", terms: "Terms of Use",
+                about: "About", privacy: "Privacy Policy", cookies: "Cookie Policy", terms: "Terms of Use", disclaimer: "Disclaimer",
                 installBtn: "📱 Install App",
                 iosInstallTitle: "Install on iPhone / iPad",
                 iosInstallHtml: "<p>In Safari, tap the <b>Share</b> button (square with arrow), scroll down, and tap <b>Add to Home Screen</b>.</p>",
@@ -607,6 +608,10 @@
                     terms: {
                         title: "Terms of Use & Platform Agreement",
                         content: `<p><b>Effective Date:</b> November 2026<br><b>Platform:</b> globalmetis.com</p><h4>1. Acceptance of Terms</h4><p>By accessing and using <b>globalmetis.com</b>, you agree to comply with and be bound by these Terms of Use. If you do not agree to these terms, please refrain from using our meteorological and financial intelligence platform.</p><h4>2. Intellectual Property & Data Licensing</h4><p>Weather data is integrated under the Creative Commons Attribution 4.0 International (CC BY 4.0) license provided by the Norwegian Meteorological Institute (MET Norway). Financial data feeds and platform design elements remain the intellectual property of Global Metis.</p><h4>3. Limitation of Liability</h4><p>Global Metis provides real-time data for informational and educational purposes only. We do not guarantee absolute financial market execution or uninterrupted meteorological feeds. Use information at your own discretion.</p>`
+                    },
+                    disclaimer: {
+                        title: "Financial & Informational Disclaimer",
+                        content: `<p><b>Last Updated:</b> November 2026<br><b>Platform:</b> globalmetis.com</p><h4>1. Informational & Educational Purpose Only</h4><p>All financial market indicators, currency exchange rates, stock exchange session statuses, financial calculators (compound interest and loans), editorial guides, and weather forecasts displayed on <b>globalmetis.com</b> are provided strictly for general informational and educational purposes.</p><h4>2. No Investment, Financial, Legal, or Tax Advice</h4><p>Nothing on this portal constitutes—or should be interpreted as—investment advice, financial planning recommendations, solicitation, offer, or legal/tax counsel. Calculators and currency converters generate illustrative simulations based on user inputs and reference feeds, which may differ from actual bank spreads, interest rates, fees, taxes, or market execution.</p><h4>3. No Real-Time Accuracy Guarantee</h4><p>While we strive to keep data accurate and timely, third-party financial feeds and meteorological models may experience delays, rounding differences, or temporary interruptions. You should independently verify critical figures and consult a qualified, licensed advisor before making any financial, investment, or business decisions.</p><h4>4. User Responsibility & Third-Party Sources</h4><p>Any financial, trading, or operational decisions made based on information from this website are solely at your own risk and discretion. Meteorological data is sourced from the <i>Norwegian Meteorological Institute (MET Norway)</i> under the CC BY 4.0 license, and market feeds come from third-party providers without independent warranty of completeness.</p>`
                     }
                 }
             }
@@ -675,6 +680,7 @@
             document.getElementById('linkPrivacy').innerText = t.privacy;
             document.getElementById('linkCookies').innerText = t.cookies;
             document.getElementById('linkTerms').innerText = t.terms;
+            document.getElementById('linkDisclaimer').innerText = t.disclaimer;
             document.getElementById('btnFooterInstall').innerText = t.installBtn;
             document.getElementById('cookieTitle').innerText = t.cookieTitle;
             document.getElementById('cookieText').innerHTML = t.cookieMsg;
