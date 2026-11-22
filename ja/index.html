@@ -415,6 +415,7 @@
             <a id="linkPrivacy" onclick="abrirModal('privacy')">プライバシーポリシー</a>
             <a id="linkCookies" onclick="abrirModal('cookies')">クッキーポリシー</a>
             <a id="linkTerms" onclick="abrirModal('terms')">利用規約</a>
+            <a id="linkDisclaimer" onclick="abrirModal('disclaimer')">免責事項</a>
             <button id="btnFooterInstall" class="btn-footer-install" onclick="instalarAppPWA()">📱 アプリをインストール</button>
         </div>
         <div class="footer-cookie-notice" id="footerCookieNotice">
@@ -483,7 +484,7 @@
                 navGuides: "ガイド・記事",
                 navAbout: "運営情報",
                 navPrivacy: "プライバシーポリシー",
-                about: "運営情報", privacy: "プライバシーポリシー", cookies: "クッキーポリシー", terms: "利用規約",
+                about: "運営情報", privacy: "プライバシーポリシー", cookies: "クッキーポリシー", terms: "利用規約", disclaimer: "免責事項",
                 installBtn: "📱 アプリをインストール",
                 iosInstallTitle: "iPhone / iPad へのインストール方法",
                 iosInstallHtml: "<p>Safariで<b>共有</b>ボタン（上矢印の四角いアイコン）をタップし、下にスクロールして<b>ホーム画面に追加</b>をタップしてください。</p>",
@@ -607,6 +608,10 @@
                     terms: {
                         title: "利用規約",
                         content: `<p><b>施行日:</b> 2026年11月<br><b>プラットフォーム:</b> globalmetis.com</p><h4>1. 利用規約への同意</h4><p><b>globalmetis.com</b> にアクセスまたは利用することで、本利用規約に同意したものとみなされます。同意されない場合は当サイトのご利用をお控えください。</p><h4>2. 知的財産権とデータライセンス</h4><p>気象データはノルウェー気象研究所（MET Norway）の Creative Commons Attribution 4.0 International（CC BY 4.0）ライセンスに基づき提供されています。金融データフィードやサイトデザインの要素は Global Metis に帰属します。</p><h4>3. 免責事項</h4><p>当サイトは情報提供および学習・参考を目的としてリアルタイム情報を提供します。外部データの常時稼働を保証するものではなく、表示される数値や計算結果に基づく投資・契約等の判断については利用者ご自身の責任で行ってください。</p>`
+                    },
+                    disclaimer: {
+                        title: "免責事項・金融情報に関するご注意",
+                        content: `<p><b>最終更新日:</b> 2026年11月<br><b>プラットフォーム:</b> globalmetis.com</p><h4>1. 情報提供および学習目的での利用</h4><p><b>globalmetis.com</b> に掲載されるすべての金融マーケット指標、為替レート、世界の取引所セッション情報、金融計算機（複利計算・ローン返済シミュレーション）、解説記事、気象予報は、情報提供および学習・参考のみを目的としています。</p><h4>2. 投資助言・金融・法務・税務アドバイスではありません</h4><p>当サイト上のいかなるコンテンツも、金融商品取引の勧誘、投資助言、投資推奨、あるいは法務・税務・会計上の専門的助言を構成するものではありません。計算機や通貨換算ツールの結果は入力値や参照データに基づく参考シミュレーションであり、実際の金融機関のレート、スプレッド、手数料、税金、約定条件とは異なる場合があります。</p><h4>3. リアルタイム性および正確性の非保証</h4><p>当サイトは情報の分かりやすさや更新性の維持に努めていますが、外部の金融・為替データや気象モデルには遅延、丸め誤差、一時的な通信・提供停止が生じる可能性があります。重要な金融・投資・契約上の判断を行う際は、必ず一次情報や有資格の専門家にご確認ください。</p><h4>4. 利用者の責任および第三者データソース</h4><p>当サイトの情報を利用して行われた取引や意思決定の結果については、利用者ご自身の責任となります。気象データは <i>ノルウェー気象研究所（MET Norway）</i> より CC BY 4.0 ライセンスで提供されており、各種レートや市場情報は第三者提供元に基づくものです。</p>`
                     }
                 }
             }
@@ -675,6 +680,7 @@
             document.getElementById('linkPrivacy').innerText = t.privacy;
             document.getElementById('linkCookies').innerText = t.cookies;
             document.getElementById('linkTerms').innerText = t.terms;
+            document.getElementById('linkDisclaimer').innerText = t.disclaimer;
             document.getElementById('btnFooterInstall').innerText = t.installBtn;
             document.getElementById('cookieTitle').innerText = t.cookieTitle;
             document.getElementById('cookieText').innerHTML = t.cookieMsg;
