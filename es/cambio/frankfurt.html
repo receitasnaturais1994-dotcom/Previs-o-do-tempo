@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2255373492874341" crossorigin="anonymous"></script>
+    <meta name="google-adsense-account" content="ca-pub-2255373492874341">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tipos de Cambio del Euro (EUR) en Fráncfort - Global Metis</title>
+    <meta name="description" content="Consulta tipos de cambio del Euro (EUR) en tiempo real, conversiones e inteligencia de mercado para Fráncfort en Global Metis.">
+    <link rel="canonical" href="https://globalmetis.com/es/cambio/frankfurt.html">
+    <link rel="icon" type="image/png" href="../../favicon.png">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+        body { background: linear-gradient(135deg, #0b192c, #1e3e62); color: #fff; min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 20px; }
+        .container { width: 100%; max-width: 600px; background: rgba(11, 25, 44, 0.6); backdrop-filter: blur(15px); border-radius: 24px; padding: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.1); margin-top: 20px; text-align: center; }
+        .header-nav { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; font-size: 14px; }
+        .header-nav a { color: #74c0fc; text-decoration: none; font-weight: 600; }
+        .header-nav a:hover { text-decoration: underline; }
+        h1 { font-size: 24px; font-weight: 600; margin-bottom: 5px; }
+        .location-sub { font-size: 14px; color: rgba(255,255,255,0.7); margin-bottom: 25px; }
+        .rate-display { font-size: 48px; font-weight: 300; margin: 15px 0; color: #51cf66; }
+        .condition { font-size: 18px; font-weight: 500; margin-bottom: 20px; color: rgba(255,255,255,0.9); }
+        .details-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; text-align: left; }
+        .detail-card { background: rgba(255,255,255,0.08); padding: 15px; border-radius: 14px; font-size: 14px; }
+        .detail-card span { display: block; color: rgba(255,255,255,0.6); font-size: 12px; margin-bottom: 4px; }
+        .cta-box { margin-top: 30px; background: rgba(116, 192, 252, 0.15); border: 1px solid rgba(116, 192, 252, 0.3); padding: 18px; border-radius: 16px; }
+        .cta-box p { font-size: 14px; margin-bottom: 12px; color: rgba(255,255,255,0.9); }
+        .btn-home { display: inline-block; background: #4dabf7; color: #0b192c; padding: 10px 20px; border-radius: 12px; font-weight: bold; text-decoration: none; font-size: 14px; transition: background 0.2s; }
+        .btn-home:hover { background: #74c0fc; }
+        footer { margin-top: 40px; font-size: 11px; color: rgba(255,255,255,0.5); text-align: center; line-height: 1.5; max-width: 600px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header-nav">
+            <a href="../../index.html">← Volver al Inicio de Global Metis</a>
+            <span>🇩🇪 Fráncfort, Alemania</span>
+        </div>
+        <h1>Mercado de Divisas de Fráncfort</h1>
+        <div class="location-sub">📍 Distrito Bancario de Fráncfort (Tipos de Cambio EUR en Vivo)</div>
+        <div id="exchange-box"><p style="color: rgba(255,255,255,0.7); padding: 20px;">Obteniendo cotizaciones en vivo...</p></div>
+        <div class="cta-box">
+            <p>Explora el pronóstico climático global, centros financieros e inteligencia multiactivo.</p>
+            <a href="../../index.html" class="btn-home">Abrir Portal Global Metis 🚀</a>
+        </div>
+    </div>
+    <footer><p>&copy; 2026 Global Metis. Datos de divisas proporcionados mediante API abierta de tipos de cambio.</p></footer>
+    <script>
+        async function fetchRates() {
+            const box = document.getElementById('exchange-box');
+            try {
+                const res = await fetch('https://open.er-api.com/v6/latest/EUR');
+                if (!res.ok) throw new Error('Error al obtener cotizaciones');
+                const data = await res.json();
+                box.innerHTML = `
+                    <div class="rate-display">Base: 1.00 EUR</div>
+                    <div class="condition">Tipos de Cambio Interbancarios en Vivo</div>
+                    <div class="details-grid">
+                        <div class="detail-card"><span>Dólar Estadounidense (USD)</span><strong>$${data.rates.USD.toFixed(4)}</strong></div>
+                        <div class="detail-card"><span>Libra Esterlina (GBP)</span><strong>£${data.rates.GBP.toFixed(4)}</strong></div>
+                        <div class="detail-card"><span>Real Brasileño (BRL)</span><strong>R$${data.rates.BRL.toFixed(4)}</strong></div>
+                        <div class="detail-card"><span>Franco Suizo (CHF)</span><strong>CHF ${data.rates.CHF.toFixed(4)}</strong></div>
+                    </div>`;
+            } catch (e) {
+                box.innerHTML = `<p style="color: #ff6b6b;">No se pudieron cargar los datos de divisas en este momento. Inténtalo más tarde.</p>`;
+            }
+        }
+        fetchRates();
+    </script>
+</body>
+</html>
