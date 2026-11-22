@@ -415,6 +415,7 @@
             <a id="linkPrivacy" onclick="abrirModal('privacy')">Política de Privacidade</a>
             <a id="linkCookies" onclick="abrirModal('cookies')">Política de Cookies</a>
             <a id="linkTerms" onclick="abrirModal('terms')">Termos de Uso</a>
+            <a id="linkDisclaimer" onclick="abrirModal('disclaimer')">Aviso Legal</a>
             <button id="btnFooterInstall" class="btn-footer-install" onclick="instalarAppPWA()">📱 Instalar App</button>
         </div>
         <div class="footer-cookie-notice" id="footerCookieNotice">
@@ -483,7 +484,7 @@
                 navGuides: "Guias e Artigos",
                 navAbout: "Sobre",
                 navPrivacy: "Política de Privacidade",
-                about: "Sobre", privacy: "Política de Privacidade", cookies: "Política de Cookies", terms: "Termos de Uso",
+                about: "Sobre", privacy: "Política de Privacidade", cookies: "Política de Cookies", terms: "Termos de Uso", disclaimer: "Aviso Legal",
                 installBtn: "📱 Instalar App",
                 iosInstallTitle: "Instalar no iPhone / iPad",
                 iosInstallHtml: "<p>No Safari, toque no botão <b>Compartilhar</b> (quadrado com seta para cima), role para baixo e toque em <b>Adicionar à Tela de Início</b>.</p>",
@@ -607,6 +608,10 @@
                     terms: {
                         title: "Termos de Uso e Acordo da Plataforma",
                         content: `<p><b>Data de Vigência:</b> Novembro de 2026<br><b>Plataforma:</b> globalmetis.com</p><h4>1. Aceitação dos Termos</h4><p>Ao acessar e utilizar o <b>globalmetis.com</b>, você concorda em cumprir estes Termos de Uso. Caso não concorde com algum ponto, pedimos que não utilize a plataforma.</p><h4>2. Propriedade Intelectual e Licenciamento de Dados</h4><p>Os dados meteorológicos são integrados sob licença Creative Commons Attribution 4.0 International (CC BY 4.0) fornecida pelo Instituto Meteorológico da Noruega (MET Norway). Feeds financeiros e elementos de interface pertencem ao Global Metis.</p><h4>3. Limitação de Responsabilidade</h4><p>O Global Metis disponibiliza informações em tempo real apenas para fins informativos e educativos. Não garantimos disponibilidade ininterrupta de dados externos nem nos responsabilizamos por decisões financeiras tomadas com base nas simulações ou cotações exibidas.</p>`
+                    },
+                    disclaimer: {
+                        title: "Aviso Legal e Isenção de Responsabilidade Financeira",
+                        content: `<p><b>Última atualização:</b> Novembro de 2026<br><b>Plataforma:</b> globalmetis.com</p><h4>1. Finalidade Exclusivamente Informativa e Educativa</h4><p>Todos os indicadores de mercados financeiros, taxas de câmbio, status de sessões de bolsas, calculadoras financeiras (juros compostos e financiamentos), guias editoriais e previsões meteorológicas exibidos no <b>globalmetis.com</b> são fornecidos unicamente para fins informativos e educativos.</p><h4>2. Ausência de Aconselhamento Financeiro, de Investimento, Jurídico ou Fiscal</h4><p>Nada do que é publicado neste portal constitui — ou deve ser interpretado como — aconselhamento financeiro, recomendação de investimento, oferta, solicitação ou consultoria jurídica ou fiscal. As calculadoras e conversores geram simulações ilustrativas com base nos parâmetros inseridos e em fontes de referência, podendo diferir de spreads bancários reais, taxas, tarifas, impostos ou preços de execução.</p><h4>3. Sem Garantia de Precisão em Tempo Real</h4><p>Embora busquemos manter as informações claras e atualizadas, fontes financeiras de terceiros e modelos meteorológicos podem apresentar atrasos, diferenças de arredondamento ou indisponibilidades temporárias. Recomendamos verificar os dados de forma independente e consultar um profissional devidamente habilitado antes de tomar decisões financeiras, de investimento ou de negócios.</p><h4>4. Responsabilidade do Usuário e Fontes de Terceiros</h4><p>Qualquer decisão financeira, operacional ou de investimento tomada com base no conteúdo deste site é de responsabilidade exclusiva do usuário. Os dados meteorológicos são fornecidos pelo <i>Instituto Meteorológico da Noruega (MET Norway)</i> sob licença CC BY 4.0, e as cotações provêm de provedores externos sem garantia de disponibilidade contínua.</p>`
                     }
                 }
             }
@@ -675,6 +680,7 @@
             document.getElementById('linkPrivacy').innerText = t.privacy;
             document.getElementById('linkCookies').innerText = t.cookies;
             document.getElementById('linkTerms').innerText = t.terms;
+            document.getElementById('linkDisclaimer').innerText = t.disclaimer;
             document.getElementById('btnFooterInstall').innerText = t.installBtn;
             document.getElementById('cookieTitle').innerText = t.cookieTitle;
             document.getElementById('cookieText').innerHTML = t.cookieMsg;
